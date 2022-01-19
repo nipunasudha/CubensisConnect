@@ -14,6 +14,7 @@ interface Props {
   loading?: boolean;
   value: string;
   onChange?: (newValue: string) => void;
+  onLogoClick?: () => void;
 }
 
 export function AssetAmountInput({
@@ -22,6 +23,7 @@ export function AssetAmountInput({
   loading,
   value,
   onChange,
+  onLogoClick,
 }: Props) {
   const network = useAppSelector(state => state.currentNetwork);
   const asset = balance.asset;
@@ -92,7 +94,12 @@ export function AssetAmountInput({
 
   return (
     <div className={styles.root}>
-      <div className={styles.logo}>
+      <button
+        className={styles.logo}
+        disabled={!onLogoClick}
+        type="button"
+        onClick={onLogoClick}
+      >
         {logoSrc ? (
           <img className={styles.logoImg} src={logoSrc} alt="" />
         ) : (
@@ -105,7 +112,7 @@ export function AssetAmountInput({
             {asset.displayName[0].toUpperCase()}
           </div>
         )}
-      </div>
+      </button>
 
       <div className={styles.left}>
         <div className={styles.label}>{label}</div>
