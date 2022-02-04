@@ -32,9 +32,9 @@ type TxStatus =
     };
 
 const explorerBaseUrlsByNetwork = {
-  mainnet: 'wavesexplorer.com',
-  testnet: 'testnet.wavesexplorer.com',
-  stagenet: 'stagenet.wavesexplorer.com',
+  mainnet: 'decentralscan.com',
+  testnet: 'testnet.decentralscan.com',
+  stagenet: 'stagenet.decentralscan.com',
 };
 
 export function SwapResult({ fromMoney, transactionId, onClose }: Props) {
@@ -93,7 +93,7 @@ export function SwapResult({ fromMoney, transactionId, onClose }: Props) {
           setReceivedMoney(
             new Money(
               transfer.amount,
-              new Asset(assets[transfer.asset || 'WAVES'])
+              new Asset(assets[transfer.asset || 'DCC'])
             )
           );
           setSwapStatus(SwapStatus.Succeeded);

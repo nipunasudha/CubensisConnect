@@ -10,7 +10,7 @@ if (shouldInject()) {
 
 // function initKeeper() {
 //     let cbs = [];
-//     window.WavesKeeper = window.Waves = {
+//     window.CubensisConnect = window.Waves = {
 //         on: function (event, cb) { cbs.push({ event, cb }) },
 //         _inited: function (api) {
 //             cbs.forEach(function ({ event, cb }) {

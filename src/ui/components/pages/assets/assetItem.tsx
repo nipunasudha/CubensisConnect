@@ -88,7 +88,7 @@ export function AssetItem({
 
       {!isLoading && (
         <MoreActions>
-          {assetId !== 'WAVES' && (
+          {assetId !== 'DCC' && (
             <Tooltip content={<Trans i18nKey="assetInfo.infoTooltip" />}>
               {props => (
                 <button

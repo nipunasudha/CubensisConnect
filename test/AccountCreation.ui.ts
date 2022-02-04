@@ -562,7 +562,7 @@ describe('Account creation', function () {
             expect(currentAddress).to.be.not.equal(lastAddress);
             lastAddress = currentAddress;
             // insert char
-            await seedTextarea.sendKeys('W');
+            await seedTextarea.sendKeys('?');
             currentAddress = await currentAddressDiv.getText();
             expect(currentAddress).to.be.not.equal(lastAddress);
             lastAddress = currentAddress;
@@ -998,7 +998,7 @@ describe('Account creation', function () {
               address: '3PCj4z3TZ1jqZ7A9zYBoSbHnvRqFq2uy89r',
               name: 'test2',
               network: 'mainnet',
-              networkCode: 'W',
+              networkCode: '?',
               publicKey: '57tdgQxNNfehn9BQQm834NMiesYzXFEhnPaw1z5yNzHD',
               seed: 'odor refuse imitate busy purity where capital rebuild follow foil sorry tornado dress boring envelope',
               type: 'seed',
@@ -1126,7 +1126,7 @@ describe('Account creation', function () {
               address: '3PCj4z3TZ1jqZ7A9zYBoSbHnvRqFq2uy89r',
               name: 'test2 (1)',
               network: 'mainnet',
-              networkCode: 'W',
+              networkCode: '?',
               publicKey: '57tdgQxNNfehn9BQQm834NMiesYzXFEhnPaw1z5yNzHD',
               seed: 'odor refuse imitate busy purity where capital rebuild follow foil sorry tornado dress boring envelope',
               type: 'seed',
@@ -1193,7 +1193,7 @@ describe('Account creation', function () {
               address: '3PCj4z3TZ1jqZ7A9zYBoSbHnvRqFq2uy89r',
               name: 'test2 (2)',
               network: 'mainnet',
-              networkCode: 'W',
+              networkCode: '?',
               publicKey: '57tdgQxNNfehn9BQQm834NMiesYzXFEhnPaw1z5yNzHD',
               seed: 'odor refuse imitate busy purity where capital rebuild follow foil sorry tornado dress boring envelope',
               type: 'seed',

@@ -1,4 +1,4 @@
-import { SIGN_TYPE } from '@waves/signature-adapter';
+import { SIGN_TYPE } from '@decentralchain/signature-adapter';
 import { Asset, Money } from '@waves/data-entities';
 
 export const messageType = 'issue';
@@ -6,9 +6,9 @@ export const txType = 'transaction';
 
 export function getAssetsId(tx): Array<string> {
   const feeAssetId =
-    tx.fee && tx.fee.assetId ? tx.fee.assetId : tx.feeAssetId || 'WAVES';
+    tx.fee && tx.fee.assetId ? tx.fee.assetId : tx.feeAssetId || 'DCC';
   const amountAssetId =
-    tx.amount && tx.amount.assetId ? tx.amount.assetId : tx.assetId || 'WAVES';
+    tx.amount && tx.amount.assetId ? tx.amount.assetId : tx.assetId || 'DCC';
 
   if (feeAssetId === amountAssetId) {
     return [amountAssetId];

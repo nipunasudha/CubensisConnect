@@ -319,7 +319,7 @@ const getTxAmount = tx => {
 
   if (
     result.fee.assetId === result.amount.assetId &&
-    result.fee.assetId === 'WAVES'
+    result.fee.assetId === 'DCC'
   ) {
     return result.fee.amount.add(result.amount.amount);
   }
@@ -333,12 +333,12 @@ const getTxReceiveAmount = tx => {
 
   if (tx.data.fee) {
     fee.amount = moneyLikeToBigNumber(tx.data.fee, 8);
-    fee.assetId = tx.data.fee.assetId || 'WAVES';
+    fee.assetId = tx.data.fee.assetId || 'DCC';
   }
 
   if (tx.data.amount) {
     amount.amount = moneyLikeToBigNumber(tx.data.amount, 8);
-    amount.assetId = tx.data.amount.assetId || 'WAVES';
+    amount.assetId = tx.data.amount.assetId || 'DCC';
   }
 
   return { amount, fee };
@@ -350,7 +350,7 @@ const getTxMassReceiveAmount = tx => {
 
   if (tx.data.fee) {
     fee.amount = moneyLikeToBigNumber(tx.data.fee, 8);
-    fee.assetId = tx.data.fee.assetId || 'WAVES';
+    fee.assetId = tx.data.fee.assetId || 'DCC';
   }
 
   amount.assetId = tx.data.assetId || tx.data.totalAmount.assetId;
@@ -363,18 +363,18 @@ const getTxMassReceiveAmount = tx => {
 
 const getTxDataAmount = tx => {
   let fee = { amount: null, assetId: null };
-  let amount = { amount: new BigNumber(0), assetId: 'WAVES' };
+  let amount = { amount: new BigNumber(0), assetId: 'DCC' };
 
   if (tx.data.fee) {
     fee.amount = moneyLikeToBigNumber(tx.data.fee, 8);
-    fee.assetId = tx.data.fee.assetId || 'WAVES';
+    fee.assetId = tx.data.fee.assetId || 'DCC';
   }
 
   return { amount, fee };
 };
 
 const getPackAmount = txs => {
-  const fee = { amount: new BigNumber(0), assetId: 'WAVES' };
+  const fee = { amount: new BigNumber(0), assetId: 'DCC' };
   const amount = { amount: new BigNumber(0), assetId: null };
 
   for (const tx of txs) {
@@ -390,7 +390,7 @@ const getPackAmount = txs => {
 
     if (
       (result && result.fee.assetId !== result.amount.assetId) ||
-      result.fee.assetId !== 'WAVES'
+      result.fee.assetId !== 'DCC'
     ) {
       return { amount, fee: { assetId: null, amount: null } };
     }

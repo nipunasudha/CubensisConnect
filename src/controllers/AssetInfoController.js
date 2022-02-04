@@ -2,19 +2,19 @@ import ObservableStore from 'obs-store';
 
 const WAVES = {
   quantity: '10000000000000000',
-  ticker: 'WAVES',
-  id: 'WAVES',
-  name: 'Waves',
+  ticker: 'DCC',
+  id: 'DCC',
+  name: 'DCC',
   precision: 8,
   description: '',
   height: 0,
   timestamp: '2016-04-11T21:00:00.000Z',
   sender: '',
   reissuable: false,
-  displayName: 'WAVES',
+  displayName: 'DCC',
 };
 const SUSPICIOUS_LIST_URL =
-  'https://raw.githubusercontent.com/wavesplatform/waves-community/master/Scam%20tokens%20according%20to%20the%20opinion%20of%20Waves%20Community.csv';
+  'https://raw.githubusercontent.com/Decentral-America/dcc-token-filters/main/scam-v1.csv';
 const MAX_AGE = 60 * 60 * 1000;
 
 function binarySearch(sortedArray, key) {
@@ -91,7 +91,7 @@ export class AssetInfoController {
     await this.updateSuspiciousAssets();
 
     const { assets } = this.store.getState();
-    if (assetId === '' || assetId == null || assetId.toUpperCase() === 'WAVES')
+    if (assetId === '' || assetId == null || assetId.toUpperCase() === 'DCC')
       return WAVES;
 
     const network = this.getNetwork();
@@ -214,7 +214,7 @@ export class AssetInfoController {
             };
           }
         });
-        assets[network]['WAVES'] = this.getWavesAsset();
+        assets[network]['DCC'] = this.getWavesAsset();
         this.store.updateState({ assets });
         break;
       default:

@@ -1,8 +1,8 @@
-export const WAVESKEEPER_DEBUG = process.env.NODE_ENV !== 'production';
-export const WAVESKEEPER_ENV = process.env.NODE_ENV || 'development';
+export const CUBENSISCONNECT_DEBUG = process.env.NODE_ENV !== 'production';
+export const CUBENSISCONNECT_ENV = process.env.NODE_ENV || 'development';
 
 export const CONFIG_URL =
-  'https://raw.githubusercontent.com/wavesplatform/waves-client-config/master/waves_keeper_blacklist.json';
+  'https://raw.githubusercontent.com/Decentral-America/dcc-configs/main/cubensis-connect-blacklist.json';
 
 export const allowMatcher = ['dex.tokenomica.com', 'vfa.tokenomica.com'];
 
@@ -31,19 +31,19 @@ export const DEFAULT_CONFIG = {
   NETWORKS: ['mainnet', 'testnet', 'stagenet', 'custom'],
   NETWORK_CONFIG: {
     testnet: {
-      code: 'T',
-      server: 'https://nodes-testnet.wavesnodes.com/',
-      matcher: 'https://matcher-testnet.waves.exchange/',
+      code: '!',
+      server: 'https://testnet-node.decentralchain.io/',
+      matcher: 'https://matcher.decentralchain.io/',
     },
     mainnet: {
-      code: 'W',
-      server: 'https://nodes.wavesnodes.com/',
-      matcher: 'https://matcher.waves.exchange/',
+      code: '?',
+      server: 'https://mainnet-node.decentralchain.io/',
+      matcher: 'https://mainnet-matcher.decentralchain.io/',
     },
     stagenet: {
       code: 'S',
-      server: 'https://nodes-stagenet.wavesnodes.com/',
-      matcher: 'https://matcher-stagenet.waves.exchange/',
+      server: 'https://stagenet-node.decentralchain.io/',
+      matcher: 'https://stagenet-matcher.decentralchain.io/',
     },
     custom: {
       code: '',
@@ -74,7 +74,7 @@ export const DEFAULT_CONFIG = {
 };
 
 export const DEFAULT_FEE_CONFIG_URL =
-  'https://raw.githubusercontent.com/wavesplatform/waves-client-config/master/fee.json';
+  'https://raw.githubusercontent.com/Decentral-America/dcc-configs/main/fee.json';
 
 export const DEFAULT_FEE_CONFIG = {
   smart_asset_extra_fee: 400000,
@@ -121,7 +121,7 @@ export const SWAP_DAPPS = {
 };
 
 export const IGNORE_ERRORS_CONFIG_URL =
-  'https://raw.githubusercontent.com/Waves-Keeper/configs/master/keeper-ignore-errors.json';
+  'https://raw.githubusercontent.com/Decentral-America/dcc-configs/main/cubensis-ignore-errors.json';
 
 export const IGNORE_ERRORS_CONFIG_UPDATE_INTERVAL = 60000;
 

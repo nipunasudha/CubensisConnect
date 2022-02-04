@@ -38,7 +38,7 @@ export const TxFee = connect(
     const fee = getMoney(getFee({ ...message?.data?.data }), assets);
     const initialFee = getMoney(message?.data?.data?.initialFee, assets);
 
-    const minSponsorBalance: Money = convertFee(initialFee, assets['WAVES']);
+    const minSponsorBalance: Money = convertFee(initialFee, assets['DCC']);
 
     const sponsoredBalance = Object.entries(
       (ownProps.sponsoredBalance as BalanceAssets) || {}
@@ -57,7 +57,7 @@ export const TxFee = connect(
       [TRANSACTION_TYPE.TRANSFER, TRANSACTION_TYPE.INVOKE_SCRIPT].includes(
         message.data.type
       ) &&
-      (fee.asset.displayName === 'WAVES' || !!fee.asset.minSponsoredFee);
+      (fee.asset.displayName === 'DCC' || !!fee.asset.minSponsoredFee);
 
     return {
       message,
@@ -89,11 +89,11 @@ export const TxFee = connect(
   }
 
   let options: FeeOption[] = [];
-  if ('WAVES' in sponsoredBalance || initialFee.asset.id === 'WAVES') {
-    options.push(getOption('WAVES'));
-    sponsoredBalance = omit(['WAVES'], sponsoredBalance);
+  if ('DCC' in sponsoredBalance || initialFee.asset.id === 'DCC') {
+    options.push(getOption('DCC'));
+    sponsoredBalance = omit(['DCC'], sponsoredBalance);
   }
-  if (initialFee.asset.id !== 'WAVES') {
+  if (initialFee.asset.id !== 'DCC') {
     options.push(getOption(initialFee.asset.id));
     sponsoredBalance = omit([initialFee.asset.id], sponsoredBalance);
   }
@@ -125,7 +125,7 @@ export const TxFee = connect(
 });
 
 function convertFee(from: Money, toAsset: Asset): Money {
-  const isWaves = (assetId: string) => assetId === 'WAVES';
+  const isWaves = (assetId: string) => assetId === 'DCC';
   const minSponsoredFee = (asset: Asset) =>
     !isWaves(asset.id) ? asset.minSponsoredFee : WAVES_MIN_FEE;
   return new Money(

@@ -6,7 +6,7 @@ import {
   ExportKeystoreAccount,
 } from './chooseAccounts';
 import { ExportAccountsPasswordModal } from './passwordModal';
-import { seedUtils } from '@waves/waves-transactions';
+import { seedUtils } from '@decentralchain/waves-transactions';
 
 interface Props {
   allNetworksAccounts: ExportKeystoreAccount[];

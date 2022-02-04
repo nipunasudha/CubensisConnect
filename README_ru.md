@@ -1,6 +1,6 @@
 # Waves Keeper
 
-[en](https://github.com/wavesplatform/waves-keeper/blob/master/README.md) | ru
+[en](https://github.com/wavesplatform/cubensis-connect/blob/master/README.md) | ru
 
 Приложение для хранения данных пользователя
 и проведения транзакций в блокчейн сети Waves.
@@ -10,7 +10,7 @@
 
 На страницах браузера, работающим по протоколам http/https (не работает на локальных страничках по протоколу `file://`),
 с установленным расширением Waves Keeper
-становятся доступным глобальный объект WavesKeeper
+становятся доступным глобальный объект CubensisConnect
 в котором вы найдете следующие методы:
 
 - `auth`
@@ -32,16 +32,16 @@
 
 > Все методы кроме `on` работают асинхронно и возвращают [Promise](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Promise)
 
-В вашем коде вы можете использовать [TypeScript types](https://github.com/wavesplatform/waveskeeper-types)
+В вашем коде вы можете использовать [TypeScript types](https://github.com/wavesplatform/cubensisconnect-types)
 
-При загрузке страницы в объекте WavesKeeper нет методов апи до окончания инициализации плагина.
-Для облегчения работы с WavesKeeper при инициализации в `window.WavesKeeper` есть `initialPromise`,
+При загрузке страницы в объекте CubensisConnect нет методов апи до окончания инициализации плагина.
+Для облегчения работы с CubensisConnect при инициализации в `window.CubensisConnect` есть `initialPromise`,
 который отрабатывает в момент окончания инициализации.
 Пример:
 
 ```js
-WavesKeeper.initialPromise.then(keeperApi => {
-  /*...инициализация работы приложения с WavesKeeper*/
+CubensisConnect.initialPromise.then(keeperApi => {
+  /*...инициализация работы приложения с CubensisConnect*/
   keeperApi.publicState().then(state => startApp(state));
 });
 ```
@@ -64,7 +64,7 @@ WavesKeeper.initialPromise.then(keeperApi => {
 Пример:
 
 ```js
-WavesKeeper.publicState()
+CubensisConnect.publicState()
   .then(state => {
     console.log(state); //вывод в консоль результата
     /*...обработка данных */
@@ -80,7 +80,7 @@ WavesKeeper.publicState()
 ```js
 const getPublicState = async () => {
   try {
-    const state = await WavesKeeper.publicState();
+    const state = await CubensisConnect.publicState();
     console.log(state); //вывод в консоль результата
     /*...обработка данных */
   } catch (error) {
@@ -111,7 +111,7 @@ const result = await getPublicState();
     "network": {
         "code": "W",
         "server": "https://nodes.wavesnodes.com/",
-        "matcher": "https://matcher.waves.exchange/"
+        "matcher": "https://mainnet-matcher.decentralchain.io/"
     },
     "messages": [],
     "txVersion": {
@@ -142,12 +142,12 @@ const result = await getPublicState();
 
 Вы можете зашифровать текст для конкретного пользователя сети Waves, зная его публичный ключ.
 
-WavesKeeper.encryptMessage(`текст для шифрования`, `публичный ключ в кодировке base58`, `префикс строкой уникальный для каждого приложения`)
+CubensisConnect.encryptMessage(`текст для шифрования`, `публичный ключ в кодировке base58`, `префикс строкой уникальный для каждого приложения`)
 
 Пример:
 
 ```js
-WavesKeeper.encryptMessage(
+CubensisConnect.encryptMessage(
   'My message',
   '416z9d8DQDy5MPTqDhvReRBaPb19gEyVRWvHcewpP6Nc',
   'для меня'
@@ -169,7 +169,7 @@ WavesKeeper.encryptMessage(
 Вы можете расшифровать сообщение, зашифрованное для вас пользователем сети Waves, зная сообщение и публичный ключ отправителя.
 
 ```js
-WavesKeeper.decryptMessage(
+CubensisConnect.decryptMessage(
   `зашифрованный текст`,
   `публичный ключ в кодировке base58`,
   `префикс строкой уникальный для каждого приложения`
@@ -179,7 +179,7 @@ WavesKeeper.decryptMessage(
 Example:
 
 ```js
-WavesKeeper.decryptMessage(
+CubensisConnect.decryptMessage(
   '**encrypted msg**',
   '416z9d8DQDy5MPTqDhvReRBaPb19gEyVRWvHcewpP6Nc'
 ).then(message => {
@@ -206,8 +206,8 @@ WavesKeeper.decryptMessage(
 Пример:
 
 ```js
-WavesKeeper.on('update', state => {
-  //state бъект как из WavesKeeper.publicState
+CubensisConnect.on('update', state => {
+  //state бъект как из CubensisConnect.publicState
 });
 ```
 
@@ -227,7 +227,7 @@ WavesKeeper.on('update', state => {
 Пример:
 
 ```js
-WavesKeeper.notification({
+CubensisConnect.notification({
   title: 'Hello!',
   message: 'Congratulation!!!',
 });
@@ -249,7 +249,7 @@ WavesKeeper.notification({
 
 ```js
 const authData = { data: 'Auth on my site' };
-WavesKeeper.auth(authData)
+CubensisConnect.auth(authData)
   .then(auth => {
     console.log(auth); //вывод в консоль результата
     /*...обработка данных */
@@ -265,7 +265,7 @@ WavesKeeper.auth(authData)
 ```js
 const getAuthData = async authData => {
   try {
-    const state = await WavesKeeper.auth(authData);
+    const state = await CubensisConnect.auth(authData);
     console.log(state); //вывод в консоль результата
     /*...обработка данных */
   } catch (error) {
@@ -297,7 +297,7 @@ const authData = {
   successPath: 'login',
 };
 
-WavesKeeper.auth(authData)
+CubensisConnect.auth(authData)
   .then(data => {
     //data - данные от кипера
     //проверка подписи и сохранение адреса...
@@ -335,17 +335,17 @@ const txData = {
   type: 4,
   data: {
     amount: {
-      assetId: 'WAVES',
+      assetId: 'DCC',
       tokens: '1.567',
     },
     fee: {
-      assetId: 'WAVES',
+      assetId: 'DCC',
       tokens: '0.001',
     },
     recipient: 'test',
   },
 };
-WavesKeeper.signTransaction(txData)
+CubensisConnect.signTransaction(txData)
   .then(data => {
     //data - строка готовая для отсылки на ноду(сервер) сети Waves
   })
@@ -395,18 +395,18 @@ const txData = {
   type: 4,
   data: {
     amount: {
-      assetId: 'WAVES',
+      assetId: 'DCC',
       tokens: '1.567',
     },
     fee: {
-      assetId: 'WAVES',
+      assetId: 'DCC',
       tokens: '0.001',
     },
     recipient: 'test',
   },
 };
 
-WavesKeeper.signAndPublishTransaction(txData)
+CubensisConnect.signAndPublishTransaction(txData)
   .then(data => {
     //data - строка готовая для отсылки на ноду(сервер) сети Waves
   })
@@ -453,11 +453,11 @@ const tx = [
     type: 4,
     data: {
       amount: {
-        assetId: 'WAVES',
+        assetId: 'DCC',
         tokens: '1.567',
       },
       fee: {
-        assetId: 'WAVES',
+        assetId: 'DCC',
         tokens: '0.001',
       },
       recipient: 'test',
@@ -467,11 +467,11 @@ const tx = [
     type: 4,
     data: {
       amount: {
-        assetId: 'WAVES',
+        assetId: 'DCC',
         tokens: '0.51',
       },
       fee: {
-        assetId: 'WAVES',
+        assetId: 'DCC',
         tokens: '0.001',
       },
       recipient: 'merry',
@@ -479,7 +479,7 @@ const tx = [
   },
 ];
 
-WavesKeeper.signTransactionPackage(tx, name);
+CubensisConnect.signTransactionPackage(tx, name);
 ```
 
 Подписать 2 транзакции:
@@ -498,7 +498,7 @@ WavesKeeper.signTransactionPackage(tx, name);
 
 У каждого пользователя в сети waves есть стейт (балансы, ассеты, данные, скрипты),
 любая прошедшая транзакция меняет эти данные.
-В WavesKeeper API - отличается от [NODE REST API](https://docs.waves.tech/ru/waves-node/node-api/).
+В CubensisConnect API - отличается от [NODE REST API](https://docs.waves.tech/ru/waves-node/node-api/).
 
 `signTransaction`, `signAndPublishTransaction` принимают транзакцию в следующем виде
 
@@ -513,7 +513,7 @@ WavesKeeper.signTransactionPackage(tx, name);
 
 Условные обозначения
 
-> \* - необязательное поле, данные подставятся автоматически из WavesKeeper.
+> \* - необязательное поле, данные подставятся автоматически из CubensisConnect.
 > [x,y] - ограничение длины от x, до y.
 > [,x] - ограничение длины до x.
 > [y,] - ограничение длины от y.
@@ -524,8 +524,8 @@ WavesKeeper.signTransactionPackage(tx, name);
 
 MoneyLike может иметь вид:
 
-- `{ tokens: 1, assetId: "WAVES" }`
-- `{ coins: 100000000, assetId: "WAVES" }`;
+- `{ tokens: 1, assetId: "DCC" }`
+- `{ coins: 100000000, assetId: "DCC" }`;
 
 В обеих записях указана одинаковая цена 1 WAVES. Можно свободно перевести `coins` в `tokens` и обратно,
 зная в каком ассете указана цена и получив его точность `tokens = coins / (10 ** precision)`
@@ -548,7 +548,7 @@ MoneyLike может иметь вид:
 Пример:
 
 ```js
-WavesKeeper.signAndPublishTransaction({
+CubensisConnect.signAndPublishTransaction({
   type: 3,
   data: {
     name: 'Best Token',
@@ -558,7 +558,7 @@ WavesKeeper.signAndPublishTransaction({
     reissuable: true,
     fee: {
       tokens: '1',
-      assetId: 'WAVES',
+      assetId: 'DCC',
     },
   },
 })
@@ -585,11 +585,11 @@ WavesKeeper.signAndPublishTransaction({
 Пример:
 
 ```js
-WavesKeeper.signAndPublishTransaction({
+CubensisConnect.signAndPublishTransaction({
   type: 4,
   data: {
-    amount: { tokens: '3.3333333', assetId: 'WAVES' },
-    fee: { tokens: '0.001', assetId: 'WAVES' },
+    amount: { tokens: '3.3333333', assetId: 'DCC' },
+    fee: { tokens: '0.001', assetId: 'DCC' },
     recipient: 'merry',
   },
 })
@@ -613,7 +613,7 @@ WavesKeeper.signAndPublishTransaction({
 Пример:
 
 ```js
-WavesKeeper.signAndPublishTransaction({
+CubensisConnect.signAndPublishTransaction({
   type: 5,
   data: {
     quantity: 1000,
@@ -621,7 +621,7 @@ WavesKeeper.signAndPublishTransaction({
     reissuable: true,
     fee: {
       tokens: '1',
-      assetId: 'WAVES',
+      assetId: 'DCC',
     },
   },
 })
@@ -647,14 +647,14 @@ WavesKeeper.signAndPublishTransaction({
 Пример:
 
 ```js
-WavesKeeper.signAndPublishTransaction({
+CubensisConnect.signAndPublishTransaction({
   type: 6,
   data: {
     amount: 1000,
     assetId: '8LQW8f7P5d5PZM7GtZEBgaqRPGSzS3DfPuiXrURJ4AJS',
     fee: {
       tokens: '0.001',
-      assetId: 'WAVES',
+      assetId: 'DCC',
     },
   },
 })
@@ -679,14 +679,14 @@ WavesKeeper.signAndPublishTransaction({
 Пример:
 
 ```js
-WavesKeeper.signAndPublishTransaction({
+CubensisConnect.signAndPublishTransaction({
   type: 8,
   data: {
     amount: 1000,
     recipient: 'merry',
     fee: {
       tokens: '0.001',
-      assetId: 'WAVES',
+      assetId: 'DCC',
     },
   },
 })
@@ -710,13 +710,13 @@ WavesKeeper.signAndPublishTransaction({
 Пример:
 
 ```js
-WavesKeeper.signAndPublishTransaction({
+CubensisConnect.signAndPublishTransaction({
   type: 9,
   data: {
     leaseId: '6frvwF8uicAfyEfTfyC2sXqBJH7V5C8he5K4YH3BkNiS',
     fee: {
       tokens: '0.001',
-      assetId: 'WAVES',
+      assetId: 'DCC',
     },
   },
 })
@@ -740,13 +740,13 @@ WavesKeeper.signAndPublishTransaction({
 Пример:
 
 ```js
-WavesKeeper.signAndPublishTransaction({
+CubensisConnect.signAndPublishTransaction({
   type: 10,
   data: {
     alias: 'testAlias',
     fee: {
       tokens: '0.001',
-      assetId: 'WAVES',
+      assetId: 'DCC',
     },
   },
 })
@@ -773,17 +773,17 @@ WavesKeeper.signAndPublishTransaction({
 Пример:
 
 ```js
-WavesKeeper.signAndPublishTransaction({
+CubensisConnect.signAndPublishTransaction({
   type: 11,
   data: {
-    totalAmount: { assetId: 'WAVES', coins: 0 },
+    totalAmount: { assetId: 'DCC', coins: 0 },
     transfers: [
       { recipient: 'alias1', amount: '200000' },
       { recipient: 'alias2', amount: '200000' },
     ],
     fee: {
       tokens: '0.002',
-      assetId: 'WAVES',
+      assetId: 'DCC',
     },
   },
 })
@@ -810,7 +810,7 @@ WavesKeeper.signAndPublishTransaction({
 Пример:
 
 ```js
-WavesKeeper.signAndPublishTransaction({
+CubensisConnect.signAndPublishTransaction({
   type: 12,
   data: {
     data: [
@@ -821,7 +821,7 @@ WavesKeeper.signAndPublishTransaction({
     ],
     fee: {
       tokens: '0.01',
-      assetId: 'WAVES',
+      assetId: 'DCC',
     },
   },
 })
@@ -848,13 +848,13 @@ WavesKeeper.signAndPublishTransaction({
 Пример:
 
 ```js
-WavesKeeper.signAndPublishTransaction({
+CubensisConnect.signAndPublishTransaction({
   type: 13,
   data: {
     script: '',
     fee: {
       tokens: '0.04',
-      assetId: 'WAVES',
+      assetId: 'DCC',
     },
   },
 })
@@ -871,13 +871,13 @@ WavesKeeper.signAndPublishTransaction({
 Пример2:
 
 ```js
-WavesKeeper.signAndPublishTransaction({
+CubensisConnect.signAndPublishTransaction({
   type: 13,
   data: {
     script: 'base64:AQa3b8tH',
     fee: {
       tokens: '0.01',
-      assetId: 'WAVES',
+      assetId: 'DCC',
     },
   },
 })
@@ -901,7 +901,7 @@ WavesKeeper.signAndPublishTransaction({
 Пример:
 
 ```js
-WavesKeeper.signAndPublishTransaction({
+CubensisConnect.signAndPublishTransaction({
   type: 14,
   data: {
     minSponsoredAssetFee: {
@@ -910,7 +910,7 @@ WavesKeeper.signAndPublishTransaction({
     },
     fee: {
       tokens: '1',
-      assetId: 'WAVES',
+      assetId: 'DCC',
     },
   },
 })
@@ -938,14 +938,14 @@ WavesKeeper.signAndPublishTransaction({
 Пример:
 
 ```js
-WavesKeeper.signAndPublishTransaction({
+CubensisConnect.signAndPublishTransaction({
   type: 15,
   data: {
     assetId: '',
     script: 'base64:AQa3b8tH',
     fee: {
       tokens: '0.01',
-      assetId: 'WAVES',
+      assetId: 'DCC',
     },
   },
 })
@@ -975,12 +975,12 @@ WavesKeeper.signAndPublishTransaction({
 Пример:
 
 ```js
-WavesKeeper.signAndPublishTransaction({
+CubensisConnect.signAndPublishTransaction({
   type: 16,
   data: {
     fee: {
       tokens: '0.05',
-      assetId: 'WAVES',
+      assetId: 'DCC',
     },
     dApp: '3N27HUMt4ddx2X7foQwZRmpFzg5PSzLrUgU',
     call: {
@@ -992,7 +992,7 @@ WavesKeeper.signAndPublishTransaction({
         },
       ],
     },
-    payment: [{ assetId: 'WAVES', tokens: 2 }],
+    payment: [{ assetId: 'DCC', tokens: 2 }],
   },
 })
   .then(tx => {
@@ -1037,7 +1037,7 @@ WavesKeeper.signAndPublishTransaction({
 Пример:
 
 ```js
-WavesKeeper.signOrder({
+CubensisConnect.signOrder({
   type: 1002,
   data: {
     matcherPublicKey: '7kPFrHDiGw1rCm7LPszuECwWYL3dMf6iMifLRDJQZMzy',
@@ -1045,7 +1045,7 @@ WavesKeeper.signOrder({
     expiration: Date.now() + 100000,
     amount: {
       tokens: '100',
-      assetId: 'WAVES',
+      assetId: 'DCC',
     },
     price: {
       tokens: '0.01',
@@ -1053,7 +1053,7 @@ WavesKeeper.signOrder({
     },
     matcherFee: {
       tokens: '0.03',
-      assetId: 'WAVES',
+      assetId: 'DCC',
     },
   },
 })
@@ -1107,7 +1107,7 @@ WavesKeeper.signOrder({
 Пример:
 
 ```js
-WavesKeeper.signCancelOrder({
+CubensisConnect.signCancelOrder({
   type: 1003,
   data: {
     id: '31EeVpTAronk95TjCHdyaveDukde4nDr9BfFpvhZ3Sap',
@@ -1132,10 +1132,10 @@ WavesKeeper.signCancelOrder({
 Пример:
 
 ```js
-WavesKeeper.signAndPublishCancelOrder({
+CubensisConnect.signAndPublishCancelOrder({
   type: 1003,
   priceAsset: '8LQW8f7P5d5PZM7GtZEBgaqRPGSzS3DfPuiXrURJ4AJS',
-  amountAsset: 'WAVES',
+  amountAsset: 'DCC',
   data: {
     id: '31EeVpTAronk95TjCHdyaveDukde4nDr9BfFpvhZ3Sap',
   },
@@ -1181,7 +1181,7 @@ WavesKeeper.signAndPublishCancelOrder({
 Пример:
 
 ```js
-WavesKeeper.signRequest({
+CubensisConnect.signRequest({
   type: 1001,
   data: {
     timestamp: 234234242423423,
@@ -1211,7 +1211,7 @@ WavesKeeper.signRequest({
 Пример:
 
 ```js
-WavesKeeper.signCustomData({
+CubensisConnect.signCustomData({
   version: 1,
   binary: 'base64:AADDEE==',
 });
@@ -1245,7 +1245,7 @@ WavesKeeper.signCustomData({
 Пример:
 
 ```js
-WavesKeeper.signCustomData({
+CubensisConnect.signCustomData({
   version: 2,
   data: [{ type: 'string', key: 'name', value: 'Mr. First' }],
 });
@@ -1295,7 +1295,7 @@ WavesKeeper.signCustomData({
 Пример:
 
 ```js
-WavesKeeper.verifyCustomData({
+CubensisConnect.verifyCustomData({
   version: 2,
   data: [{ type: 'string', key: 'name', value: 'Mr. First' }],
   signature: 'wrong signature',
@@ -1312,7 +1312,7 @@ WavesKeeper.verifyCustomData({
 Пример:
 
 ```js
-WavesKeeper.resourceIsApproved().then(result => {
+CubensisConnect.resourceIsApproved().then(result => {
   console.log(result);
 });
 ```
@@ -1326,7 +1326,7 @@ WavesKeeper.resourceIsApproved().then(result => {
 Пример:
 
 ```js
-WavesKeeper.resourceIsBlocked().then(result => {
+CubensisConnect.resourceIsBlocked().then(result => {
   console.log(result);
 });
 ```

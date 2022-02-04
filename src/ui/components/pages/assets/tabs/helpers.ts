@@ -84,8 +84,8 @@ export function sortAssetEntries<T>(
     )
     .sort(
       ([a], [b]) =>
-        (a === 'WAVES' && -1) ||
-        (b === 'WAVES' && 1) ||
+        (a === 'DCC' && -1) ||
+        (b === 'DCC' && 1) ||
         (assets[a] &&
           assets[b] &&
           (+!!assets[b].isFavorite - +!!assets[a].isFavorite ||

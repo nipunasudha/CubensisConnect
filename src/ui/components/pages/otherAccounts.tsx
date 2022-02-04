@@ -32,7 +32,7 @@ export function OtherAccountsPage({ setTab }: Props) {
 
   const balancesMoney: Record<string, Money> = {};
 
-  const assetInfo = assets['WAVES'];
+  const assetInfo = assets['DCC'];
 
   if (assetInfo) {
     const asset = new Asset(assetInfo);

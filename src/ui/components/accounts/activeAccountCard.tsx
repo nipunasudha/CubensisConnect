@@ -3,7 +3,7 @@ import { BigNumber } from '@waves/bignumber';
 import * as React from 'react';
 import { Trans } from 'react-i18next';
 import cn from 'classnames';
-import { WAVESKEEPER_DEBUG } from 'ui/appConfig';
+import { CUBENSISCONNECT_DEBUG } from 'ui/appConfig';
 import { useAppSelector } from 'ui/store';
 import { Avatar } from '../ui/avatar/Avatar';
 import { Balance } from '../ui/balance/Balance';
@@ -13,7 +13,7 @@ import { Tooltip } from '../ui/tooltip';
 
 const SHOW_SWAP_BUTTON_NETWORKS = ['mainnet'];
 
-if (WAVESKEEPER_DEBUG) {
+if (CUBENSISCONNECT_DEBUG) {
   SHOW_SWAP_BUTTON_NETWORKS.push('testnet');
 }
 

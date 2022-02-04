@@ -57,7 +57,7 @@ async function setupInpageApi() {
     },
   };
 
-  global.WavesKeeper = global.Waves = new Proxy(wavesApp, proxyApi);
+  global.CubensisConnect = global.Waves = new Proxy(wavesApp, proxyApi);
 
   const connectionStream = new LocalMessageDuplexStream({
     name: 'waves_keeper_page',
@@ -91,7 +91,7 @@ async function setupInpageApi() {
   cbs = {};
   Object.assign(wavesApi, inpageApi);
   wavesAppDef.resolve(wavesApi);
-  global.WavesKeeper = global.Waves = wavesApi;
+  global.CubensisConnect = global.Waves = wavesApi;
   setupClickInterceptor(inpageApi);
 }
 
@@ -218,7 +218,7 @@ function processPaymentAPILink({ type, hash }, inpageApi) {
             tokens: apiData.amount,
           },
           fee: {
-            assetId: 'WAVES',
+            assetId: 'DCC',
             tokens: '0.00100000',
           },
           recipient: apiData.recipient,

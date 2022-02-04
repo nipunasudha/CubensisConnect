@@ -1,6 +1,6 @@
 export const assetIds = {
   mainnet: {
-    WAVES: 'WAVES',
+    WAVES: 'DCC',
     BAG: 'Euz5HtYcj3nVTZxppA7wdabwTe5BzHFiu4QG1EJtzeUx',
     BCH: 'zMFqXuoyrn5w17PFurTqxB7GsS71fp9dfk6XFwxbPCy',
     BNT: 'F81SdfzBZr5ce8JArRWLPJEDg1V8yT257ohbcHk75yCp',
@@ -41,7 +41,7 @@ export const assetIds = {
     RACE: 'D4TPjtzpsDEJFS1pUAkvh1tJJJMNWGcSrds9sveBoQka',
   },
   testnet: {
-    WAVES: 'WAVES',
+    WAVES: 'DCC',
     BTC: 'iHTVbu8ArLhtdtJ8BQhyaomgVogSfXT45RtwNFiK4We',
     DASH: '13mWHq1h58WRTiRNBqDRD63gsV8Hq4joxYQzH3iRdHiR',
     ETH: '8Ye7AVyY8TgWbNfQdriLRCBGEPXTb5T48EeBgJTQADNs',
@@ -57,10 +57,10 @@ export const assetIds = {
     RACE: 'CzfHm2WKdQoKQeGfosLsmKd6kAcuxHMsjjm9M7c1FUtg',
   },
   stagenet: {
-    WAVES: 'WAVES',
+    WAVES: 'DCC',
   },
   custom: {
-    WAVES: 'WAVES',
+    WAVES: 'DCC',
   },
 };
 

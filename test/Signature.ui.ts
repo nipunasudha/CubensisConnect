@@ -163,7 +163,7 @@ describe('Signature', function () {
       }
       await this.driver.executeScript(() => {
         // @ts-ignore
-        WavesKeeper.initialPromise.then(api => {
+        CubensisConnect.initialPromise.then(api => {
           api.publicState();
         });
       });
@@ -214,7 +214,7 @@ describe('Signature', function () {
 
       await this.driver.executeScript(() => {
         // @ts-ignore
-        WavesKeeper.initialPromise.then(api => {
+        CubensisConnect.initialPromise.then(api => {
           api.auth({ data: 'generated auth data' });
         });
       });
@@ -233,7 +233,7 @@ describe('Signature', function () {
 
       await this.driver.executeScript(tx => {
         // @ts-ignore
-        WavesKeeper.initialPromise.then(api => {
+        CubensisConnect.initialPromise.then(api => {
           api.signTransaction(tx);
         });
       }, tx);
@@ -421,13 +421,13 @@ describe('Signature', function () {
   describe('Order', function () {
     const createOrder = tx => {
       // @ts-ignore
-      WavesKeeper.initialPromise.then(api => {
+      CubensisConnect.initialPromise.then(api => {
         api.signOrder(tx);
       });
     };
     const cancelOrder = tx => {
       // @ts-ignore
-      WavesKeeper.initialPromise.then(api => {
+      CubensisConnect.initialPromise.then(api => {
         api.signCancelOrder(tx);
       });
     };
@@ -475,7 +475,7 @@ describe('Signature', function () {
       await this.driver.executeScript(
         (tx, name) => {
           // @ts-ignore
-          WavesKeeper.initialPromise.then(api => {
+          CubensisConnect.initialPromise.then(api => {
             api.signTransactionPackage(tx, name);
           });
         },
@@ -507,7 +507,7 @@ describe('Signature', function () {
 
       await this.driver.executeScript(data => {
         // @ts-ignore
-        WavesKeeper.initialPromise.then(api => {
+        CubensisConnect.initialPromise.then(api => {
           api.signCustomData(data);
         });
       }, data);

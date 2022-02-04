@@ -21,7 +21,7 @@
 
 #### version 1.1.9
 
-- WavesKeeper proxy
+- CubensisConnect proxy
 - Update fixed libs
 
 #### version 1.1.8

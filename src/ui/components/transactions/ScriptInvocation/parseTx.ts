@@ -1,4 +1,4 @@
-import { SIGN_TYPE } from '@waves/signature-adapter';
+import { SIGN_TYPE } from '@decentralchain/signature-adapter';
 import { BigNumber } from '@waves/bignumber';
 import { IMoneyLike } from 'ui/utils/converters';
 
@@ -16,15 +16,15 @@ export function getTransferAmount(amount, assetId) {
 
 export function getAssetsId(tx): Array<string> {
   const feeAssetId =
-    tx.fee && tx.fee.assetId ? tx.fee.assetId : tx.feeAssetId || 'WAVES';
+    tx.fee && tx.fee.assetId ? tx.fee.assetId : tx.feeAssetId || 'DCC';
   const amountAssetId = (tx.payment || []).map(item => {
     switch (typeof item) {
       case 'string':
-        return 'WAVES';
+        return 'DCC';
       case 'number':
-        return 'WAVES';
+        return 'DCC';
       case 'object':
-        return item && item.assetId ? item.assetId : 'WAVES';
+        return item && item.assetId ? item.assetId : 'DCC';
     }
   });
 
@@ -51,7 +51,7 @@ export function getAmounts(tx) {
         coins = coins.add(parse);
       }
     }
-    const assetId = item.assetId || 'WAVES';
+    const assetId = item.assetId || 'DCC';
 
     amounts.push({ coins, tokens, assetId });
   });

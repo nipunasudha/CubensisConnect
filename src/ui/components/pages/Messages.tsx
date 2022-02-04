@@ -35,8 +35,8 @@ class MessagesComponent extends React.Component {
     } = props;
     let loading = true;
 
-    if (!assets || !assets['WAVES'] || !balance) {
-      props.getAsset('WAVES');
+    if (!assets || !assets['DCC'] || !balance) {
+      props.getAsset('DCC');
       return { loading: true, selectedAccount };
     }
 
@@ -123,15 +123,15 @@ class MessagesComponent extends React.Component {
       }
 
       if ('priceAsset' in currentData) {
-        assets[currentData.priceAsset || 'WAVES'] = true;
+        assets[currentData.priceAsset || 'DCC'] = true;
       }
 
       if ('amountAsset' in currentData) {
-        assets[currentData.amountAsset || 'WAVES'] = true;
+        assets[currentData.amountAsset || 'DCC'] = true;
       }
 
       if ('assetId' in currentData) {
-        assets[currentData.assetId || 'WAVES'] = true;
+        assets[currentData.assetId || 'DCC'] = true;
 
         if ('tokens' in currentData) {
           moneys.push({ ...currentData, path: currentPath });

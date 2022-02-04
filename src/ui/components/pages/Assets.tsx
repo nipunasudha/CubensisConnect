@@ -110,7 +110,7 @@ export function Assets({ setTab }: Props) {
     return <Intro />;
   }
 
-  const assetInfo = assets['WAVES'];
+  const assetInfo = assets['DCC'];
 
   let wavesBalance;
   if (assetInfo) {

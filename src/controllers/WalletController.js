@@ -1,5 +1,5 @@
 import ObservableStore from 'obs-store';
-import { seedUtils } from '@waves/waves-transactions';
+import { seedUtils } from '@decentralchain/waves-transactions';
 import { decrypt, encrypt } from '../lib/encryprtor';
 import { Wallet } from '../lib/wallet';
 

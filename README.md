@@ -1,6 +1,6 @@
 # Waves Keeper
 
-en | [ru](https://github.com/wavesplatform/waves-keeper/blob/master/README_ru.md)
+en | [ru](https://github.com/wavesplatform/cubensis-connect/blob/master/README_ru.md)
 
 Waves Keeper is an extension that allows users to securely interact with Waves-enabled web services from the Chrome browser.
 
@@ -33,14 +33,14 @@ On browser pages that operate under the http/https (not worked local pages with 
 
 All methods, except for "on" operate asynchronously and return [promises](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Promise).
 
-In code, you can use [TypeScript types](https://github.com/wavesplatform/waveskeeper-types)
+In code, you can use [TypeScript types](https://github.com/wavesplatform/cubensisconnect-types)
 
-On initialize `window.WavesKeeper` has not api methods.
-You can use `WavesKeeper.initialPromise` for waiting end initializing api.
+On initialize `window.CubensisConnect` has not api methods.
+You can use `CubensisConnect.initialPromise` for waiting end initializing api.
 Example:
 
 ```js
-WavesKeeper.initialPromise.then(keeperApi => {
+CubensisConnect.initialPromise.then(keeperApi => {
   /*...init app*/
   keeperApi.publicState().then(state => startApp(state));
 });
@@ -57,7 +57,7 @@ If a website is trusted, Waves Keeper public data are returned.
 Example:
 
 ```js
-WavesKeeper.publicState()
+CubensisConnect.publicState()
   .then(state => {
     console.log(state); //displaying the result in the console
     /*...processing data */
@@ -73,7 +73,7 @@ or
 ```js
 const getPublicState = async () => {
   try {
-    const state = await WavesKeeper.publicState();
+    const state = await CubensisConnect.publicState();
     console.log(state); // displaying the result in the console
     /*... processing data*/
   } catch (error) {
@@ -104,7 +104,7 @@ REPLY
     "network": {
         "code": "W",
         "server": "https://nodes.wavesnodes.com/",
-        "matcher": "https://matcher.waves.exchange/"
+        "matcher": "https://mainnet-matcher.decentralchain.io/"
     },
     "messages": [],
     "txVersion": {
@@ -146,7 +146,7 @@ return Promise
 Example:
 
 ```js
-WavesKeeper.notification({
+CubensisConnect.notification({
   title: 'Hello!',
   message: 'Congratulation!!!',
 });
@@ -164,12 +164,12 @@ Possible errors
 You can encrypt string messages to account in Waves network.
 You need have recipient publicKey.
 
-WavesKeeper.encryptMessage(`*string to encrypt*`, `*public key in base58 string*`, `*prefix is secret app string need for encoding*`)
+CubensisConnect.encryptMessage(`*string to encrypt*`, `*public key in base58 string*`, `*prefix is secret app string need for encoding*`)
 
 Example:
 
 ```js
-WavesKeeper.encryptMessage(
+CubensisConnect.encryptMessage(
   'My message',
   '416z9d8DQDy5MPTqDhvReRBaPb19gEyVRWvHcewpP6Nc',
   'my app'
@@ -190,12 +190,12 @@ Possible errors
 You can decrypt string messages from account in Waves network to you.
 You need have sender publicKey and encrypted message.
 
-WavesKeeper.decryptMessage(`*string to decrypt*`, `*public key in base58 string*`, `*prefix is secret app string need for encoding*`)
+CubensisConnect.decryptMessage(`*string to decrypt*`, `*public key in base58 string*`, `*prefix is secret app string need for encoding*`)
 
 Example:
 
 ```js
-WavesKeeper.decryptMessage(
+CubensisConnect.decryptMessage(
   '**encrypted msg**',
   '416z9d8DQDy5MPTqDhvReRBaPb19gEyVRWvHcewpP6Nc',
   'my app'
@@ -222,8 +222,8 @@ Supports events:
 Example:
 
 ```js
-WavesKeeper.on('update', state => {
-  //state object as from WavesKeeper.publicState
+CubensisConnect.on('update', state => {
+  //state object as from CubensisConnect.publicState
 });
 ```
 
@@ -237,7 +237,7 @@ Example:
 
 ```js
 const authData = { data: 'Auth on my site' };
-WavesKeeper.auth(authData)
+CubensisConnect.auth(authData)
   .then(auth => {
     console.log(auth); //displaying the result on the console
     /*...processing data */
@@ -253,7 +253,7 @@ or
 ```js
 const getAuthData = async authData => {
   try {
-    const state = await WavesKeeper.auth(authData);
+    const state = await CubensisConnect.auth(authData);
     console.log(state); // displaying the result on the console
     /*... processing data */
   } catch (error) {
@@ -285,7 +285,7 @@ const authData = {
   successPath: 'login',
 };
 
-WavesKeeper.auth(authData)
+CubensisConnect.auth(authData)
   .then(data => {
     //data – data from Waves Keeper
     //verifying signature and saving the address...
@@ -323,17 +323,17 @@ const txData = {
   type: 4,
   data: {
     amount: {
-      assetId: 'WAVES',
+      assetId: 'DCC',
       tokens: '1.567',
     },
     fee: {
-      assetId: 'WAVES',
+      assetId: 'DCC',
       tokens: '0.001',
     },
     recipient: 'test',
   },
 };
-WavesKeeper.signTransaction(txData)
+CubensisConnect.signTransaction(txData)
   .then(data => {
     //data – a line ready for sending to Waves network's node (server)
   })
@@ -383,18 +383,18 @@ const txData = {
   type: 4,
   data: {
     amount: {
-      assetId: 'WAVES',
+      assetId: 'DCC',
       tokens: '1.567',
     },
     fee: {
-      assetId: 'WAVES',
+      assetId: 'DCC',
       tokens: '0.001',
     },
     recipient: 'test',
   },
 };
 
-WavesKeeper.signAndPublishTransaction(txData)
+CubensisConnect.signAndPublishTransaction(txData)
   .then(data => {
     //data - a line ready for sending to Waves network's node (server)
   })
@@ -439,11 +439,11 @@ const tx = [
     type: 4,
     data: {
       amount: {
-        assetId: 'WAVES',
+        assetId: 'DCC',
         tokens: '1.567',
       },
       fee: {
-        assetId: 'WAVES',
+        assetId: 'DCC',
         tokens: '0.001',
       },
       recipient: 'test',
@@ -453,11 +453,11 @@ const tx = [
     type: 4,
     data: {
       amount: {
-        assetId: 'WAVES',
+        assetId: 'DCC',
         tokens: '0.51',
       },
       fee: {
-        assetId: 'WAVES',
+        assetId: 'DCC',
         tokens: '0.001',
       },
       recipient: 'merry',
@@ -465,7 +465,7 @@ const tx = [
   },
 ];
 
-WavesKeeper.signTransactionPackage(tx, name);
+CubensisConnect.signTransactionPackage(tx, name);
 ```
 
 Sign two transaction:
@@ -499,7 +499,7 @@ In Waves Keeper API it is different from [NODE REST API](https://docs.waves.tech
 
 Legend keys
 
-- - optional field, data are automatically supplied from WavesKeeper. \
+- - optional field, data are automatically supplied from CubensisConnect. \
     [x,y] – length limit from x to y. \
     [,x] – length limit to x. \
     [y,] – length limit from y. \
@@ -508,8 +508,8 @@ Legend keys
 
 MoneyLike could look as:
 
-- `{ tokens: 1, assetId: "WAVES" }`
-- `{ coins: 100000000, assetId: "WAVES" }`;
+- `{ tokens: 1, assetId: "DCC" }`
+- `{ coins: 100000000, assetId: "DCC" }`;
 
 In both messages, the same price of 1 WAVES is indicated. You can easily convert `coins`into `tokens`and back, if you know in what asset the price is indicated, and you have received its precision `tokens = coins / (10 ** precision)` \
 If the field contains other types than MoneyLike, for instance, string/MoneyLike , the sum is indicated as a number in  `coins`.
@@ -531,7 +531,7 @@ If the field contains other types than MoneyLike, for instance, string/MoneyLike
 Example:
 
 ```js
-WavesKeeper.signAndPublishTransaction({
+CubensisConnect.signAndPublishTransaction({
   type: 3,
   data: {
     name: 'Best Token',
@@ -541,7 +541,7 @@ WavesKeeper.signAndPublishTransaction({
     reissuable: true,
     fee: {
       tokens: '1',
-      assetId: 'WAVES',
+      assetId: 'DCC',
     },
   },
 })
@@ -567,11 +567,11 @@ In case of a success, we are issuing a new asset in the quantity of 1,000,000, a
 Example:
 
 ```js
-WavesKeeper.signAndPublishTransaction({
+CubensisConnect.signAndPublishTransaction({
   type: 4,
   data: {
-    amount: { tokens: '3.3333333', assetId: 'WAVES' },
-    fee: { tokens: '0.001', assetId: 'WAVES' },
+    amount: { tokens: '3.3333333', assetId: 'DCC' },
+    fee: { tokens: '0.001', assetId: 'DCC' },
     recipient: 'merry',
   },
 })
@@ -595,7 +595,7 @@ WavesKeeper.signAndPublishTransaction({
 Example:
 
 ```js
-WavesKeeper.signAndPublishTransaction({
+CubensisConnect.signAndPublishTransaction({
   type: 5,
   data: {
     quantity: 1000,
@@ -603,7 +603,7 @@ WavesKeeper.signAndPublishTransaction({
     reissuable: true,
     fee: {
       tokens: '1',
-      assetId: 'WAVES',
+      assetId: 'DCC',
     },
   },
 })
@@ -628,14 +628,14 @@ In case of a success, we are re-issuing a new asset in the quantity of 1,000,000
 Example:
 
 ```js
-WavesKeeper.signAndPublishTransaction({
+CubensisConnect.signAndPublishTransaction({
   type: 6,
   data: {
     amount: 1000,
     assetId: '8LQW8f7P5d5PZM7GtZEBgaqRPGSzS3DfPuiXrURJ4AJS',
     fee: {
       tokens: '0.001',
-      assetId: 'WAVES',
+      assetId: 'DCC',
     },
   },
 })
@@ -660,14 +660,14 @@ In case of a success, 1,000 coins `are burned`.
 Example:
 
 ```js
-WavesKeeper.signAndPublishTransaction({
+CubensisConnect.signAndPublishTransaction({
   type: 8,
   data: {
     amount: 1000,
     recipient: 'merry',
     fee: {
       tokens: '0.001',
-      assetId: 'WAVES',
+      assetId: 'DCC',
     },
   },
 })
@@ -691,13 +691,13 @@ In case of a success, 0.00001000 WAVES is leased.
 Example:
 
 ```js
-WavesKeeper.signAndPublishTransaction({
+CubensisConnect.signAndPublishTransaction({
   type: 9,
   data: {
     leaseId: '6frvwF8uicAfyEfTfyC2sXqBJH7V5C8he5K4YH3BkNiS',
     fee: {
       tokens: '0.001',
-      assetId: 'WAVES',
+      assetId: 'DCC',
     },
   },
 })
@@ -721,13 +721,13 @@ In case of a success, the leasing transaction is cancelled.
 Example:
 
 ```js
-WavesKeeper.signAndPublishTransaction({
+CubensisConnect.signAndPublishTransaction({
   type: 10,
   data: {
     alias: 'testAlias',
     fee: {
       tokens: '0.001',
-      assetId: 'WAVES',
+      assetId: 'DCC',
     },
   },
 })
@@ -754,17 +754,17 @@ In case of a success, an alias (another name) is created.
 Example:
 
 ```js
-WavesKeeper.signAndPublishTransaction({
+CubensisConnect.signAndPublishTransaction({
   type: 11,
   data: {
-    totalAmount: { assetId: 'WAVES', coins: 0 },
+    totalAmount: { assetId: 'DCC', coins: 0 },
     transfers: [
       { recipient: 'alias1', amount: '200000' },
       { recipient: 'alias2', amount: '200000' },
     ],
     fee: {
       tokens: '0.002',
-      assetId: 'WAVES',
+      assetId: 'DCC',
     },
   },
 })
@@ -791,7 +791,7 @@ In case of a success, 0.002 WAVES will be sent to alias1 and alias2.
 Field:
 
 ```js
-WavesKeeper.signAndPublishTransaction({
+CubensisConnect.signAndPublishTransaction({
   type: 12,
   data: {
     data: [
@@ -810,7 +810,7 @@ WavesKeeper.signAndPublishTransaction({
     ],
     fee: {
       tokens: '0.01',
-      assetId: 'WAVES',
+      assetId: 'DCC',
     },
   },
 })
@@ -836,13 +836,13 @@ For cancelling a script the field `script` has to be `null`. [Script development
 Example:
 
 ```js
-WavesKeeper.signAndPublishTransaction({
+CubensisConnect.signAndPublishTransaction({
   type: 13,
   data: {
     script: '',
     fee: {
       tokens: '0.04',
-      assetId: 'WAVES',
+      assetId: 'DCC',
     },
   },
 })
@@ -859,14 +859,14 @@ In case of a success, the script will be removed from the account.
 Example 2:
 
 ```js
-WavesKeeper.signAndPublishTransaction({
+CubensisConnect.signAndPublishTransaction({
   type: 13,
   data: {
     script:
       'base64:AQa3b8tHAQa3b8tHAQa3b8tHAQa3b8tHAQa3b8tHAQa3b8tHAQa3b8tHAQa3b8tHAQa3b8tHAQa3b8tHAQa3b8tH',
     fee: {
       tokens: '0.01',
-      assetId: 'WAVES',
+      assetId: 'DCC',
     },
   },
 })
@@ -890,7 +890,7 @@ In case of a success, a new script will be added to the account, allowing any tr
 Example:
 
 ```js
-WavesKeeper.signAndPublishTransaction({
+CubensisConnect.signAndPublishTransaction({
   type: 14,
   data: {
     minSponsoredAssetFee: {
@@ -899,7 +899,7 @@ WavesKeeper.signAndPublishTransaction({
     },
     fee: {
       tokens: '1',
-      assetId: 'WAVES',
+      assetId: 'DCC',
     },
   },
 })
@@ -926,14 +926,14 @@ It's now impossible to cancel a script, you can only add a new script. [Script 
 Example:
 
 ```js
-WavesKeeper.signAndPublishTransaction({
+CubensisConnect.signAndPublishTransaction({
   type: 15,
   data: {
     assetId: '',
     script: 'base64:AQa3b8tH',
     fee: {
       tokens: '0.01',
-      assetId: 'WAVES',
+      assetId: 'DCC',
     },
   },
 })
@@ -963,12 +963,12 @@ In case of a success, the asset's script will be reset.
 Example:
 
 ```js
-WavesKeeper.signAndPublishTransaction({
+CubensisConnect.signAndPublishTransaction({
   type: 16,
   data: {
     fee: {
       tokens: '0.05',
-      assetId: 'WAVES',
+      assetId: 'DCC',
     },
     dApp: '3N27HUMt4ddx2X7foQwZRmpFzg5PSzLrUgU',
     call: {
@@ -980,7 +980,7 @@ WavesKeeper.signAndPublishTransaction({
         },
       ],
     },
-    payment: [{ assetId: 'WAVES', tokens: 2 }],
+    payment: [{ assetId: 'DCC', tokens: 2 }],
   },
 })
   .then(tx => {
@@ -1023,7 +1023,7 @@ Waves Keeper's method for signing an order to the matcher. As input, it accepts 
 Example:
 
 ```js
-WavesKeeper.signOrder({
+CubensisConnect.signOrder({
   type: 1002,
   data: {
     matcherPublicKey: '7kPFrHDiGw1rCm7LPszuECwWYL3dMf6iMifLRDJQZMzy',
@@ -1031,7 +1031,7 @@ WavesKeeper.signOrder({
     expiration: Date.now() + 100000,
     amount: {
       tokens: '100',
-      assetId: 'WAVES',
+      assetId: 'DCC',
     },
     price: {
       tokens: '0.01',
@@ -1039,7 +1039,7 @@ WavesKeeper.signOrder({
     },
     matcherFee: {
       tokens: '0.03',
-      assetId: 'WAVES',
+      assetId: 'DCC',
     },
   },
 })
@@ -1089,7 +1089,7 @@ Waves Keeper's method for signing cancellation of an order to the matcher. As in
 Example:
 
 ```js
-WavesKeeper.signCancelOrder({
+CubensisConnect.signCancelOrder({
   type: 1003,
   data: {
     id: '31EeVpTAronk95TjCHdyaveDukde4nDr9BfFpvhZ3Sap',
@@ -1113,10 +1113,10 @@ but also tries to send data to the matcher. For api need know also 2 field `pric
 Example:
 
 ```js
-WavesKeeper.signAndPublishCancelOrder({
+CubensisConnect.signAndPublishCancelOrder({
   type: 1003,
   priceAsset: '8LQW8f7P5d5PZM7GtZEBgaqRPGSzS3DfPuiXrURJ4AJS',
-  amountAsset: 'WAVES',
+  amountAsset: 'DCC',
   data: {
     id: '31EeVpTAronk95TjCHdyaveDukde4nDr9BfFpvhZ3Sap',
   },
@@ -1159,7 +1159,7 @@ Currently, the method supports the following types:
 Example:
 
 ```js
-WavesKeeper.signRequest({
+CubensisConnect.signRequest({
   type: 1001,
   data: {
     timestamp: 234234242423423,
@@ -1189,7 +1189,7 @@ Note: This method adds the `[255, 255, 255, 1]` prefix to the signed bytes. This
 Example:
 
 ```js
-WavesKeeper.signCustomData({
+CubensisConnect.signCustomData({
   version: 1,
   binary: 'base64:AADDEE==',
 });
@@ -1226,7 +1226,7 @@ Bytes to sign: [255, 255, 255, 2, ...(from data Array to bin)]
 Example:
 
 ```js
-WavesKeeper.signCustomData({
+CubensisConnect.signCustomData({
   version: 2,
   data: [{ type: 'string', key: 'name', value: 'Mr. First' }],
 });
@@ -1276,7 +1276,7 @@ or
 Example:
 
 ```js
-WavesKeeper.verifyCustomData({
+CubensisConnect.verifyCustomData({
   version: 1,
   binary: 'base64:AADDEE==',
   publicKey: '3BvAsKuGZe2LbSwKr9SA7eSXcNDKnRqN1j2K2bZaTn5X',
@@ -1299,7 +1299,7 @@ Check allow API status for your origin
 Example:
 
 ```js
-WavesKeeper.resourceIsApproved().then(result => {
+CubensisConnect.resourceIsApproved().then(result => {
   console.log(result);
 });
 ```
@@ -1313,7 +1313,7 @@ Check block API status for your origin
 Example:
 
 ```js
-WavesKeeper.resourceIsBlocked().then(result => {
+CubensisConnect.resourceIsBlocked().then(result => {
   console.log(result);
 });
 ```

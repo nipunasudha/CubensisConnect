@@ -9,7 +9,7 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 
-import { WAVESKEEPER_DEBUG } from './constants';
+import { CUBENSISCONNECT_DEBUG } from './constants';
 import { cbToPromise, setupDnode, transformMethods } from './lib/dnode-util';
 import * as PortStream from './lib/port-stream.js';
 import { setLangs } from './ui/actions';
@@ -23,7 +23,7 @@ Sentry.init({
   dsn: __SENTRY_DSN__,
   environment: __SENTRY_ENVIRONMENT__,
   release: __SENTRY_RELEASE__,
-  debug: WAVESKEEPER_DEBUG,
+  debug: CUBENSISCONNECT_DEBUG,
   autoSessionTracking: false,
   initialScope: {
     tags: {
@@ -50,7 +50,7 @@ Sentry.init({
   },
 });
 
-log.setDefaultLevel(WAVESKEEPER_DEBUG ? 'debug' : 'warn');
+log.setDefaultLevel(CUBENSISCONNECT_DEBUG ? 'debug' : 'warn');
 
 startUi();
 
@@ -93,7 +93,7 @@ async function startUi() {
   });
 
   // global access to service on debug
-  if (WAVESKEEPER_DEBUG) {
+  if (CUBENSISCONNECT_DEBUG) {
     (global as any).background = background;
   }
 

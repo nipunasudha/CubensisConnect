@@ -1,4 +1,4 @@
-import { Seed } from '@waves/signature-adapter';
+import { Seed } from '@decentralchain/signature-adapter';
 
 export class SeedWallet {
   constructor(phrase) {

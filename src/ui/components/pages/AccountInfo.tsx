@@ -7,7 +7,7 @@ import background from '../../services/Background';
 import { getAsset } from '../../actions';
 import { Asset, Money } from '@waves/data-entities';
 import { PAGES } from '../../pageConfig';
-import { seedUtils } from '@waves/waves-transactions';
+import { seedUtils } from '@decentralchain/waves-transactions';
 import { getAccountLink } from '../../urls';
 
 const { Seed } = seedUtils;
@@ -21,10 +21,10 @@ class AccountInfoComponent extends React.Component {
 
   static getDerivedStateFromProps(props) {
     const { selectedAccount, assets, balances } = props;
-    const asset = assets['WAVES'];
+    const asset = assets['DCC'];
 
     if (!asset) {
-      props.getAsset('WAVES');
+      props.getAsset('DCC');
       return { balance: null };
     }
     const assetInstance = new Asset(asset);

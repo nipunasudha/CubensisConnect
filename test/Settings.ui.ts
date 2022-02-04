@@ -330,7 +330,7 @@ describe('Settings', function () {
         // this requests permission first
         const permissionRequest = () => {
           // @ts-ignore
-          WavesKeeper.initialPromise.then(api => {
+          CubensisConnect.initialPromise.then(api => {
             api.publicState().then(
               resolved => {
                 // @ts-ignore

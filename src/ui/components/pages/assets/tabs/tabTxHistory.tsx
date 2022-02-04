@@ -8,7 +8,7 @@ import { SearchInput } from '../../Assets';
 import {
   ITransaction,
   WithId,
-} from '@waves/waves-transactions/dist/transactions';
+} from '@decentralchain/waves-transactions/dist/transactions';
 import { useAppSelector } from '../../../../store';
 import {
   buildTxTypeOptions,

@@ -2,15 +2,15 @@ export const messageType = 'unknown';
 export const txType = null;
 
 export function getAssetsId(tx = null): Array<string> {
-  return ['WAVES'];
+  return ['DCC'];
 }
 
 export function getFee(tx = null) {
-  return { coins: 0, assetId: 'WAVES' };
+  return { coins: 0, assetId: 'DCC' };
 }
 
 export function getAmount(tx = null) {
-  return { coins: 0, assetId: 'WAVES' };
+  return { coins: 0, assetId: 'DCC' };
 }
 
 export function getAmountSign(tx = null) {

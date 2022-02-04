@@ -145,7 +145,7 @@ export function SwapForm({
         minReceivedCoins: new BigNumber(0),
         swapRate: undefined,
         toAmountTokens: new BigNumber(0),
-        txFeeAssetId: 'WAVES',
+        txFeeAssetId: 'DCC',
       };
     }
   );
@@ -254,7 +254,7 @@ export function SwapForm({
   const sponsoredAssetBalanceEntries = Object.entries(
     accountBalance.assets
   ).filter(([assetId, assetBalance]) => {
-    if (assetId === 'WAVES') {
+    if (assetId === 'DCC') {
       return true;
     }
 

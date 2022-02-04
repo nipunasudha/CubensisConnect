@@ -26,7 +26,7 @@ const BalanceComponent = ({
   isShortFormat,
   children,
   assets,
-  assetId = 'WAVES',
+  assetId = 'DCC',
   ...props
 }: IProps) => {
   let balanceOut: Money;
@@ -44,7 +44,7 @@ const BalanceComponent = ({
       balanceOut = balance as Money;
       break;
     case new BigNumber(balance as string).isNaN() === false:
-      balanceOut = Money.fromTokens(balance as string, assets['WAVES']);
+      balanceOut = Money.fromTokens(balance as string, assets['DCC']);
       break;
     default:
       return <div>N/A</div>;

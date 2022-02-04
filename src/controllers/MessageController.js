@@ -6,8 +6,8 @@ import EventEmitter from 'events';
 import {
   AdapterType,
   CustomAdapter,
-  WavesKeeperAdapter,
-} from '@waves/signature-adapter';
+  CubensisConnectAdapter,
+} from '@decentralchain/signature-adapter';
 import { Asset, Money } from '@waves/data-entities';
 import { BigNumber } from '@waves/bignumber';
 import { networkByteFromAddress } from '../lib/cryptoUtil';
@@ -47,7 +47,7 @@ class InfoAdapter extends CustomAdapter {
   }
 
   getSignVersions() {
-    return WavesKeeperAdapter._txVersion;
+    return CubensisConnectAdapter._txVersion;
   }
 }
 
@@ -799,7 +799,7 @@ export class MessageController extends EventEmitter {
 
     const fee = {
       coins: (await this.getFee(adapter, signableData)).toString(),
-      assetId: 'WAVES',
+      assetId: 'DCC',
     };
     return {
       fee,

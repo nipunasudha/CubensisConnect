@@ -2,7 +2,7 @@ import {
   customData,
   verifyCustomData,
   wavesAuth,
-} from '@waves/waves-transactions';
+} from '@decentralchain/waves-transactions';
 
 export const waves = {
   parseWavesAuth: message => {

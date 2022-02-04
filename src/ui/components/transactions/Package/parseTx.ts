@@ -14,20 +14,20 @@ export function getTransactionData(item) {
 
 export function getAssetsId(tx): Array<string> {
   if (!Array.isArray(tx)) {
-    return ['WAVES'];
+    return ['DCC'];
   }
 
   const assets = tx.reduce((acc, item) => {
     const { tx, config } = getTransactionData(item);
     config.getAssetsId(tx).forEach(item => acc.add(item));
     return acc;
-  }, new Set(['WAVES']));
+  }, new Set(['DCC']));
 
   return Array.from(assets);
 }
 
 export function getFee(tx = null) {
-  return { coins: 0, assetId: 'WAVES' };
+  return { coins: 0, assetId: 'DCC' };
 }
 
 export function getFees(tx, assets) {
@@ -87,7 +87,7 @@ export function getPackageAmounts(tx = null, assets) {
 }
 
 export function getAmount(tx = null) {
-  return { coins: 0, assetId: 'WAVES' };
+  return { coins: 0, assetId: 'DCC' };
 }
 
 export function getAmountSign() {

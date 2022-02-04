@@ -5,7 +5,7 @@ import { AccountBalance, SwopFiExchangerData } from 'ui/reducers/updateState';
 import { fetchGetMoney } from './api';
 
 export function getAssetBalance(asset: Asset, accountBalance: AccountBalance) {
-  return asset.id === 'WAVES'
+  return asset.id === 'DCC'
     ? new Money(accountBalance.available, asset)
     : new Money(accountBalance.assets?.[asset.id]?.balance || '0', asset);
 }
@@ -17,7 +17,7 @@ export function getDefaultExchanger(
   const exchangersArr = Object.values(exchangersMap);
 
   const usdnAssetId = getAssetIdByName(network, 'USD');
-  const wavesAssetId = getAssetIdByName(network, 'WAVES');
+  const wavesAssetId = getAssetIdByName(network, 'DCC');
 
   const usdnWavesExchanger = exchangersArr.find(
     exchanger =>

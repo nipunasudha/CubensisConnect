@@ -4,7 +4,7 @@ import { AssetDetail } from '../services/Background';
 import {
   ITransaction,
   WithId,
-} from '@waves/waves-transactions/dist/transactions';
+} from '@decentralchain/waves-transactions/dist/transactions';
 
 export * from './localState';
 export * from './remoteConfig';

@@ -1,5 +1,5 @@
-import { SeedAdapter, TSignData } from '@waves/signature-adapter';
-import { libs, seedUtils } from '@waves/waves-transactions';
+import { SeedAdapter, TSignData } from '@decentralchain/signature-adapter';
+import { libs, seedUtils } from '@decentralchain/waves-transactions';
 import { concat, identity, ifElse, isNil, pipe } from 'ramda';
 
 export function networkByteFromAddress(address: string): string {

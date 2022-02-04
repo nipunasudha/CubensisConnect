@@ -1,5 +1,5 @@
 import { Asset, Money } from '@waves/data-entities';
-import { SIGN_TYPE } from '@waves/signature-adapter';
+import { SIGN_TYPE } from '@decentralchain/signature-adapter';
 import ObservableStore from 'obs-store';
 import { SWAP_DAPPS } from '../constants';
 

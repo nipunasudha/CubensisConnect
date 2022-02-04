@@ -56,10 +56,10 @@ export class FinalTransaction extends React.PureComponent {
 
     const network = selectedAccount && selectedAccount.networkCode;
     const explorerUrls = new Map([
-      ['W', 'wavesexplorer.com'],
-      ['T', 'testnet.wavesexplorer.com'],
-      ['S', 'stagenet.wavesexplorer.com'],
-      ['custom', 'wavesexplorer.com/custom'],
+      ['?', 'decentralscan.com'],
+      ['T', 'testnet.decentralscan.com'],
+      ['S', 'stagenet.decentralscan.com'],
+      ['custom', 'decentralscan.com/custom'],
     ]);
     const explorer = explorerUrls.get(
       explorerUrls.has(network) ? network : 'custom'
