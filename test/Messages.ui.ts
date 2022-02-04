@@ -45,7 +45,7 @@ describe('Messages', function () {
     await CreateNewAccount.importAccount.call(
       this,
       'rich',
-      'waves private node seed with waves tokens'
+      'decentralchain private node seed with dcc tokens'
     );
     await Settings.setMaxSessionTimeout.call(this);
   });

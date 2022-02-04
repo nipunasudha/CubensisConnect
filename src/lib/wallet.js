@@ -63,13 +63,13 @@ export class Wallet {
     return this.user.seed;
   }
 
-  async encryptMessage(message, publicKey, prefix = 'cubensisconnect') {
+  async encryptMessage(message, publicKey, prefix = 'CubensisConnect') {
     const privateKey = await this._adapter.getPrivateKey();
     const shKey = sharedKey(privateKey, publicKey, prefix);
     return base58Encode(messageEncrypt(shKey, message, prefix || undefined));
   }
 
-  async decryptMessage(message, publicKey, prefix = 'cubensisconnect') {
+  async decryptMessage(message, publicKey, prefix = 'CubensisConnect') {
     const privateKey = await this._adapter.getPrivateKey();
     const shKey = sharedKey(privateKey, publicKey, prefix);
     try {

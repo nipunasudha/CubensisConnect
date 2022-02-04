@@ -1,13 +1,13 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import Backend from 'i18next-http-backend';
-import { I18N_NAME_SPACE, CUBENSISCONNECT_DEBUG } from './appConfig';
+import { I18N_NAME_SPACE, CubensisConnect_DEBUG } from './appConfig';
 
 i18n
   .use(Backend)
   .use(initReactI18next)
   .init({
-    debug: CUBENSISCONNECT_DEBUG,
+    debug: CubensisConnect_DEBUG,
     lng: 'en',
     fallbackLng: 'en',
     ns: [I18N_NAME_SPACE],

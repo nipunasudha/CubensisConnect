@@ -17,7 +17,7 @@
     right: 0;
     left: 0;
     height: 112px;
-    background: linear-gradient(to right, #6b94ff 0%, #1f5af6 100%);
+    background: linear-gradient(to right, #0096884d 0%, #097B1D 100%);
 
 .activeAccount
   position: relative;
@@ -55,6 +55,7 @@
   margin: 0;
   text-align: center;
   user-select: none;
+  color: $white;
 
 
 .tabPanels
@@ -65,7 +66,7 @@
 .notifier
   width: 48px;
   height: 48px;
-  box-shadow: 0 4px 6px 0 #9ba6b266;
+  box-shadow: 0 4px 6px 0 #00998734;
   background: $white;
   position: absolute;
   bottom: 38px;
@@ -106,11 +107,11 @@
   padding: 0 32px 0 32px;
   border: none;
   border-radius: unset;
-  border-bottom: solid 1px #9BA6B2;
+  border-bottom: solid 1px #fff;
 
   &:hover
     border: none;
-    border-bottom: solid 1px #9BA6B2;
+    border-bottom: solid 1px #fff;
 
   &:focus
     outline: none;
@@ -146,13 +147,14 @@
   cursor: pointer;
 
   &:hover
-    background-color: #edf0f4;
+    background-color: #004649;
 
 .filterBtnIcon
   width: 26px;
 
 .filterTxSelect
   min-width: 96px;
+  color: $white;
   width: 96px;
   height: 32px;
   margin: 0 3px 0 6px;
@@ -162,6 +164,7 @@
     height: 32px;
     padding: 0 14px 0 8px;
     border: none;
+    color: $white;
     border-radius: unset;
     &:after
       position: absolute;
@@ -181,4 +184,5 @@
   margin-left: 14px;
 
 .tabInfo
-  margin: 8px 14px
+  margin: 8px 14px;
+  font-size: 15px;

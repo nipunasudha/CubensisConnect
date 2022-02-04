@@ -5,8 +5,8 @@
   margin-bottom: 8px;
   padding: 14px;
   border-radius: 4px;
-  box-shadow: 0 2px 4px rgba(155, 166, 178, 0.4);
-  background: #fff;
+  box-shadow: 0 2px 4px #009688;
+  background: #0e0e1ec7;
   cursor: pointer;
 }
 
@@ -19,12 +19,13 @@
   padding-right: 30px;
   overflow: hidden;
   font-size: 14px;
+  color: #fff;
 }
 
 .accountName {
   margin-bottom: 8px;
   overflow: hidden;
-  color: #9ba6b2;
+  color: #fff;
   text-overflow: ellipsis;
 }
 
@@ -52,5 +53,5 @@
 }
 
 .infoIcon:hover {
-  fill: #9ba6b2;
+  fill: #fff;
 }

@@ -42,13 +42,13 @@ describe('Others', function () {
 
   it('Send more transactions for signature when different screens are open');
 
-  describe('Send WAVES', function () {
+  describe('Send DCC', function () {
     before(async function () {
       await Network.switchTo.call(this, 'Testnet');
       await CreateNewAccount.importAccount.call(
         this,
         'rich',
-        'waves private node seed with waves tokens'
+        'DCC private node seed with DCC tokens'
       );
     });
 
@@ -95,7 +95,7 @@ describe('Others', function () {
         .click();
     });
 
-    it('Send WAVES to an address', async function () {
+    it('Send DCC to an address', async function () {
       const recipientInput = await this.driver.wait(
         until.elementLocated(By.css('[data-testid="recipientInput"]')),
         this.wait
@@ -141,7 +141,7 @@ describe('Others', function () {
       );
 
       expect(await transferAmount.getText()).to.equal(
-        '-\n0\n.12300000\n Waves'
+        '-\n0\n.12300000\n DCC'
       );
 
       expect(
@@ -186,7 +186,7 @@ describe('Others', function () {
       );
 
       expect(await transferAmount.getText()).to.equal(
-        '-\n0\n.87654321\n Waves'
+        '-\n0\n.87654321\n DCC'
       );
 
       expect(

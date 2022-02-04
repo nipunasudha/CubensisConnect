@@ -1,5 +1,5 @@
-export const CUBENSISCONNECT_DEBUG = process.env.NODE_ENV !== 'production';
-export const CUBENSISCONNECT_ENV = process.env.NODE_ENV || 'development';
+export const CubensisConnect_DEBUG = process.env.NODE_ENV !== 'production';
+export const CubensisConnect_ENV = process.env.NODE_ENV || 'development';
 
 export const CONFIG_URL =
   'https://raw.githubusercontent.com/Decentral-America/dcc-configs/main/cubensis-connect-blacklist.json';

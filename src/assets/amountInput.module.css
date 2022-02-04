@@ -1,11 +1,11 @@
 .root {
   display: flex;
-  align-items: center;
-  gap: 8px;
-  border: solid 1px #edf0f4;
-  padding: 14px;
-  border-radius: 4px;
-  background: #fff;
+    align-items: center;
+    gap: 8px;
+    border: solid 1px #009280;
+    padding: 14px;
+    border-radius: 4px;
+    background: #061e29;
 }
 
 .logo {
@@ -37,7 +37,7 @@
 }
 
 .label {
-  color: #9ba6b2;
+  color: #fff;
   font-size: 11px;
   overflow: hidden;
   white-space: nowrap;
@@ -49,6 +49,7 @@
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+  color: #fff;
 }
 
 .right {
@@ -61,6 +62,7 @@
   font-size: 11px;
   overflow: hidden;
   text-overflow: ellipsis;
+  color: #fff;
 }
 
 .input {
@@ -69,6 +71,7 @@
   background: none;
   font-size: 14px;
   text-align: inherit;
+  color: #fff;
 }
 
 .input:focus {
@@ -79,6 +82,7 @@
   font-size: 14px;
   font-weight: bold;
   overflow: hidden;
+  color: #fff;
   white-space: nowrap;
   text-overflow: ellipsis;
 }

@@ -4,7 +4,7 @@ import { libs } from '@decentralchain/waves-transactions';
 import { statisticsApiKey } from '../../config.json';
 import extension from 'extensionizer';
 import { detect } from '../lib/detectBrowser';
-import { CUBENSISCONNECT_ENV } from '../constants';
+import { CubensisConnect_ENV } from '../constants';
 
 export class StatisticsController {
   events = [];
@@ -41,7 +41,7 @@ export class StatisticsController {
       browser_version: this.browser.version,
       browser_version_major:
         this.browser.version && this.browser.version.split('.')[0],
-      environment: CUBENSISCONNECT_ENV,
+      environment: CubensisConnect_ENV,
       network: network,
       chainId: networkCode ? networkCode.charCodeAt(0) : undefined,
       extensionId: this.id,
@@ -49,7 +49,7 @@ export class StatisticsController {
 
     this.events.push({
       user_id: userId,
-      device_id: 'waves_keeper',
+      device_id: 'cubensis_connect',
       app_version: this.version,
       platform: this.browser.os,
       language:

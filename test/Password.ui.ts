@@ -294,7 +294,7 @@ describe('Password management', () => {
       await CreateNewAccount.importAccount.call(
         this,
         'rich',
-        'waves private node seed with waves tokens'
+        'decentralchain private node seed with dcc tokens'
       );
     });
 

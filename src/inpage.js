@@ -60,8 +60,8 @@ async function setupInpageApi() {
   global.CubensisConnect = global.Waves = new Proxy(wavesApp, proxyApi);
 
   const connectionStream = new LocalMessageDuplexStream({
-    name: 'waves_keeper_page',
-    target: 'waves_keeper_content',
+    name: 'cubensis_connect_page',
+    target: 'cubensis_connect_content',
   });
 
   const eventEmitter = new EventEmitter();
@@ -133,6 +133,8 @@ function checkForPaymentApiLink(e) {
         ![
           'client.wavesplatform.com',
           'dex.wavesplatform.com',
+          'decentral.exchange',
+          'nftfisher.com',
           'waves.exchange',
         ].find(item => url.host === item)
       ) {

@@ -1,6 +1,6 @@
 import ObservableStore from 'obs-store';
 
-const WAVES = {
+const DCC = {
   quantity: '10000000000000000',
   ticker: 'DCC',
   id: 'DCC',
@@ -41,16 +41,16 @@ export class AssetInfoController {
     const defaults = {
       assets: {
         mainnet: {
-          WAVES,
+          DCC,
         },
         stagenet: {
-          WAVES,
+          DCC,
         },
         testnet: {
-          WAVES,
+          DCC,
         },
         custom: {
-          WAVES,
+          DCC,
         },
       },
     };
@@ -66,7 +66,7 @@ export class AssetInfoController {
   }
 
   getWavesAsset() {
-    return WAVES;
+    return DCC;
   }
 
   getAssets() {
@@ -92,7 +92,7 @@ export class AssetInfoController {
 
     const { assets } = this.store.getState();
     if (assetId === '' || assetId == null || assetId.toUpperCase() === 'DCC')
-      return WAVES;
+      return DCC;
 
     const network = this.getNetwork();
     const API_BASE = this.getNode();

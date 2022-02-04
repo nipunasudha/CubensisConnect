@@ -1,4 +1,4 @@
-## Waves Keeper
+## Cubensis Connect
 
 #### version 1.1.12
 

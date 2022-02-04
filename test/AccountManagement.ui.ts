@@ -17,14 +17,14 @@ describe('Account management', function () {
     await CreateNewAccount.importAccount.call(
       this,
       'rich',
-      'waves private node seed with waves tokens'
+      'DCC private node seed with DCC tokens'
     );
 
     await Assets.addAccount.call(this);
     await CreateNewAccount.importAccount.call(
       this,
       'poor',
-      'waves private node seed without waves tokens'
+      'DCC private node seed without DCC tokens'
     );
   });
 
@@ -51,7 +51,7 @@ describe('Account management', function () {
 
     it('Updating account balances on import');
 
-    it('The balance reflects the leased WAVES');
+    it('The balance reflects the leased DCC');
 
     it('Copying the address of the active account on the accounts screen');
 

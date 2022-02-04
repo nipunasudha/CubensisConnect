@@ -1,16 +1,16 @@
-# Waves Keeper
+# Cubensis Connect
 
 en | [ru](https://github.com/wavesplatform/cubensis-connect/blob/master/README_ru.md)
 
-Waves Keeper is an extension that allows users to securely interact with Waves-enabled web services from the Chrome browser.
+Cubensis Connect is an extension that allows users to securely interact with Waves-enabled web services from the Chrome browser.
 
 Seed phrases and private keys are encrypted and stored within the extension and cannot be accessed by online dApps and services, making sure that users' funds are always protected from hackers and malicious websites. Completion of a transaction doesn't require entering any sensitive information.
 
-Waves Keeper is designed for convenience, so users can sign transactions with just a couple of clicks. Users can create multiple wallets and switch between them easily. And if a user ever forgets the password to the account, it can be recovered from the seed phrase.
+Cubensis Connect is designed for convenience, so users can sign transactions with just a couple of clicks. Users can create multiple wallets and switch between them easily. And if a user ever forgets the password to the account, it can be recovered from the seed phrase.
 
-## Waves Keeper API
+## Cubensis Connect API
 
-On browser pages that operate under the http/https (not worked local pages with file:// protocol) with Waves Keeper extension installed, Waves Keeper global object becomes available, featuring the following methods:
+On browser pages that operate under the http/https (not worked local pages with file:// protocol) with Cubensis Connect extension installed, Cubensis Connect global object becomes available, featuring the following methods:
 
 - `auth`
 - `publicState`
@@ -33,7 +33,7 @@ On browser pages that operate under the http/https (not worked local pages with 
 
 All methods, except for "on" operate asynchronously and return [promises](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Promise).
 
-In code, you can use [TypeScript types](https://github.com/wavesplatform/cubensisconnect-types)
+In code, you can use [TypeScript types](https://github.com/wavesplatform/CubensisConnect-types)
 
 On initialize `window.CubensisConnect` has not api methods.
 You can use `CubensisConnect.initialPromise` for waiting end initializing api.
@@ -46,13 +46,13 @@ CubensisConnect.initialPromise.then(keeperApi => {
 });
 ```
 
-In Waves Keeper, for greater security and ease of use, each new website using API has to be allowed by the user. At the first attempt to use API (except "`on"`), the user will see a request to allow that website's access to Waves Keeper. If the user agrees to allow access, the website is considered trusted and can use API on its pages. Otherwise, the website is blocked, and an error message will be displayed in response to all requests `{message: "Api rejected by user", code: 12}`. The users won't see new notifications. To grant access, the user will mark the website as trusted in the interface.
+In Cubensis Connect, for greater security and ease of use, each new website using API has to be allowed by the user. At the first attempt to use API (except "`on"`), the user will see a request to allow that website's access to Cubensis Connect. If the user agrees to allow access, the website is considered trusted and can use API on its pages. Otherwise, the website is blocked, and an error message will be displayed in response to all requests `{message: "Api rejected by user", code: 12}`. The users won't see new notifications. To grant access, the user will mark the website as trusted in the interface.
 
 ### Description of methods
 
 #### publicState
 
-If a website is trusted, Waves Keeper public data are returned.
+If a website is trusted, Cubensis Connect public data are returned.
 
 Example:
 
@@ -94,16 +94,16 @@ REPLY
     "account": {
         "name": "foo",
         "publicKey": "bar",
-        "address": "waves address",
+        "address": "dcc address",
         "networkCode": "network byte",
         "balance": {
-            "available": "balance in waves",
+            "available": "balance in dcc",
             "leasedOut": "leased balance"
         }
     },
     "network": {
-        "code": "W",
-        "server": "https://nodes.wavesnodes.com/",
+        "code": "?",
+        "server": "https://mainnet-node.decentralchain.io/",
         "matcher": "https://mainnet-matcher.decentralchain.io/"
     },
     "messages": [],
@@ -127,9 +127,9 @@ Description of query return fields
 
 Possible errors
 
-- `{ message: "Init Waves Keeper and add account" }` – Waves Keeper is not initialized
-- `{ message: "Add Waves Keeper account" }` – Waves Keeper accessed, but there are no accounts
-- `{ message: "User denied message" }` – the user denied the website operation with Waves Keeper
+- `{ message: "Init Cubensis Connect and add account" }` – Cubensis Connect is not initialized
+- `{ message: "Add Cubensis Connect account" }` – Cubensis Connect accessed, but there are no accounts
+- `{ message: "User denied message" }` – the user denied the website operation with Cubensis Connect
 
 #### notification
 
@@ -180,10 +180,10 @@ CubensisConnect.encryptMessage(
 
 Possible errors
 
-- `{ message: "Init Waves Keeper and add account" }` – Waves Keeper is not initialized
-- `{ message: "App is locked" }` – Waves Keeper is locked
-- `{ message: "Add Waves Keeper account" }` – Waves Keeper accessed, but there are no accounts
-- `{ message: "User denied message" }` – the user denied the website operation with Waves Keeper
+- `{ message: "Init Cubensis Connect and add account" }` – Cubensis Connect is not initialized
+- `{ message: "App is locked" }` – Cubensis Connect is locked
+- `{ message: "Add Cubensis Connect account" }` – Cubensis Connect accessed, but there are no accounts
+- `{ message: "User denied message" }` – the user denied the website operation with Cubensis Connect
 
 #### decryptMessage
 
@@ -206,14 +206,14 @@ CubensisConnect.decryptMessage(
 
 Possible errors
 
-- `{ message: "Init Waves Keeper and add account" }` – Waves Keeper is not initialized
-- `{ message: "App is locked" }` – Waves Keeper is locked
-- `{ message: "Add Waves Keeper account" }` – Waves Keeper accessed, but there are no accounts
-- `{ message: "User denied message" }` – the user denied the website operation with Waves Keeper
+- `{ message: "Init Cubensis Connect and add account" }` – Cubensis Connect is not initialized
+- `{ message: "App is locked" }` – Cubensis Connect is locked
+- `{ message: "Add Cubensis Connect account" }` – Cubensis Connect accessed, but there are no accounts
+- `{ message: "User denied message" }` – the user denied the website operation with Cubensis Connect
 
 #### on
 
-Allows subscribing to Waves Keeper events.
+Allows subscribing to Cubensis Connect events.
 
 Supports events:
 
@@ -281,13 +281,13 @@ const authData = {
   data: 'Generated string from server',
   name: 'My test App',
   icon: '/img/icons/waves_logo.svg',
-  referrer: 'https://waves.exchange/',
+  referrer: 'https://decentral.exchange/',
   successPath: 'login',
 };
 
 CubensisConnect.auth(authData)
   .then(data => {
-    //data – data from Waves Keeper
+    //data – data from Cubensis Connect
     //verifying signature and saving the address...
     console.log(data);
   })
@@ -296,7 +296,7 @@ CubensisConnect.auth(authData)
   });
 ```
 
-If the verification is successful, Waves Keeper will return to the promise an object containing data for signature verification:
+If the verification is successful, Cubensis Connect will return to the promise an object containing data for signature verification:
 
 - `host` – a host that requested a signature
 - `name` – the name of an application that requested a signature
@@ -346,7 +346,7 @@ API returns lines, not an object, as in javascript precision is lost in operatio
 
 A description of supported transaction types is below.
 
-In the example, we are signing a transaction for transferring WAVES to the alias `test`in Waves' network.
+In the example, we are signing a transaction for transferring DCC to the alias `test`in Waves' network.
 
 REPLY
 
@@ -420,7 +420,7 @@ A package transaction signature. Sometimes several transactions need to be simul
 - `4` – transfer a token
 - `5` – reissues a token
 - `6` – burns a token
-- `8` – leases WAVES
+- `8` – leases DCC
 - `9` – cancels the leasing
 - `10` – creating an alias for an address in Waves network
 - `11` – mass transfer
@@ -470,8 +470,8 @@ CubensisConnect.signTransactionPackage(tx, name);
 
 Sign two transaction:
 
-- Transfer 1.567 WAVES to the alias test
-- Transfer 0.1 WAVES to the alias merry
+- Transfer 1.567 DCC to the alias test
+- Transfer 0.1 DCC to the alias merry
 
 REPLY
 
@@ -484,7 +484,7 @@ Same as in `signTransaction`
 ##### [Transactions](https://docs.waves.tech/en/building-apps/waves-api-and-sdk/client-libraries/waves-transactions)\*\*
 
 Every user of Waves' network has a state (balances, assets, data, scripts), and every past transactions changes these data. \
-In Waves Keeper API it is different from [NODE REST API](https://docs.waves.tech/en/waves-node/node-api/).
+In Cubensis Connect API it is different from [NODE REST API](https://docs.waves.tech/en/waves-node/node-api/).
 
 `signTransaction`, `signAndPublishTransaction` accept transactions as follows
 
@@ -511,7 +511,7 @@ MoneyLike could look as:
 - `{ tokens: 1, assetId: "DCC" }`
 - `{ coins: 100000000, assetId: "DCC" }`;
 
-In both messages, the same price of 1 WAVES is indicated. You can easily convert `coins`into `tokens`and back, if you know in what asset the price is indicated, and you have received its precision `tokens = coins / (10 ** precision)` \
+In both messages, the same price of 1 DCC is indicated. You can easily convert `coins`into `tokens`and back, if you know in what asset the price is indicated, and you have received its precision `tokens = coins / (10 ** precision)` \
 If the field contains other types than MoneyLike, for instance, string/MoneyLike , the sum is indicated as a number in  `coins`.
 
 ---
@@ -576,7 +576,7 @@ CubensisConnect.signAndPublishTransaction({
   },
 })
   .then(tx => {
-    console.log("Hurray! I've been able to send WAVES!!!");
+    console.log("Hurray! I've been able to send DCC!!!");
   })
   .catch(error => {
     console.error('Something went wrong', error);
@@ -679,7 +679,7 @@ CubensisConnect.signAndPublishTransaction({
   });
 ```
 
-In case of a success, 0.00001000 WAVES is leased.
+In case of a success, 0.00001000 DCC is leased.
 
 ###### [Type 9 LEASE CANCEL – cancel leasing](https://docs.waves.tech/en/blockchain/transaction-type/lease-cancel-transaction)\*\*
 
@@ -776,7 +776,7 @@ CubensisConnect.signAndPublishTransaction({
   });
 ```
 
-In case of a success, 0.002 WAVES will be sent to alias1 and alias2.
+In case of a success, 0.002 DCC will be sent to alias1 and alias2.
 
 ###### [Type 12 DATA TRANSACTION - saving data](https://docs.waves.tech/en/blockchain/transaction-type/data-transaction)\*\*
 
@@ -999,7 +999,7 @@ In case of a success, invoke script function `tellme` in testnet account `3N27HU
 
 #### signOrder\*\*
 
-Waves Keeper's method for signing an order to the matcher. As input, it accepts an object similar to a transaction like this:
+Cubensis Connect's method for signing an order to the matcher. As input, it accepts an object similar to a transaction like this:
 
 ```js
 {
@@ -1014,7 +1014,7 @@ Waves Keeper's method for signing an order to the matcher. As input, it accepts 
 - `amount` MoneyLike - amount
 - `price` MoneyLike - price
 - `orderType` 'sell'/'buy' – order type
-- `matcherFee` MoneyLike - fee (0.003 WAVES minimum),
+- `matcherFee` MoneyLike - fee (0.003 DCC minimum),
 - `matcherPublicKey` string - the public key of the exchange service
 - `expiration` string/number – the order's expiration time
 - `*timestamp` string/number - current time
@@ -1061,7 +1061,7 @@ ERRORS:
 
 #### signAndPublishOrder
 
-Waves Keeper's method for creating an order to the matcher is identical to `signOrder`, but it also tries to send data to the matcher.
+Cubensis Connect's method for creating an order to the matcher is identical to `signOrder`, but it also tries to send data to the matcher.
 
 REPLY: the matcher's reply line about successful creation of an order.
 
@@ -1072,7 +1072,7 @@ ERRORS:
 
 #### signCancelOrder
 
-Waves Keeper's method for signing cancellation of an order to the matcher. As input, it accepts an object similar to a transaction like this:
+Cubensis Connect's method for signing cancellation of an order to the matcher. As input, it accepts an object similar to a transaction like this:
 
 ```js
 {
@@ -1107,7 +1107,7 @@ ERRORS:
 
 #### signAndPublishCancelOrder
 
-Waves Keeper's method for cancelling an order to the matcher. It works identically to `signCancelOrder`,
+Cubensis Connect's method for cancelling an order to the matcher. It works identically to `signCancelOrder`,
 but also tries to send data to the matcher. For api need know also 2 field `priceAsset` and `amountAsset` from order.
 
 Example:
@@ -1138,7 +1138,7 @@ ERRORS:
 
 #### signRequest
 
-Waves Keeper's method for signing typified data, for signing requests on various services. As input, it accepts an object similar to a transaction like this:
+Cubensis Connect's method for signing typified data, for signing requests on various services. As input, it accepts an object similar to a transaction like this:
 
 ```js
 {
@@ -1177,7 +1177,7 @@ ERRORS:
 
 #### signCustomData
 
-Method Waves Keeper for sign custom data for different services, it accepts an object:
+Method Cubensis Connect for sign custom data for different services, it accepts an object:
 
 ##### version 1
 

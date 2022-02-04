@@ -42,7 +42,7 @@ class MessagesComponent extends React.Component {
 
     const sponsoredBalance: BalanceAssets = Object.fromEntries(
       Object.entries({
-        WAVES: {
+        DCC: {
           balance: balance.available,
           minSponsoredAssetFee:
             DEFAULT_FEE_CONFIG.calculate_fee_rules.default.fee,

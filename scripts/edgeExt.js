@@ -7,9 +7,9 @@ const DIST_PATH = path.resolve(DIST);
 const ROOT_PATH = path.resolve(EXT_DIST);
 const distUtil = 'manifoldjs';
 
-const PACKAGE_IDENTITY_NAME = '60844WavesPlatform.CubensisConnect';
+const PACKAGE_IDENTITY_NAME = '60844DecentralChain.CubensisConnect';
 const PACKAGE_IDENTITY_PUBLISHER = '4268AF7A-13B3-4B08-923A-DF5F6D92E653';
-const PUBLISHER_NAME = 'WavesPlatform';
+const PUBLISHER_NAME = 'DecentralChain';
 const NAME = 'CubensisConnect';
 
 const REPLACE_PATTERN = {
@@ -20,7 +20,7 @@ const REPLACE_PATTERN = {
   '<Resource Language="ru" />': '',
   '<!-- UPDATE PUBLISHER DISPLAY NAME -->': '',
   '<!-- UPDATE IDENTITY -->': '',
-  __MSG_appName__: 'Waves Keeper',
+  __MSG_appName__: 'Cubensis Connect',
   __MSG_appDescription__: 'Manage your private keys securely',
 };
 

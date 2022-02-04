@@ -8,7 +8,7 @@ import debounce from 'debounce';
 import asStream from 'obs-store/lib/asStream';
 import extension from 'extensionizer';
 import { ERRORS } from './lib/KeeperError';
-import { MSG_STATUSES, CUBENSISCONNECT_DEBUG } from './constants';
+import { MSG_STATUSES, CubensisConnect_DEBUG } from './constants';
 import { createStreamSink } from './lib/createStreamSink';
 import { getFirstLangCode } from './lib/get-first-lang-code';
 import PortStream from './lib/port-stream.js';
@@ -47,7 +47,7 @@ import { waves } from './controllers/wavesTransactionsController';
 const version = extension.runtime.getManifest().version;
 
 const isEdge = window.navigator.userAgent.indexOf('Edge') > -1;
-log.setDefaultLevel(CUBENSISCONNECT_DEBUG ? 'debug' : 'warn');
+log.setDefaultLevel(CubensisConnect_DEBUG ? 'debug' : 'warn');
 
 const bgPromise = setupBackgroundService();
 
@@ -55,7 +55,7 @@ Sentry.init({
   dsn: __SENTRY_DSN__,
   environment: __SENTRY_ENVIRONMENT__,
   release: __SENTRY_RELEASE__,
-  debug: CUBENSISCONNECT_DEBUG,
+  debug: CubensisConnect_DEBUG,
   autoSessionTracking: false,
   initialScope: {
     tags: {
@@ -114,7 +114,7 @@ async function setupBackgroundService() {
   });
 
   // global access to service on debug
-  if (CUBENSISCONNECT_DEBUG) {
+  if (CubensisConnect_DEBUG) {
     global.background = backgroundService;
   }
 

@@ -11,9 +11,8 @@ export class Info extends React.Component {
 
         <div className="margin-main basic500">
           <Trans i18nKey="info.keepUp">
-            Waves Keeper — is the safest way to interact with third-party web
-            resources with Waves-integrated functionality or DApps. Using Waves
-            Keeper, you can sign transactions and remain safe from malicious
+            Cubensis Connect — is the safest way to interact with third-party web
+            resources with DCC-integrated functionality or DApps. Using Cubensis Connect, you can sign transactions and remain safe from malicious
             sites.
           </Trans>
         </div>
@@ -22,76 +21,41 @@ export class Info extends React.Component {
           rel="noopener noreferrer"
           className="link black"
           target="_blank"
-          href="https://forum.waves.tech"
+          href="https://decentralchain.io/blog"
         >
-          forum.waves.tech
+          DecentralChain
         </a>
 
         <div className={`${styles.social} margin-main`}>
           <div className="margin-main basic500">
-            <Trans i18nKey="info.joinUs">Join the Waves Community</Trans>
+            <Trans i18nKey="info.joinUs">Join the DCC Community</Trans>
           </div>
           <ul>
             <li className={styles.github}>
               <a
                 rel="noopener noreferrer"
                 target="_blank"
-                href="https://github.com/wavesplatform"
+                href="https://github.com/Decentral-America"
               ></a>
             </li>
             <li className={styles.telegram}>
               <a
                 rel="noopener noreferrer"
                 target="_blank"
-                href="https://t.me/wavesnews"
-              ></a>
-            </li>
-            <li className={styles.discord}>
-              <a
-                rel="noopener noreferrer"
-                target="_blank"
-                href="https://discordapp.com/invite/cnFmDyA"
+                href="https://t.me/decentralchain"
               ></a>
             </li>
             <li className={styles.twitter}>
               <a
                 rel="noopener noreferrer"
                 target="_blank"
-                href="https://twitter.com/wavesprotocol"
-              ></a>
-            </li>
-            <li className={styles.reddit}>
-              <a
-                rel="noopener noreferrer"
-                target="_blank"
-                href="https://www.reddit.com/r/Wavesplatform"
-              ></a>
-            </li>
-            <li className={styles.medium}>
-              <a
-                rel="noopener noreferrer"
-                target="_blank"
-                href="https://medium.com/wavesprotocol"
-              ></a>
-            </li>
-            <li className={styles.youtube}>
-              <a
-                rel="noopener noreferrer"
-                target="_blank"
-                href="https://www.youtube.com/channel/UCYDQN4Fo4rGnOZ22L5plNIw/featured"
-              ></a>
-            </li>
-            <li className={styles.vk}>
-              <a
-                rel="noopener noreferrer"
-                target="_blank"
-                href="https://vk.com/wavesprotocol"
+                href="https://twitter.com/decentralchain"
               ></a>
             </li>
           </ul>
         </div>
 
-        <div className="basic500">&copy; Waves</div>
+        <div className="basic500">&copy; DecentralChain</div>
       </div>
     );
   }

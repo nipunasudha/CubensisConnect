@@ -3,7 +3,7 @@ import { BigNumber } from '@waves/bignumber';
 import * as React from 'react';
 import { Trans } from 'react-i18next';
 import cn from 'classnames';
-import { CUBENSISCONNECT_DEBUG } from 'ui/appConfig';
+import { CubensisConnect_DEBUG } from 'ui/appConfig';
 import { useAppSelector } from 'ui/store';
 import { Avatar } from '../ui/avatar/Avatar';
 import { Balance } from '../ui/balance/Balance';
@@ -13,7 +13,7 @@ import { Tooltip } from '../ui/tooltip';
 
 const SHOW_SWAP_BUTTON_NETWORKS = ['mainnet'];
 
-if (CUBENSISCONNECT_DEBUG) {
+if (CubensisConnect_DEBUG) {
   SHOW_SWAP_BUTTON_NETWORKS.push('testnet');
 }
 
@@ -82,14 +82,7 @@ export function ActiveAccountCard({
       />
 
       <div className={styles.controls}>
-        {SHOW_SWAP_BUTTON_NETWORKS.includes(currentNetwork) && (
-          <button
-            className={cn('swapIconBlack', styles.buttonWallet)}
-            onClick={onSwapClick}
-          >
-            <Trans i18nKey="activeAccountCard.swapButton" />
-          </button>
-        )}
+        
 
         <span className={styles.controlsExpand} />
 

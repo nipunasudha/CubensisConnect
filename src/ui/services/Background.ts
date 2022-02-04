@@ -359,7 +359,7 @@ class Background {
     }
   }
 
-  async signAndPublishTransaction(data: CubensisConnect.TSignTransactionData) {
+  async signAndPublishTransaction(data: WavesKeeper.TSignTransactionData) {
     try {
       await this.initPromise;
       return await this.background.signAndPublishTransaction(data);

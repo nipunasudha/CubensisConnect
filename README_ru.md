@@ -1,4 +1,4 @@
-# Waves Keeper
+# Cubensis Connect
 
 [en](https://github.com/wavesplatform/cubensis-connect/blob/master/README.md) | ru
 
@@ -6,10 +6,10 @@
 и проведения транзакций в блокчейн сети Waves.
 [Информация о сети Waves](https://docs.waves.tech/ru/)
 
-## Waves Keeper API
+## Cubensis Connect API
 
 На страницах браузера, работающим по протоколам http/https (не работает на локальных страничках по протоколу `file://`),
-с установленным расширением Waves Keeper
+с установленным расширением Cubensis Connect
 становятся доступным глобальный объект CubensisConnect
 в котором вы найдете следующие методы:
 
@@ -32,7 +32,7 @@
 
 > Все методы кроме `on` работают асинхронно и возвращают [Promise](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Promise)
 
-В вашем коде вы можете использовать [TypeScript types](https://github.com/wavesplatform/cubensisconnect-types)
+В вашем коде вы можете использовать [TypeScript types](https://github.com/wavesplatform/CubensisConnect-types)
 
 При загрузке страницы в объекте CubensisConnect нет методов апи до окончания инициализации плагина.
 Для облегчения работы с CubensisConnect при инициализации в `window.CubensisConnect` есть `initialPromise`,
@@ -46,10 +46,10 @@ CubensisConnect.initialPromise.then(keeperApi => {
 });
 ```
 
-В Waves Keeper, для большей безопасности и удобства использования,
+В Cubensis Connect, для большей безопасности и удобства использования,
 каждый новый сайт использующий API должен быть разрешен пользователем.
 При первой попытке использования API (кроме `on`) пользователю будет показан запрос на
-разрешение работы Waves Keeper с этим сайтом. Если пользователь согласен дать доступ,
+разрешение работы Cubensis Connect с этим сайтом. Если пользователь согласен дать доступ,
 сайт становится доверенным, и получает возможность использовать API на своих страницах.
 В противном случае сайт блокируется и на все запросы будет возвращена ошибка
 `{message: "Api rejected by user", code: 12}`, пользователь не увидит новых уведомлений.
@@ -110,7 +110,7 @@ const result = await getPublicState();
     },
     "network": {
         "code": "W",
-        "server": "https://nodes.wavesnodes.com/",
+        "server": "https://mainnet-node.decentralchain.io/",
         "matcher": "https://mainnet-matcher.decentralchain.io/"
     },
     "messages": [],
@@ -134,8 +134,8 @@ const result = await getPublicState();
 
 Возможные ошибки
 
-- `{ message: "Init Waves Keeper and add account" }` - Keeper не проинициализирован
-- `{ message: "Add Waves Keeper account" }` - вход в Keeper произведен, но нет аккаунтов
+- `{ message: "Init Cubensis Connect and add account" }` - Keeper не проинициализирован
+- `{ message: "Add Cubensis Connect account" }` - вход в Keeper произведен, но нет аккаунтов
 - `{ message: "User denied message" }` - пользователь запретил сайту работать с Keeper API
 
 #### encryptMessage
@@ -158,10 +158,10 @@ CubensisConnect.encryptMessage(
 
 Возможные ошибки
 
-- `{ message: "Init Waves Keeper and add account" }` – кипер не проинициализирован
+- `{ message: "Init Cubensis Connect and add account" }` – кипер не проинициализирован
 - `{ message: "App is locked" }` – кипер заблокирован
 
-* `{ message: "Add Waves Keeper account" }` - вход в кипер произведен, но нет аккаунтов
+* `{ message: "Add Cubensis Connect account" }` - вход в кипер произведен, но нет аккаунтов
 * `{ message: "User denied message" }` - пользователь запретил сайту работать с Keeper API
 
 #### decryptMessage
@@ -189,15 +189,15 @@ CubensisConnect.decryptMessage(
 
 Возможные ошибки
 
-- `{ message: "Init Waves Keeper and add account" }` – кипер не проинициализирован
+- `{ message: "Init Cubensis Connect and add account" }` – кипер не проинициализирован
 - `{ message: "App is locked" }` – кипер заблокирован
 
-* `{ message: "Add Waves Keeper account" }` - вход в кипер произведен, но нет аккаунтов
+* `{ message: "Add Cubensis Connect account" }` - вход в кипер произведен, но нет аккаунтов
 * `{ message: "User denied message" }` - пользователь запретил сайту работать с Keeper API
 
 #### on
 
-Позволяет подписаться на события из Waves Keeper.
+Позволяет подписаться на события из Cubensis Connect.
 
 Поддерживает события:
 
@@ -293,7 +293,7 @@ const authData = {
   data: 'Generated string from server',
   name: 'My test App',
   icon: '/img/icons/waves_logo.svg',
-  referrer: 'https://waves.exchange/',
+  referrer: 'https://decentral.exchange/',
   successPath: 'login',
 };
 
@@ -434,7 +434,7 @@ CubensisConnect.signAndPublishTransaction(txData)
 - `4` - переводит токен на другой аккаунт
 - `5` - выпускает дополнительное количество токена
 - `6` - уменьшает количество токена
-- `8` – передает WAVES в лизинг
+- `8` – передает DCC в лизинг
 - `9` – прекращает лизинг
 - `10` - создает псевдоним адреса
 - `11` - массовый перевод
@@ -527,7 +527,7 @@ MoneyLike может иметь вид:
 - `{ tokens: 1, assetId: "DCC" }`
 - `{ coins: 100000000, assetId: "DCC" }`;
 
-В обеих записях указана одинаковая цена 1 WAVES. Можно свободно перевести `coins` в `tokens` и обратно,
+В обеих записях указана одинаковая цена 1 DCC. Можно свободно перевести `coins` в `tokens` и обратно,
 зная в каком ассете указана цена и получив его точность `tokens = coins / (10 ** precision)`
 Если в поле указаны дополнительные типы кроме MoneyLike, например string/MoneyLike, сумма указывается числом в `coins`.
 
@@ -1011,7 +1011,7 @@ CubensisConnect.signAndPublishTransaction({
 
 #### signOrder
 
-Метод Waves Keeper для подписи ордера в матчер.
+Метод Cubensis Connect для подписи ордера в матчер.
 Принимает на вход объект похожий на транзакцию вида
 
 ```js
@@ -1077,7 +1077,7 @@ CubensisConnect.signOrder({
 
 #### signAndPublishOrder
 
-Метод Waves Keeper создания ордера на матчер работает идентично `signOrder`, но еще пытается отослать данные на матчер
+Метод Cubensis Connect создания ордера на матчер работает идентично `signOrder`, но еще пытается отослать данные на матчер
 
 ОТВЕТ:
 Строка ответ матчера об успешной постановке ордера.
@@ -1089,7 +1089,7 @@ CubensisConnect.signOrder({
 
 #### signCancelOrder
 
-Метод Waves Keeper подпись отмены ордера на матчер.
+Метод Cubensis Connect подпись отмены ордера на матчер.
 Принимает на вход объект похожий на транзакцию вида
 
 ```js
@@ -1126,7 +1126,7 @@ CubensisConnect.signCancelOrder({
 
 #### signAndPublishCancelOrder
 
-Метод Waves Keeper для отмены ордера на матчер, работает идентично `signCancelOrder`,
+Метод Cubensis Connect для отмены ордера на матчер, работает идентично `signCancelOrder`,
 но еще пытается отослать данные на матчер, для которого необходимо передать еще 2 поля `priceAsset` и `amountAsset` из ордера.
 
 Пример:
@@ -1159,7 +1159,7 @@ CubensisConnect.signAndPublishCancelOrder({
 
 #### signRequest
 
-Метод Waves Keeper для подписи типизированных данных, для подтверждения запросов на разных сервисах.
+Метод Cubensis Connect для подписи типизированных данных, для подтверждения запросов на разных сервисах.
 Принимает на вход объект похожий на транзакцию вида
 
 ```js
@@ -1200,7 +1200,7 @@ CubensisConnect.signRequest({
 
 #### signCustomData
 
-Метод Waves Keeper для подписи данных, для подтверждения их на разных сервисах.
+Метод Cubensis Connect для подписи данных, для подтверждения их на разных сервисах.
 Принимает на вход объект:
 
 ##### version 1

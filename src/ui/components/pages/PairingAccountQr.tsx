@@ -91,13 +91,13 @@ class PairingAccountQrComponent extends React.PureComponent {
             <div className="buttons-wrapper margin-main-large">
               <a
                 rel="noopener noreferrer"
-                href="https://play.google.com/store/apps/details?id=com.wavesplatform.wallet"
+                href="https://play.google.com/store/apps/details?id=com.decentralchain.wallet"
                 className="google-play-btn"
                 target="_blank"
               ></a>
               <a
                 rel="noopener noreferrer"
-                href="https://itunes.apple.com/us/app/waves-wallet/id1233158971?mt=8"
+                href="https://itunes.apple.com/us/app/dcc-wallet/id1233158971?mt=8"
                 className="apple-store-btn"
                 target="_blank"
               ></a>

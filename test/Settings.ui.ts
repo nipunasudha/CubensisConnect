@@ -38,7 +38,7 @@ describe('Settings', function () {
     await CreateNewAccount.importAccount.call(
       this,
       'rich',
-      'waves private node seed with waves tokens'
+      'decentralchain private node seed with dcc tokens'
     );
     await Assets.addAccount.call(this);
     await CreateNewAccount.importAccount.call(

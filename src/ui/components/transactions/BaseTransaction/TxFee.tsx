@@ -11,7 +11,7 @@ import { getFee } from './parseTx';
 import { TRANSACTION_TYPE } from '@waves/ts-types';
 import { omit } from 'ramda';
 
-const WAVES_MIN_FEE = DEFAULT_FEE_CONFIG.calculate_fee_rules.default.fee;
+const DCC_MIN_FEE = DEFAULT_FEE_CONFIG.calculate_fee_rules.default.fee;
 
 interface Props {
   isEditable: boolean;
@@ -127,7 +127,7 @@ export const TxFee = connect(
 function convertFee(from: Money, toAsset: Asset): Money {
   const isWaves = (assetId: string) => assetId === 'DCC';
   const minSponsoredFee = (asset: Asset) =>
-    !isWaves(asset.id) ? asset.minSponsoredFee : WAVES_MIN_FEE;
+    !isWaves(asset.id) ? asset.minSponsoredFee : DCC_MIN_FEE;
   return new Money(
     new BigNumber(from.toCoins())
       .mul(new BigNumber(minSponsoredFee(toAsset)))

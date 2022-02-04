@@ -43,8 +43,8 @@ function injectBundle() {
 
 function setupConnection() {
   const pageStream = new LocalMessageDuplexStream({
-    name: 'waves_keeper_content',
-    target: 'waves_keeper_page',
+    name: 'cubensis_connect_content',
+    target: 'cubensis_connect_page',
   });
 
   const pluginPort = extension.runtime.connect({ name: 'contentscript' });
@@ -52,7 +52,7 @@ function setupConnection() {
 
   // forward communication plugin->inpage
   pump(pageStream, pluginStream, pageStream, err =>
-    logStreamDisconnectWarning('Waveskeeper Contentscript Forwarding', err)
+    logStreamDisconnectWarning('CubensisConnect Contentscript Forwarding', err)
   );
 }
 
@@ -63,7 +63,7 @@ function setupConnection() {
  * @param {Error} err Stream connection error
  */
 function logStreamDisconnectWarning(remoteLabel, err) {
-  let warningMsg = `WaveskeeperContentscript - lost connection to ${remoteLabel}`;
+  let warningMsg = `CubensisConnectContentscript - lost connection to ${remoteLabel}`;
   if (err) warningMsg += '\n' + err.stack;
   console.warn(warningMsg);
 }

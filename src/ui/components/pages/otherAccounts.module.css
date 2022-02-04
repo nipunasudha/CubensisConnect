@@ -9,9 +9,10 @@
   position: sticky;
   z-index: 2;
   top: 0;
-  border-bottom: 1px solid #edf0f4;
+  border-bottom: 1px solid #004649;
   padding: 14px;
-  background: #fff;
+  background: linear-gradient(to right, rgba(0,150,136,0.302) 0%, #097b1d 100%);
+  color: #fff;
 }
 
 .title {
@@ -24,11 +25,11 @@
   position: relative;
   z-index: 1;
   padding: 14px;
-  background: #f8f9fb;
+  background: #0e0e1d;
 }
 
 .noAccountsNote {
-  color: #9ba6b2;
+  color: #fff;
   font-size: 14px;
   text-align: center;
 }
@@ -45,7 +46,7 @@
   height: 32px;
   border-radius: 4px;
   background: url(../../assets/img/add-14-basic-500.svg) 13px center no-repeat;
-  color: #9ba6b2;
+  color: #fff;
   font: inherit;
   font-size: 14px;
   line-height: 32px;
@@ -54,5 +55,5 @@
 }
 
 .addAccountButton:hover {
-  background-color: #edf0f4;
+  background-color: #004649;
 }

@@ -309,7 +309,7 @@ export class MessageController extends EventEmitter {
   }
 
   /**
-   * Removes unused messages in final states from previous versions of Waves Keeper
+   * Removes unused messages in final states from previous versions of Cubensis Connect
    */
   clearUnusedMessages() {
     const unusedStatuses = [
@@ -581,7 +581,7 @@ export class MessageController extends EventEmitter {
   /**
    * Calculates hash of message data. It is TX id for transactions. Also used for auth and requests. Throws if data is invalid
    * @param {object} data - data field from message
-   * @param {object} account - Waves Keeper account
+   * @param {object} account - Cubensis Connect account
    * @returns {Promise<{ id, bytes }>}
    */
   async _getMessageDataHash(data, account) {

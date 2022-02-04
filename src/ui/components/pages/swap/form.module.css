@@ -21,22 +21,22 @@
   height: 24px;
   border-radius: 50%;
   background: #fff;
-  color: #edf0f4;
+  color: #004649;
   vertical-align: middle;
   cursor: pointer;
 }
 
 .swapDirectionBtn:not(:disabled):hover {
-  background: #edf0f4;
+  background: #004649;
 }
 
 .swapDirectionBtn:disabled {
-  background: #f8f9fb;
+  background: #0e0e1d;
   cursor: not-allowed;
 }
 
 .swapDirectionBtnIcon {
-  color: #9ba6b2;
+  color: #fff;
 }
 
 .priceRow {
@@ -45,10 +45,11 @@
   gap: 1em;
   font-size: 12px;
   font-weight: 300;
+  color: #fff;
 }
 
 .priceRowLabel {
-  color: #9ba6b2;
+  color: #fff;
 }
 
 .priceRowValue {
@@ -89,7 +90,7 @@
 }
 
 .summaryTable th {
-  color: #9ba6b2;
+  color: #fff;
   font-weight: 300;
   text-align: left;
 }
