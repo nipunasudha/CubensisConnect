@@ -9,15 +9,27 @@
 }
 
 .logo {
+  box-sizing: content-box;
+  margin: 0 -3px;
+  padding: 3px;
   width: 24px;
   height: 24px;
+  border-radius: 4px;
+  background: none;
+}
+
+.logo:not(:disabled) {
+  cursor: pointer;
+}
+
+.logo:not(:disabled):hover {
+  background: var(--color-basic100);
 }
 
 .logoImg {
-  max-width: 100%;
-  max-height: 100%;
-  width: auto;
-  height: auto;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 .logoPlaceholder {
@@ -31,9 +43,20 @@
   text-align: center;
 }
 
-.left {
-  flex: 0 0 30%;
-  overflow: hidden;
+.main {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.top {
+  margin-bottom: 4px;
+  display: flex;
+  gap: 8px;
+}
+
+.bottom {
+  display: flex;
+  gap: 8px;
 }
 
 .label {
@@ -44,15 +67,16 @@
   text-overflow: ellipsis;
 }
 
-.assetName {
-  font-size: 14px;
+.balance {
+  flex-shrink: 0;
+  font-size: 11px;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
   color: #fff;
 }
 
-.right {
+.value {
   flex: 1 1 0;
   overflow: hidden;
   text-align: right;
@@ -85,4 +109,20 @@
   color: #fff;
   white-space: nowrap;
   text-overflow: ellipsis;
+}
+
+.maxButton {
+  margin: -3px -6px;
+  padding: 3px 6px;
+  border-radius: 4px;
+  background: none;
+  color: var(--color-submit400);
+  font-weight: 300;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.maxButton:hover {
+  background: var(--color-submit400);
+  color: var(--color-white);
 }

@@ -49,7 +49,6 @@
 }
 
 .accountName {
-  flex-grow: 1;
   font-size: 14px;
   overflow: hidden;
   color: #fff;

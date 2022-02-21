@@ -1,4 +1,9 @@
-export const assetIds = {
+export const assetIds: {
+  custom: Record<string, string>;
+  mainnet: Record<string, string>;
+  stagenet: Record<string, string>;
+  testnet: Record<string, string>;
+} = {
   mainnet: {
     DCC: 'DCC',
     BTC: '25iPQ8zKBRR5q1UKUksCijiyb18EGupggjus6muEbuvK',
@@ -16,6 +21,41 @@ export const assetIds = {
   custom: {
     DCC: 'DCC',
   },
+};
+
+export const swappableAssetIds = {
+  mainnet: [
+    'WAVES',
+    'BAG',
+    'BTC',
+    'CRV',
+    'EAST',
+    'EGG',
+    'ENNO',
+    'ERGO',
+    'ETH',
+    'EURN',
+    'FL',
+    'LTC',
+    'NSBT',
+    'PUZZLE',
+    'RACE',
+    'SCONEX',
+    'SIGN',
+    'SWOP',
+    'TN',
+    'USD',
+    'USDAP',
+    'USDC',
+    'USDCLP',
+    'USDLP',
+    'USDT',
+    'VIRES',
+    'WCT',
+    'WEST',
+    'WX',
+    'XMR',
+  ].map(assetName => assetIds.mainnet[assetName]),
 };
 
 const logosByName = {

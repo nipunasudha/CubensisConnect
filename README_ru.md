@@ -421,7 +421,7 @@ CubensisConnect.signAndPublishTransaction(txData)
 ОШИБКИ
 
 - Аналогично `signTransaction`
-- `{message: "Filed request", data: "Описание ошибки", code: 15}` - запрос подписали, но не смогли отправить дальше
+- `{message: "Failed request", data: "Описание ошибки", code: 15}` - запрос подписали, но не смогли отправить дальше
 
 ### signTransactionPackage
 
@@ -1085,7 +1085,7 @@ CubensisConnect.signOrder({
 ОШИБКИ:
 
 - аналогично `signOrder`
-- `{message: "Filed request", data: "Описание ошибки", code: 15}` - запрос подписали, но не смогли отправить дальше
+- `{message: "Failed request", data: "Описание ошибки", code: 15}` - запрос подписали, но не смогли отправить дальше
 
 #### signCancelOrder
 
@@ -1155,7 +1155,7 @@ CubensisConnect.signAndPublishCancelOrder({
 ОШИБКИ:
 
 - аналогично `signCancelOrder`
-- `{message: "Filed request", data: "Описание ошибки", code: 15}` - запрос подписали, но не смогли отправить дальше
+- `{message: "Failed request", data: "Описание ошибки", code: 15}` - запрос подписали, но не смогли отправить дальше
 
 #### signRequest
 
