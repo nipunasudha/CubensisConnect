@@ -8,7 +8,7 @@ export const BigLogo = ({ className = '', noTitle = false }) => {
 
   return (
     <div className={className}>
-      <div className={styles.bigLogoImg}></div>
+      <div className={styles.bigLogoImg}/>
       {noTitle ? null : (
         <div className={styles.bigLogoTitle}>
           <Trans i18nKey="ui.logoTitle">Keep your DCC keys safe online</Trans>
