@@ -1,11 +1,6 @@
-import { combineReducers } from 'redux';
-import {
-  ACTION,
-  setSwapScreenInitialState,
-  resetSwapScreenInitialState,
-  setTabMode,
-} from '../actions';
-import { pairing } from './pairing';
+import {combineReducers} from 'redux';
+import {ACTION, resetSwapScreenInitialState, setSwapScreenInitialState, setTabMode,} from '../actions';
+import {pairing} from './pairing';
 
 function newUser(state = {}, action) {
   switch (action.type) {
@@ -152,24 +147,6 @@ function tabMode(
 
 export interface SwapScreenInitialState {
   fromAssetId: string | null;
-}
-
-const swapScreenInitialStateDefault = { fromAssetId: null };
-
-function swapScreenInitialState(
-  state: SwapScreenInitialState = swapScreenInitialStateDefault,
-  action:
-    | ReturnType<typeof setSwapScreenInitialState>
-    | ReturnType<typeof resetSwapScreenInitialState>
-): SwapScreenInitialState {
-  switch (action.type) {
-    case ACTION.SET_SWAP_SCREEN_INITIAL_STATE:
-      return action.payload;
-    case ACTION.RESET_SWAP_SCREEN_INITIAL_STATE:
-      return swapScreenInitialStateDefault;
-    default:
-      return state;
-  }
 }
 
 export const localState = combineReducers({

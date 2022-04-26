@@ -6,7 +6,7 @@ import {
   CognitoUserPool,
   ICognitoStorage,
 } from 'amazon-cognito-identity-js';
-import { libs, seedUtils } from '@waves/waves-transactions';
+import { libs, seedUtils } from '@decentralchain/waves-transactions';
 import * as ObservableStore from 'obs-store';
 import { DEFAULT_IDENTITY_CONFIG } from '../constants';
 import { Account, NetworkName } from 'accounts/types';

@@ -123,9 +123,6 @@ extension.runtime.onInstalled.addListener(async details => {
     await new Promise(resolve =>
         extension.storage.local.remove(Array.from(keysToRemove), resolve)
     );
-  }
-    });
-
     await new Promise(resolve =>
       extension.storage.local.remove(Array.from(keysToRemove), resolve)
     );

@@ -372,15 +372,6 @@ class Background {
     }
   }
 
-  async updateAssets(assetIds: string[]): Promise<AssetDetail> {
-    try {
-      await this.initPromise;
-      return await this.background.updateAssets(assetIds);
-    } catch (err) {
-      throw new Error(prepareErrorMessage(err));
-    }
-  }
-
   async toggleAssetFavorite(assetId: string): Promise<void> {
     try {
       await this.initPromise;
@@ -436,7 +427,7 @@ class Background {
     }
   }
 
-  async signAndPublishTransaction(data: WavesKeeper.TSignTransactionData) {
+  async signAndPublishTransaction(data: any) {
     try {
       await this.initPromise;
       return await this.background.signAndPublishTransaction(data);

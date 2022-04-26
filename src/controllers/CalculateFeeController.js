@@ -1,9 +1,8 @@
 import { BigNumber } from '@waves/bignumber';
 import { TRANSACTION_TYPE } from '@waves/ts-types';
-import { libs } from '@waves/waves-transactions';
+import { libs } from '@decentralchain/waves-transactions';
 import { path } from 'ramda';
 import { DEFAULT_FEE_CONFIG, DEFAULT_FEE_CONFIG_URL } from '../constants';
-import { libs } from '@decentralchain/waves-transactions';
 import { convertFromSa, makeBytes } from '../transactions/utils';
 
 const CONFIG_EXPIRATION_TIME = 60 * 60 * 1000;

@@ -27,9 +27,9 @@ import {
   updateAssetInfo,
   validators,
   makeTxBytes,
-} from '@waves/waves-transactions';
-import { serializeAuthData } from '@waves/waves-transactions/dist/requests/auth';
-import { cancelOrderParamsToBytes } from '@waves/waves-transactions/dist/requests/cancel-order';
+} from '@decentralchain/waves-transactions';
+import { serializeAuthData } from '@decentralchain/waves-transactions/dist/requests/auth';
+import { cancelOrderParamsToBytes } from '@decentralchain/waves-transactions/dist/requests/cancel-order';
 
 function processAliasOrAddress(recipient: string, chainId: number) {
   return validators.isValidAddress(recipient)

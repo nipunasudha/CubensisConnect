@@ -1,5 +1,5 @@
 import * as libCrypto from '@waves/ts-lib-crypto';
-import { validators } from '@waves/waves-transactions';
+import { validators } from '@decentralchain/waves-transactions';
 import cn from 'classnames';
 import * as React from 'react';
 import { Trans, useTranslation } from 'react-i18next';

@@ -4,10 +4,10 @@ import {
   customData,
   serializeCustomData,
   TCustomData,
-} from '@waves/waves-transactions/dist/requests/custom-data';
-import { serializeWavesAuthData } from '@waves/waves-transactions/dist/requests/wavesAuth';
-import { IWavesAuthParams } from '@waves/waves-transactions/dist/transactions';
-import { validate } from '@waves/waves-transactions/dist/validators';
+} from '@decentralchain/waves-transactions/dist/requests/custom-data';
+import { serializeWavesAuthData } from '@decentralchain/waves-transactions/dist/requests/wavesAuth';
+import { IWavesAuthParams } from '@decentralchain/waves-transactions/dist/transactions';
+import { validate } from '@decentralchain/waves-transactions/dist/validators';
 import * as create from 'parse-json-bignumber';
 import { AccountOfType, NetworkName } from 'accounts/types';
 import { IdentityApi } from 'controllers/IdentityController';
