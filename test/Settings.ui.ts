@@ -1,4 +1,4 @@
-import { App, Assets, CreateNewAccount, Settings } from './utils/actions';
+import { App, CreateNewAccount, Settings } from './utils/actions';
 import { By, until, WebElement } from 'selenium-webdriver';
 import { expect } from 'chai';
 import {
@@ -14,6 +14,8 @@ const SPENDING_LIMIT = '1',
 
 describe('Settings', function () {
   this.timeout(BROWSER_TIMEOUT_DELAY + 60 * 1000);
+
+  let tabKeeper;
 
   async function performLogin(password: string) {
     const passwordEls = await this.driver.findElements(
@@ -35,25 +37,44 @@ describe('Settings', function () {
 
   before(async function () {
     await App.initVault.call(this, DEFAULT_PASSWORD);
+    await Settings.setMaxSessionTimeout.call(this);
+    await App.open.call(this);
+
+    tabKeeper = await this.driver.getWindowHandle();
+    await this.driver
+      .wait(
+        until.elementLocated(By.css('[data-testid="importForm"]')),
+        this.wait
+      )
+      .findElement(By.css('[data-testid="addAccountBtn"]'))
+      .click();
+    await this.driver.wait(
+      async () => (await this.driver.getAllWindowHandles()).length === 2,
+      this.wait
+    );
+    for (const handle of await this.driver.getAllWindowHandles()) {
+      if (handle !== tabKeeper) {
+        await this.driver.switchTo().window(handle);
+        await this.driver.navigate().refresh();
+        break;
+      }
+    }
     await CreateNewAccount.importAccount.call(
       this,
       'rich',
       'decentralchain private node seed with dcc tokens'
     );
-    await Assets.addAccount.call(this);
     await CreateNewAccount.importAccount.call(
       this,
       'test',
       'side angry perfect sight capital absurd stuff pulp climb jealous onion address speed portion category'
     );
-    await Assets.addAccount.call(this);
     await CreateNewAccount.importAccount.call(
       this,
       'test3',
       'defy credit shoe expect pair gun future slender escape visa test book tone patient vibrant'
     );
-
-    await Settings.setMaxSessionTimeout.call(this);
+    await this.driver.switchTo().window(tabKeeper);
 
     await App.open.call(this);
     await this.driver
@@ -71,6 +92,10 @@ describe('Settings', function () {
       ),
       this.wait
     );
+  });
+
+  after(async function () {
+    await App.closeBgTabs.call(this, tabKeeper);
   });
 
   describe('Export accounts', function () {
@@ -854,6 +879,22 @@ describe('Settings', function () {
     });
 
     describe('Delete accounts', function () {
+      async function clickDeleteAllBtn() {
+        await this.driver
+          .wait(
+            until.elementLocated(
+              By.xpath("//div[contains(@class, '-settings-deleteAccounts')]")
+            ),
+            this.wait
+          )
+          .click();
+
+        await this.driver.wait(
+          until.elementLocated(By.css('[data-testid="deleteAllAccounts"]')),
+          this.wait
+        );
+      }
+
       it('Account deletion warning displays', async function () {
         await this.driver
           .findElement(
@@ -863,9 +904,7 @@ describe('Settings', function () {
 
         expect(
           await this.driver.wait(
-            until.elementLocated(
-              By.xpath("//div[contains(@class, '-deleteAccount-content')]")
-            ),
+            until.elementLocated(By.css('[data-testid="deleteAllAccounts"]')),
             this.wait
           )
         ).not.to.be.throw;
@@ -884,15 +923,68 @@ describe('Settings', function () {
         ).not.to.be.throw;
       });
 
-      it('Clicking "Delete account" removes all accounts from current network', async function () {
-        await this.driver
-          .findElement(
-            By.xpath("//div[contains(@class, '-settings-deleteAccounts')]")
-          )
-          .click();
+      it('Clicking "Cancel" button cancels the deletion', async function () {
+        await clickDeleteAllBtn.call(this);
 
         await this.driver
-          .wait(until.elementLocated(By.css('button#deleteAccount')), this.wait)
+          .findElement(By.css('[data-testid="resetCancel"]'))
+          .click();
+
+        expect(
+          await this.driver.wait(
+            until.elementLocated(
+              By.xpath("//div[contains(@class, '-settings-content')]")
+            ),
+            this.wait
+          )
+        ).not.to.be.throw;
+      });
+
+      it('"Delete all" button is disabled', async function () {
+        await clickDeleteAllBtn.call(this);
+
+        expect(
+          await this.driver
+            .findElement(By.css('[data-testid="resetConfirm"]'))
+            .isEnabled()
+        ).to.be.false;
+      });
+
+      it('Wrong confirmation phrase displays error', async function () {
+        const defaultPhrase = await this.driver
+          .findElement(By.css('[data-testid="defaultPhrase"]'))
+          .getText();
+        await this.driver
+          .findElement(By.css('[data-testid="confirmPhrase"]'))
+          .sendKeys(defaultPhrase.toLowerCase());
+
+        expect(
+          await this.driver
+            .findElement(By.css('[data-testid="confirmPhraseError"]'))
+            .getText()
+        ).matches(/The phrase is entered incorrectly/i);
+      });
+
+      it('Correct confirmation phrase enables "Delete all" button', async function () {
+        const defaultPhrase = await this.driver
+          .findElement(By.css('[data-testid="defaultPhrase"]'))
+          .getText();
+        const phraseInput = this.driver.findElement(
+          By.css('[data-testid="confirmPhrase"]')
+        );
+        await phraseInput.clear();
+        await phraseInput.sendKeys(defaultPhrase);
+
+        expect(
+          await this.driver
+            .findElement(By.css('[data-testid="resetConfirm"]'))
+            .isEnabled()
+        ).to.be.true;
+      });
+
+      it('Clicking "Delete account" removes all accounts from current network', async function () {
+        await this.driver
+          .findElement(By.css('[data-testid="resetConfirm"]'))
           .click();
 
         expect(

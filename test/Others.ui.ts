@@ -1,15 +1,20 @@
 import { expect } from 'chai';
 import { By, until } from 'selenium-webdriver';
-import { App, CreateNewAccount, Network } from './utils/actions';
+import { App, CreateNewAccount, Network, Settings } from './utils/actions';
 
 describe('Others', function () {
   this.timeout(60 * 1000);
 
+  let tabKeeper;
+
   before(async function () {
     await App.initVault.call(this);
+    await Settings.setMaxSessionTimeout.call(this);
+    await App.open.call(this);
   });
 
   after(async function () {
+    await App.closeBgTabs.call(this, tabKeeper);
     await App.resetVault.call(this);
   });
 
@@ -44,16 +49,38 @@ describe('Others', function () {
 
   describe('Send DCC', function () {
     before(async function () {
-      await Network.switchTo.call(this, 'Testnet');
+      await Network.switchToAndCheck.call(this, 'Testnet');
+
+      // save popup and accounts refs
+      tabKeeper = await this.driver.getWindowHandle();
+      await this.driver
+        .wait(
+          until.elementLocated(By.css('[data-testid="importForm"]')),
+          this.wait
+        )
+        .findElement(By.css('[data-testid="addAccountBtn"]'))
+        .click();
+      await this.driver.wait(
+        async () => (await this.driver.getAllWindowHandles()).length === 2,
+        this.wait
+      );
+      for (const handle of await this.driver.getAllWindowHandles()) {
+        if (handle !== tabKeeper) {
+          await this.driver.switchTo().window(handle);
+          await this.driver.navigate().refresh();
+          break;
+        }
+      }
       await CreateNewAccount.importAccount.call(
         this,
         'rich',
         'DCC private node seed with DCC tokens'
       );
+      await this.driver.switchTo().window(tabKeeper);
     });
 
     after(async function () {
-      await Network.switchTo.call(this, 'Mainnet');
+      await Network.switchToAndCheck.call(this, 'Mainnet');
     });
 
     beforeEach(async function () {
@@ -140,9 +167,7 @@ describe('Others', function () {
         this.wait
       );
 
-      expect(await transferAmount.getText()).to.equal(
-        '-\n0\n.12300000\n DCC'
-      );
+      expect(await transferAmount.getText()).to.equal('-0.12300000 DCC');
 
       expect(
         await this.driver
@@ -185,9 +210,7 @@ describe('Others', function () {
         this.wait
       );
 
-      expect(await transferAmount.getText()).to.equal(
-        '-\n0\n.87654321\n DCC'
-      );
+      expect(await transferAmount.getText()).to.equal('-0.87654321 DCC');
 
       expect(
         await this.driver

@@ -7,6 +7,7 @@ import { seedUtils } from '@decentralchain/waves-transactions';
 import * as mocha from 'mocha';
 import { By, until, WebElement } from 'selenium-webdriver';
 import { DEFAULT_ANIMATION_DELAY, DEFAULT_PASSWORD } from './constants';
+import { expect } from 'chai';
 
 interface VaultEntry {
   seed: string;
@@ -25,10 +26,34 @@ export const App = {
   ) {
     await App.open.call(this);
 
+    const tabKeeper = await this.driver.getWindowHandle();
+    await this.driver.wait(
+      async () => (await this.driver.getAllWindowHandles()).length === 2,
+      this.wait
+    );
+    for (const handle of await this.driver.getAllWindowHandles()) {
+      if (handle !== tabKeeper) {
+        await this.driver.switchTo().window(handle);
+        await this.driver.navigate().refresh();
+        break;
+      }
+    }
     await this.driver
-      .wait(until.elementLocated(By.css('.app button[type=submit]')), this.wait)
+      .wait(
+        until.elementIsVisible(
+          await this.driver.wait(
+            until.elementLocated(By.css('[data-testid="getStartedBtn"]')),
+            this.wait
+          )
+        ),
+        this.wait
+      )
       .click();
 
+    await this.driver.wait(
+      until.elementLocated(By.css('[data-testid="newAccountForm"]')),
+      this.wait
+    );
     await this.driver
       .wait(
         until.elementLocated(By.css('.app input#first[type=password]')),
@@ -52,13 +77,13 @@ export const App = {
         this.wait
       )
       .click();
-
     await this.driver.wait(
-      until.elementLocated(
-        By.xpath("//div[contains(@class, '-import-import')]")
-      ),
+      until.elementLocated(By.css('[data-testid="importForm"]')),
       this.wait
     );
+
+    await this.driver.close();
+    await this.driver.switchTo().window(tabKeeper);
   },
 
   resetVault: async function (this: mocha.Context) {
@@ -82,8 +107,26 @@ export const App = {
       )
       .click();
 
+    const form = this.driver.wait(
+      until.elementLocated(By.css('[data-testid="deleteAllAccounts"]')),
+      this.wait
+    );
+
+    const defaultPhrase = await form
+      .findElement(By.css('[data-testid="defaultPhrase"]'))
+      .getText();
+
+    await form
+      .findElement(By.css('[data-testid="confirmPhrase"]'))
+      .sendKeys(defaultPhrase);
+
     await this.driver
-      .wait(until.elementLocated(By.css('button#deleteAccount')), this.wait)
+      .wait(
+        until.elementIsEnabled(
+          form.findElement(By.css('[data-testid="resetConfirm"]'))
+        ),
+        this.wait
+      )
       .click();
   },
 
@@ -117,6 +160,15 @@ export const App = {
       ),
       this.wait
     );
+  },
+  closeBgTabs: async function (this: mocha.Context, foreground: string) {
+    for (const handle of await this.driver.getAllWindowHandles()) {
+      if (handle !== foreground) {
+        await this.driver.switchTo().window(handle);
+        await this.driver.close();
+      }
+    }
+    await this.driver.switchTo().window(foreground);
   },
 };
 
@@ -190,43 +242,56 @@ export const CreateNewAccount = {
   ) {
     await this.driver
       .wait(
-        until.elementLocated(By.css('[data-testid="importSeed"]')),
+        until.elementIsVisible(
+          await this.driver.wait(
+            until.elementLocated(By.css('[data-testid="importSeed"]')),
+            this.wait
+          )
+        ),
         this.wait
       )
       .click();
 
     await this.driver
       .wait(
-        until.elementLocated(
-          By.xpath("//div[contains(@class, '-importSeed-content')]//textarea")
-        ),
+        until.elementLocated(By.css('[data-testid="seedInput"]')),
         this.wait
       )
       .sendKeys(seed);
     await this.driver
       .wait(
         until.elementIsEnabled(
-          this.driver.findElement(By.css('button#importAccount'))
+          this.driver.findElement(By.css('[data-testid="continueBtn"]'))
         ),
         this.wait
       )
       .click();
 
     await this.driver
-      .wait(until.elementLocated(By.css('input#newAccountName')), this.wait)
+      .wait(
+        until.elementLocated(By.css('[data-testid="newAccountNameInput"]')),
+        this.wait
+      )
       .sendKeys(name);
     await this.driver
       .wait(
         until.elementIsEnabled(
-          this.driver.findElement(By.css('button#continue'))
+          this.driver.findElement(By.css('[data-testid="continueBtn"]'))
         ),
         this.wait
       )
       .click();
+
+    await this.driver
+      .wait(
+        until.elementLocated(By.css('[data-testid="importSuccessForm"]')),
+        this.wait
+      )
+      .findElement(By.css('[data-testid="addAnotherAccountBtn"]'))
+      .click();
+
     await this.driver.wait(
-      until.elementLocated(
-        By.xpath("//div[contains(@class, '-assets-assets')]")
-      ),
+      until.elementLocated(By.css('[data-testid="importForm"]')),
       this.wait
     );
   },
@@ -345,5 +410,38 @@ export const Network = {
         this.wait
       )
     );
+  },
+  checkNetwork: async function (this: mocha.Context, network: string) {
+    await this.driver.wait(
+      until.elementLocated(
+        By.xpath("//div[contains(@class, '-intro-loader')]")
+      ),
+      this.wait
+    );
+
+    await this.driver.wait(
+      until.elementLocated(
+        By.css('[data-testid="importForm"], [data-testid="assetsForm"]')
+      ),
+      this.wait
+    );
+
+    expect(
+      await this.driver
+        .wait(
+          until.elementLocated(
+            By.xpath(
+              "//div[contains(@class, '-network-network')]" +
+                "//span[contains(@class, 'network-networkBottom')]"
+            )
+          ),
+          this.wait
+        )
+        .getText()
+    ).matches(new RegExp(network, 'i'));
+  },
+  switchToAndCheck: async function (this: mocha.Context, network: string) {
+    await Network.switchTo.call(this, network);
+    await Network.checkNetwork.call(this, network);
   },
 };

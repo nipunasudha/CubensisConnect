@@ -2,25 +2,29 @@
   "accountCard": {
     "infoTooltip": "Account info"
   },
-  "activeAccountCard": {
-    "swapButton": "Swap"
-  },
   "accountInfo": {
     "address": "Your address",
     "backUp": "Backup phrase",
     "cancel": "Cancel",
     "copied": "Copied!",
     "copyToClipboard": "Click to copy to clipboard",
+    "encodedSeed": "Encoded seed",
     "enter": "Enter",
+    "email": "Email",
     "modal": {
       "error": "Incorrect password"
     },
     "password": "Password",
     "passwordError": "Incorrect password",
+    "privateKeyNoBackupPhrase": "This account was imported using private key, so there's no backup phrase to copy",
+    "emailNoBackupPhrase": "This account was imported using the Waves.Exchange account, so there is no backup phrase or private key to copy",
     "privKey": "Private key",
     "pubKey": "Public key",
     "seed": "Backup phrase",
     "viewInExplorer": "View in Explorer"
+  },
+  "activeAccountCard": {
+    "swapButton": "Swap"
   },
   "assetAmountInput": {
     "maxButtonText": "Max"
@@ -46,6 +50,10 @@
     "sendAssetTooltip": "Send",
     "swapAssetTooltip": "Swap",
     "viewDetailsInExplorer": "View details in Explorer"
+  },
+  "assetSelectModal": {
+    "searchPlaceholder": "Search by ticker, name or enter an id",
+    "title": "Select a token"
   },
   "assets": {
     "account": "Account",
@@ -76,9 +84,114 @@
     "onlyFavorites": "Only Favorites",
     "resetFilters": "Reset filters"
   },
-  "assetSelectModal": {
-    "searchPlaceholder": "Search by ticker, name or enter an id",
-    "title": "Select a token"
+  "backupSeed": {
+    "backupCarefully": "Please carefully write down these 15 words or copy them",
+    "cancel": "Cancel creation",
+    "confirmBackupInfo": "You will confirm this phrase on the next screen",
+    "continue": "Continue",
+    "copied": "Copied!",
+    "saveBackup": "Save backup phrase"
+  },
+  "bottom": {
+    "custom": "Custom",
+    "mainnet": "Mainnet",
+    "network": {
+      "edit": "Edit",
+      "disabled": "You cannot change the network settings during this operation"
+    },
+    "testnet": "Testnet",
+    "stagenet": "Stagenet"
+  },
+  "changeName": {
+    "currentName": "Current account name",
+    "error": "Name is required",
+    "errorInUse": "Name already exist",
+    "errorRequired": "Required name",
+    "newName": "New account name",
+    "save": "Save",
+    "title": "Change name"
+  },
+  "changePassword": {
+    "changeTitle": "Change password",
+    "confirmPassword": "Confirm password",
+    "create": "Save",
+    "done": "Password changed",
+    "equalPassword": "Old password is equal new",
+    "errorShortNew": "Password is too short",
+    "errorShortOld": "Password can't be so short",
+    "errorWrongConfirm": "New passwords do not match",
+    "errorWrongOld": "Wrong password",
+    "newPassword": "New password",
+    "oldPassword": "Old password"
+  },
+  "conditions": {
+    "accept": "Accept",
+    "agreement": "Agreement",
+    "attention": "ATTENTION: PLEASE READ CAREFULLY THESE TERMS AND CONDITIONS AS THEY AFFECT YOUR OBLIGATIONS AND LEGAL RIGHTS, INCLUDING, BUT NOT LIMITED TO WAIVERS OF RIGHTS AND LIMITATION OF LIABILITY. IF YOU DO NOT AGREE WITH THESE TERMS AND CONDITIONS DO NOT PROCEED WITH REGISTRATION AT DCC PLATFORM",
+    "title": "Terms and conditions"
+  },
+  "confirmBackup": {
+    "clear": "Clear",
+    "confirm": "Confirm",
+    "confirmBackup": "Confirm backup",
+    "selectAgain": "and tap again",
+    "selectWord": "Please, tap each word in the correct order",
+    "wrongSeed": "Wrong order, try again"
+  },
+  "copyAddress": "Copy address",
+  "date": {
+    "Jan": "Jan",
+    "Feb": "Feb",
+    "Mar": "Mar",
+    "Apr": "Apr",
+    "May": "May",
+    "Jun": "Jun",
+    "Jul": "Jul",
+    "Aug": "Aug",
+    "Sep": "Sep",
+    "Oct": "Oct",
+    "Nov": "Nov",
+    "Dec": "Dec"
+  },
+  "deleteAccount": {
+    "attention": "Attention!",
+    "delete": "Delete account",
+    "warn": "Deleting an account will lead to its irretrievable loss!"
+  },
+  "deleteUser": {
+    "attention": "Attention!",
+    "delete": "Delete account",
+    "warn": "Deleting an account may lead to irretrievable loss of access to funds! Always make sure you have backed up your SEED."
+  },
+  "exportKeystore": {
+    "cancelBtn": "Cancel",
+    "chooseAccountsDesc": "Select which accounts you want to export. They will be encrypted and exported into a Keystore file",
+    "chooseAccountsExportBtn": "Export {{count}} account",
+    "chooseAccountsExportBtn_plural": "Export {{count}} accounts",
+    "chooseAccountsTitle": "Export to Keystore file",
+    "passwordError": "Incorrect password",
+    "passwordLabel": "Password",
+    "passwordVerifyDesc": "Please enter your Keeper password to confirm that it's really you",
+    "passwordVerifyImportantNote": "<attention>Attention:</attention> this password will also be used to encrypt the resulting file. If you forget it, you won't be able to restore your accounts.",
+    "verifyBtn": "Verify"
+  },
+  "featureUpdateInfo": {
+    "intro": "Cubensis Connect cares about safety of your funds and would like to remind you that losing the seed phrase means losing access to the account permanently.",
+    "recommendation": "So we highly recommend to create a backup file with seed phrases of all your accounts.",
+    "keystoreInfo": "Keystore file is a secure place where you can store seed phrases encrypted with your password.",
+    "keystoreImport": "You can later import accounts from this file back into Cubensis Connect.",
+    "backupBtn": "Back up to a keystore file",
+    "cancelBtn": "I'll do it later"
+  },
+  "forgotPassword": {
+    "attention": "Attention!",
+    "attentionMessage": "To reset the password, you need to delete all accounts from Cubensis Connect, set a new password, import each of your account again from the Seed phrase.",
+    "warningMessage": "If you have not saved the Seed phrase or Private key, then you will not be able to recover access to your account.",
+    "continueMessage": "To continue, type this into the field below",
+    "phrase": "DELETE ALL ACCOUNTS",
+    "phraseError": "The phrase is entered incorrectly",
+    "resetConfirm": "Delete all",
+    "resetCancel": "Cancel"
   },
   "historyCard": {
     "burn": "Burn Asset",
@@ -139,119 +252,41 @@
     "updateAssetInfo": "Update Asset Info",
     "type": "Transaction Type"
   },
-  "backupSeed": {
-    "backupCarefully": "Please carefully write down these 15 words or copy them",
-    "cancel": "Cancel creation",
-    "confirmBackupInfo": "You will confirm this phrase on the next screen",
-    "continue": "Continue",
-    "copied": "Copied!",
-    "saveBackup": "Save backup phrase"
-  },
-  "bottom": {
-    "custom": "Custom",
-    "mainnet": "Mainnet",
-    "network": {
-      "edit": "Edit"
-    },
-    "testnet": "Testnet",
-    "stagenet": "Stagenet"
-  },
-  "changeName": {
-    "currentName": "Current account name",
-    "error": "Name is required",
-    "errorInUse": "Name already exist",
-    "errorRequired": "Required name",
-    "newName": "New account name",
-    "save": "Save",
-    "title": "Change name"
-  },
-  "changePassword": {
-    "changeTitle": "Change password",
-    "confirmPassword": "Confirm password",
-    "create": "Save",
-    "done": "Password changed",
-    "equalPassword": "Old password is equal new",
-    "errorShortNew": "Password is too short",
-    "errorShortOld": "Password can't be so short",
-    "errorWrongConfirm": "New passwords does not match",
-    "errorWrongOld": "Wrong password",
-    "newPassword": "New password",
-    "oldPassword": "Old password"
-  },
-  "conditions": {
-    "accept": "Accept",
-    "agreement": "Agreement",
-    "attention": "ATTENTION: PLEASE READ CAREFULLY THESE TERMS AND CONDITIONS AS THEY AFFECT YOUR OBLIGATIONS AND LEGAL RIGHTS, INCLUDING, BUT NOT LIMITED TO WAIVERS OF RIGHTS AND LIMITATION OF LIABILITY. IF YOU DO NOT AGREE WITH THESE TERMS AND CONDITIONS DO NOT PROCEED WITH REGISTRATION AT DCC PLATFORM",
-    "title": "Terms and conditions"
-  },
-  "confirmBackup": {
-    "clear": "Clear",
-    "confirm": "Confirm",
-    "confirmBackup": "Confirm backup",
-    "selectAgain": "and tap again",
-    "selectWord": "Please, tap each word in the correct order",
-    "wrongSeed": "Wrong order, try again"
-  },
-  "copyAddress": "Copy address",
-  "date": {
-    "Jan": "Jan",
-    "Feb": "Feb",
-    "Mar": "Mar",
-    "Apr": "Apr",
-    "May": "May",
-    "Jun": "Jun",
-    "Jul": "Jul",
-    "Aug": "Aug",
-    "Sep": "Sep",
-    "Oct": "Oct",
-    "Nov": "Nov",
-    "Dec": "Dec"
-  },
-  "deleteAccount": {
-    "attention": "Attention!",
-    "delete": "Delete account",
-    "warn": "Deleting an account will lead to its irretrievable loss!"
-  },
-  "deleteUser": {
-    "attention": "Attention!",
-    "delete": "Delete account",
-    "warn": "Deleting an account may lead to irretrievable loss of access to funds! Always make sure you have backed up your SEED."
-  },
-  "exportKeystore": {
-    "cancelBtn": "Cancel",
-    "chooseAccountsDesc": "Select which accounts you want to export. They will be encrypted and exported into a Keystore file",
-    "chooseAccountsExportBtn": "Export {{count}} account",
-    "chooseAccountsExportBtn_plural": "Export {{count}} accounts",
-    "chooseAccountsTitle": "Export to Keystore file",
-    "passwordError": "Incorrect password",
-    "passwordLabel": "Password",
-    "passwordVerifyDesc": "Please enter your Keeper password to confirm that it's really you",
-    "passwordVerifyImportantNote": "<attention>Attention:</attention> this password will also be used to encrypt the resulting file. If you forget it, you won't be able to restore your accounts.",
-    "verifyBtn": "Verify"
-  },
-  "forgotPassword": {
-    "attention": "Attention!",
-    "attentionMessage": "To reset the password, you need to delete all accounts from Cubensis Connect, set a new password, import each of your account again from the Seed phrase.",
-    "warningMessage": "If you have not saved the Seed phrase or Private key, then you will not be able to recover access to your account.",
-    "continueMessage": "To continue, type this into the field below",
-    "phrase": "DELETE ALL ACCOUNTS",
-    "phraseError": "The phrase is entered incorrectly",
-    "resetConfirm": "Delete all",
-    "resetCancel": "Cancel"
-  },
-  "featureUpdateInfo": {
-    "intro": "Cubensis Connect cares about safety of your funds and would like to remind you that losing the seed phrase means losing access to the account permanently.",
-    "recommendation": "So we highly recommend to create a backup file with seed phrases of all your accounts.",
-    "keystoreInfo": "Keystore file is a secure place where you can store seed phrases encrypted with your password.",
-    "keystoreImport": "You can later import accounts from this file back into Cubensis Connect.",
-    "backupBtn": "Back up to a keystore file",
-    "cancelBtn": "I'll do it later"
-  },
   "import": {
+    "beta": "beta",
+    "noAccounts": "There are no accounts in selected <strong>{{currentNetwork}}</strong> network profile",
+    "addAccount": "Add account",
+    "addAnotherAccount": "Add another account",
+    "finish": "Finish",
     "createNew": "Create a new account",
     "importVia": "Or import via",
+    "notSupportedByBrowser": "Not supported by your browser",
+    "additionSuccess": "Your account '{{ name }}' has been successfully added!",
+    "readyToUse": "Your account '{{ name }}' is ready to use",
+    "readyToUseKeystore": "Your accounts are ready to use",
+    "readyHelpText": "You can now close this tab and continue using the extension or add more accounts.",
     "viaKeystore": "Keystore File",
-    "viaSeed": "Seed Phrase"
+    "viaLedger": "Ledger",
+    "viaSeed": "Seed Phrase or Private Key",
+    "viaEmail": "Email Account"
+  },
+  "importEmail": {
+    "importEmailTitle": "Import Email Account",
+    "importEmailDesc": "Connect an email account created on Waves.Exchange",
+    "passwordLabel": "Password",
+    "passwordRequired": "Enter password",
+    "loginRequired": "Confirm Email Account",
+    "emailLabel": "Email",
+    "emailRequired": "Enter correct email",
+    "credentialsError": "Incorrect username or password",
+    "continue": "Continue",
+    "forgotPassword": "Forgot password?",
+    "dontHaveAccount": "Don't have an account?",
+    "signUp": "Sign up",
+    "verifyAccountTitle": "Verify Your Account",
+    "verifyAccountDesc": "Please enter the 6-digit verification code received by {{destination}}",
+    "incorrectCode": "Wrong code. Please, try again",
+    "alreadyExists": "Account already exists"
   },
   "importKeystore": {
     "browse": "Browse...",
@@ -271,21 +306,53 @@
     "passwordLabel": "Password",
     "passwordPlaceholder": "Password used to create Keystore"
   },
+  "importLedger": {
+    "accountExistsError": "This account already exists in Keeper",
+    "accountIdLabel": "Account ID",
+    "avatarListLoading": "Loading accounts...",
+    "connectInstructions": "Connect Ledger device and open Waves app",
+    "continueButton": "Continue",
+    "couldNotGetUsersError": "Could not get more users from ledger. Please ensure that ledger is connected, unlocked and the Waves app is open, then click <retryButton>Retry</retryButton>",
+    "selectAccountInstructions": "Choose your address",
+    "title": "Import Ledger",
+    "tryAgainButton": "Try Again"
+  },
   "importSeed": {
+    "accountExistsError": "Account already known as '{{ name }}'",
     "address": "Account address",
-    "existError": "Seed already exist",
+    "base58DecodeError": "Doesn't look like base58-encoded value",
+    "base58PrefixError": "Looks like you're trying to import encoded seed. Please, <switchTab>switch to \"Encoded seed\" tab</switchTab> for that",
+    "encodedSeed": "Encoded seed",
+    "encodedSeedLengthError": "Encoded seed cannot be shorter than {{minLength}} characters",
     "importAccount": "Import Account",
-    "inputSeed": "Your seed is the 15 words you saved when creating your account",
-    "newSeed": "Wallet Seed",
+    "invalidPrivateKeyLengthError": "Private key must consist of {{length}} bytes",
+    "plainText": "Seed phrase",
+    "plainTextPlaceholder": "Your seed is the 15 words you saved when creating your account",
+    "privateKey": "Private key",
+    "requiredError": "Cannot be blank",
+    "seedIsAddressError": "It's an account address, not a seed phrase. Seed phrase usually consists of 15 words",
+    "seedIsAliasError": "It's an alias, not a seed phrase. Seed phrase usually consists of 15 words",
+    "seedIsPublicOrPrivateKeyError": "An account with a seed phrase like that is vulnerable. May be you meant to <switchTab>use a private key</switchTab>?",
+    "seedLengthError": "Seed cannot be shorter than {{minLength}} characters",
+    "switchAccount": "Switch account",
     "title": "Import using seed"
   },
   "info": {
-    "joinUs": "Join the DCC Community",
-    "keepUp": "Cubensis Connect — is the safest way to interact with third-party web resources with DCC-integrated functionality or DApps. Using Cubensis Connect, you can sign transactions and remain safe from malicious sites."
+    "joinUs": "Join the Waves Community",
+    "keepUp": "Cubensis Connect — is the safest way to interact with third-party web resources with Waves-integrated functionality or DApps. Using Cubensis Connect, you can sign transactions and remain safe from malicious sites."
   },
   "langsSettings": {
     "confirm": "Confirm",
     "title": "Change the language"
+  },
+  "ledgerErrors": {
+    "unknown": "Could not connect to ledger. Please try again",
+    "usedBySomeOtherApp": "Seems like ledger is already used by another application. Close all applications that may use ledger and try again."
+  },
+  "ledgerConnectModal": {
+    "instructions": "Connect Ledger device and open Waves app",
+    "title": "Connecting...",
+    "tryAgainButton": "Try Again"
   },
   "login": {
     "enter": "Enter",
@@ -325,19 +392,22 @@
     "confirmPassword": "Confirm password",
     "create": "Continue",
     "createPassword": "Create a password",
-    "notMatch": "Passwords does not match",
-    "passinfo": "The password you entered will be stored locally. If you change device or lose your password, you will have to repeat the process of adding accounts to Cubensis Connect. DCC does not store your passwords.",
+    "notMatch": "Passwords do not match",
+    "passinfo": "The password you entered will be stored locally. If you change device or lose your password, you will have to repeat the process of adding accounts to Cubensis Connect. Waves does not store your passwords.",
     "protect": "Protect Your Account",
     "smallPass": "Password is too short"
   },
   "newAccountName": {
+    "accountAddress": "Account address",
     "accountName": "Account name",
+    "cancel": "Cancel",
     "continue": "Continue",
+    "errorAlreadyExists": "Account already known as '{{ name }}'",
     "errorInUse": "Name already exist",
     "errorNameRequired": "Name is required",
     "errorRequired": "Required name",
-    "errorSeedExist": "Account already exist",
-    "nameInfo": "The account name will be known only to you"
+    "nameInfo": "The account name will be known only to you",
+    "switchAccount": "Switch account"
   },
   "newWallet": {
     "address": "Account address",
@@ -357,6 +427,7 @@
   "otherAccounts": {
     "addAccount": "Add account",
     "noAccountsNote": "You have no other accounts in the current network",
+    "noAccountsFound": "No other accounts were found for the specified filters",
     "title": "Other accounts"
   },
   "pairing": {
@@ -620,6 +691,7 @@
     "scriptWarningHeader": "Warning: actions can lead to loss of access to your account",
     "setAssetScriptHeader": "Set Asset Script transaction",
     "setScriptTransaction": "Set Script",
+    "setScriptTransactionCancel": "Remove Account Script",
     "setSctiptHeader": "Script transaction",
     "setSponsored": "Set Sponsorship",
     "showAll": "Show all",

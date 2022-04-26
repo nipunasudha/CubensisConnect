@@ -4,11 +4,9 @@ import {
   BackUpSeed,
   ChangeAccountName,
   ChangePassword,
-  Conditions,
   ConfirmBackup,
-  DeleteAccount,
   DeleteActiveAccount,
-  ForgotPassword,
+  DeleteAllAccounts,
   Import,
   Info,
   Intro,
@@ -29,30 +27,35 @@ import {
   SettingsGeneral,
   Welcome,
 } from './components/pages';
+import { ImportLedger } from './components/pages/importLedger/importLedger';
+import { ImportSeed } from './components/pages/importSeed';
 import { Swap } from './components/pages/swap/swap';
 import { ExportAccounts } from './components/pages/exportAccounts/exportAccounts';
 import { ImportKeystore } from './components/pages/importKeystore/importKeystore';
+import { ImportEmail } from './components/pages/importEmail/importEmail';
 import { OtherAccountsPage } from './components/pages/otherAccounts';
 import { Send } from './components/pages/send';
-
-import { ImportSeed } from './components/pages/ImportSeedWalet';
+import { ImportSuccess } from 'ui/components/pages/importSuccess';
 
 export const PAGES = {
   WELCOME: 'welcome',
   CONDITIONS: 'conditions',
   LOGIN: 'login',
   NEW: 'new',
-  IMPORT: 'import',
-  IMPORT_FROM_ASSETS: 'import_and_back_to_assets',
+  IMPORT_POPUP: 'import_popup',
+  IMPORT_TAB: 'import_tab',
   NEW_ACCOUNT: 'new_account',
   NEW_ACCOUNT_BACK: 'new_account_back',
   ACCOUNT_NAME: 'account_name',
   ACCOUNT_NAME_SEED: 'account_name_seed',
   SAVE_BACKUP: 'safe_backup',
   CONFIRM_BACKUP: 'confirm_backup',
+  IMPORT_EMAIL: 'import_email',
   IMPORT_KEYSTORE: 'import_keystore',
+  IMPORT_LEDGER: 'import_ledger',
   IMPORT_SEED: 'import_seed',
   IMPORT_SEED_BACK: 'import_seed_back',
+  IMPORT_SUCCESS: 'import_success',
   EXPORT_ACCOUNTS: 'export_accounts',
   ASSETS: 'assets',
   OTHER_ACCOUNTS: 'other_accounts',
@@ -93,17 +96,6 @@ export const PAGES_CONF = {
       back: null,
     },
   },
-  [PAGES.CONDITIONS]: {
-    component: Conditions,
-    bottom: {
-      hide: true,
-    },
-    menu: {
-      hasLogo: true,
-      hasSettings: false,
-      back: null,
-    },
-  },
   [PAGES.LOGIN]: {
     component: Login,
     bottom: {
@@ -123,7 +115,7 @@ export const PAGES_CONF = {
       back: null,
     },
   },
-  [PAGES.IMPORT]: {
+  [PAGES.IMPORT_POPUP]: {
     component: Import,
     menu: {
       hasLogo: true,
@@ -131,12 +123,12 @@ export const PAGES_CONF = {
       back: null,
     },
   },
-  [PAGES.IMPORT_FROM_ASSETS]: {
+  [PAGES.IMPORT_TAB]: {
     component: Import,
     menu: {
       hasLogo: true,
       hasSettings: false,
-      back: true,
+      back: null,
     },
   },
   [PAGES.NEW_ACCOUNT]: {
@@ -145,7 +137,7 @@ export const PAGES_CONF = {
       isGenerateNew: true,
     },
     bottom: {
-      hide: true,
+      noChangeNetwork: true,
     },
     menu: {
       hasLogo: true,
@@ -156,7 +148,7 @@ export const PAGES_CONF = {
   [PAGES.NEW_ACCOUNT_BACK]: {
     component: NewWallet,
     bottom: {
-      hide: true,
+      noChangeNetwork: true,
     },
     menu: {
       hasLogo: true,
@@ -166,38 +158,43 @@ export const PAGES_CONF = {
   },
   [PAGES.ACCOUNT_NAME]: {
     component: NewWalletName,
-    props: {
-      next: PAGES.SAVE_BACKUP,
-    },
     bottom: {
-      hide: true,
+      noChangeNetwork: true,
     },
     menu: {
       hasLogo: true,
       hasSettings: false,
-      back: PAGES.NEW_ACCOUNT_BACK,
+      back: PAGES.SAVE_BACKUP,
     },
   },
   [PAGES.ACCOUNT_NAME_SEED]: {
     component: NewWalletName,
-    props: {
-      isCreate: true,
-      next: PAGES.SAVE_BACKUP,
-    },
     bottom: {
-      hide: true,
+      noChangeNetwork: true,
     },
     menu: {
       hasLogo: true,
       hasSettings: false,
-      back: PAGES.IMPORT_SEED_BACK,
+      back: true,
     },
   },
+  [PAGES.IMPORT_SUCCESS]: {
+    component: ImportSuccess,
+    bottom: {
+      noChangeNetwork: true,
+    },
+    menu: {
+      hasLogo: true,
+      hasSettings: false,
+      back: null,
+    },
+  },
+
   [PAGES.CHANGE_ACCOUNT_NAME]: {
     component: ChangeAccountName,
     props: {},
     bottom: {
-      hide: true,
+      noChangeNetwork: true,
     },
     menu: {
       hasLogo: true,
@@ -208,18 +205,18 @@ export const PAGES_CONF = {
   [PAGES.SAVE_BACKUP]: {
     component: BackUpSeed,
     bottom: {
-      hide: true,
+      noChangeNetwork: true,
     },
     menu: {
       hasLogo: true,
       hasSettings: false,
-      back: PAGES.ACCOUNT_NAME,
+      back: PAGES.NEW_ACCOUNT_BACK,
     },
   },
   [PAGES.CONFIRM_BACKUP]: {
     component: ConfirmBackup,
     bottom: {
-      hide: true,
+      noChangeNetwork: true,
     },
     menu: {
       hasLogo: true,
@@ -227,8 +224,30 @@ export const PAGES_CONF = {
       back: PAGES.SAVE_BACKUP,
     },
   },
+  [PAGES.IMPORT_EMAIL]: {
+    component: ImportEmail,
+    bottom: {
+      noChangeNetwork: true,
+    },
+    menu: {
+      hasLogo: true,
+      hasSettings: false,
+      back: true,
+    },
+  },
   [PAGES.IMPORT_KEYSTORE]: {
     component: ImportKeystore,
+    bottom: {
+      hide: true,
+    },
+    menu: {
+      hasLogo: true,
+      hasSettings: false,
+      back: true,
+    },
+  },
+  [PAGES.IMPORT_LEDGER]: {
+    component: ImportLedger,
     bottom: {
       hide: true,
     },
@@ -244,7 +263,7 @@ export const PAGES_CONF = {
       isNew: true,
     },
     bottom: {
-      hide: true,
+      noChangeNetwork: true,
     },
     menu: {
       hasLogo: true,
@@ -255,7 +274,7 @@ export const PAGES_CONF = {
   [PAGES.IMPORT_SEED_BACK]: {
     component: ImportSeed,
     bottom: {
-      hide: true,
+      noChangeNetwork: true,
     },
     menu: {
       hasLogo: true,
@@ -442,7 +461,7 @@ export const PAGES_CONF = {
     },
   },
   [PAGES.DELETE_ACCOUNT]: {
-    component: DeleteAccount,
+    component: DeleteAllAccounts,
     bottom: {
       hide: true,
     },
@@ -453,7 +472,7 @@ export const PAGES_CONF = {
     },
   },
   [PAGES.FORGOT]: {
-    component: ForgotPassword,
+    component: DeleteAllAccounts,
     bottom: {
       hide: true,
     },

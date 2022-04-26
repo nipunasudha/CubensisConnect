@@ -11,6 +11,8 @@ import * as ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 
 import { CubensisConnect_DEBUG } from './constants';
+import { ledgerService } from './ledger/service';
+import { LedgerSignRequest } from './ledger/types';
 import { cbToPromise, setupDnode, transformMethods } from './lib/dnode-util';
 import * as PortStream from './lib/port-stream.js';
 import { setLangs } from './ui/actions';
@@ -19,42 +21,13 @@ import { Root } from './ui/components/Root';
 import { LANGS } from './ui/i18n';
 import backgroundService from './ui/services/Background';
 import { createUiStore } from './ui/store';
+import { initUiSentry } from 'sentry';
 
 const isNotificationWindow = window.location.pathname === '/notification.html';
 
-Sentry.init({
-  dsn: __SENTRY_DSN__,
-  environment: __SENTRY_ENVIRONMENT__,
-  release: __SENTRY_RELEASE__,
-  debug: CubensisConnect_DEBUG,
-  autoSessionTracking: false,
-  initialScope: {
-    tags: {
-      source: 'popup',
-    },
-  },
-  integrations: [new Sentry.Integrations.Breadcrumbs({ dom: false })],
-  beforeSend: async (event, hint) => {
-    const message =
-      hint.originalException &&
-      typeof hint.originalException === 'object' &&
-      'message' in hint.originalException &&
-      typeof hint.originalException.message === 'string' &&
-      hint.originalException.message
-        ? hint.originalException.message
-        : String(hint.originalException);
-
-    const shouldIgnore = await backgroundService.shouldIgnoreError(
-      'beforeSendPopup',
-      message
-    );
-
-    if (shouldIgnore) {
-      return null;
-    }
-
-    return event;
-  },
+initUiSentry({
+  ignoreErrorContext: 'beforeSendPopup',
+  source: 'popup',
 });
 
 log.setDefaultLevel(CubensisConnect_DEBUG ? 'debug' : 'warn');
@@ -88,6 +61,11 @@ async function startUi() {
         window.close();
       }
     },
+    ledgerSignRequest: async (request: LedgerSignRequest) => {
+      const { selectedAccount } = store.getState();
+
+      return ledgerService.queueSignRequest(selectedAccount, request);
+    },
   };
 
   const dnode = setupDnode(connectionStream, emitterApi, 'api');
@@ -119,6 +97,10 @@ async function startUi() {
     background.getNetworks(),
   ]);
 
+  if (!state.initialized) {
+    background.showTab(window.location.origin + '/accounts.html', 'accounts');
+  }
+
   updateState({ ...state, networks });
 
   Sentry.setUser({ id: state.userId });
@@ -129,4 +111,5 @@ async function startUi() {
   document.addEventListener('keyup', () => backgroundService.updateIdle());
   document.addEventListener('mousedown', () => backgroundService.updateIdle());
   document.addEventListener('focus', () => backgroundService.updateIdle());
+  window.addEventListener('beforeunload', () => background.identityClear());
 }

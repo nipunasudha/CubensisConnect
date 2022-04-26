@@ -1,34 +1,67 @@
 import * as mocha from 'mocha';
-import { App, Assets, CreateNewAccount, Network } from './utils/actions';
+import {
+  App,
+  Assets,
+  CreateNewAccount,
+  Network,
+  Settings,
+} from './utils/actions';
 import { By, until, WebElement } from 'selenium-webdriver';
 import { clear } from './utils';
 import { expect } from 'chai';
-import {
-  DEFAULT_ANIMATION_DELAY,
-  DEFAULT_PASSWORD,
-  DEFAULT_SWITCH_TABS_DELAY,
-} from './utils/constants';
+import { DEFAULT_ANIMATION_DELAY, DEFAULT_PASSWORD } from './utils/constants';
 
 describe('Account management', function () {
   this.timeout(60 * 1000);
 
+  let tabKeeper, tabAccounts;
+
   before(async function () {
     await App.initVault.call(this, DEFAULT_PASSWORD);
-    await CreateNewAccount.importAccount.call(
-      this,
-      'rich',
-      'DCC private node seed with DCC tokens'
-    );
+    await Settings.setMaxSessionTimeout.call(this);
+    await App.open.call(this);
 
-    await Assets.addAccount.call(this);
+    tabKeeper = await this.driver.getWindowHandle();
+    await this.driver
+      .wait(
+        until.elementLocated(By.css('[data-testid="importForm"]')),
+        this.wait
+      )
+      .findElement(By.css('[data-testid="addAccountBtn"]'))
+      .click();
+    await this.driver.wait(
+      async () => (await this.driver.getAllWindowHandles()).length === 2,
+      this.wait
+    );
+    for (const handle of await this.driver.getAllWindowHandles()) {
+      if (handle !== tabKeeper) {
+        tabAccounts = handle;
+        await this.driver.switchTo().window(tabAccounts);
+        await this.driver.navigate().refresh();
+        break;
+      }
+    }
+
     await CreateNewAccount.importAccount.call(
       this,
       'poor',
       'DCC private node seed without DCC tokens'
     );
+
+    await CreateNewAccount.importAccount.call(
+      this,
+      'rich',
+      'waves private node seed with waves tokens'
+    );
+
+    await this.driver.switchTo().window(tabKeeper);
+    await App.open.call(this);
   });
 
-  after(App.resetVault);
+  after(async function () {
+    await App.closeBgTabs.call(this, tabKeeper);
+    await App.resetVault.call(this);
+  });
 
   describe('Accounts list', function () {
     it('Change active account', async function () {
@@ -83,6 +116,91 @@ describe('Account management', function () {
       it('Check that QR matches the displayed address');
 
       it('Download QR code'); // file downloaded, filename equals "${address}.png"
+    });
+
+    describe('Search', function () {
+      let searchInput: WebElement;
+
+      before(async function () {
+        await this.driver
+          .wait(
+            until.elementLocated(By.css('[data-testid="otherAccountsButton"]')),
+            this.wait
+          )
+          .click();
+        searchInput = this.driver.wait(
+          until.elementLocated(By.css('[data-testid="accountsSearchInput"]')),
+          this.wait
+        );
+      });
+
+      after(async function () {
+        await this.driver.findElement(By.css('div.arrow-back-icon')).click();
+      });
+
+      beforeEach(async function () {
+        await searchInput.clear();
+      });
+
+      it('Displays "not found" description if term is not account name, address, public key or email', async function () {
+        await searchInput.sendKeys('WRONG TERM');
+
+        expect(
+          await this.driver.findElements(By.css('[data-testid="accountCard"]'))
+        ).length(0);
+        expect(
+          await this.driver
+            .findElement(By.css('[data-testid="accountsNote"]'))
+            .getText()
+        ).matches(/No other accounts were found for the specified filters/i);
+      });
+
+      it('"x" appears and clear search input', async function () {
+        await searchInput.sendKeys('WRONG TERM');
+        const searchClear = this.driver.findElement(
+          By.css('[data-testid="searchClear"]')
+        );
+        expect(await searchClear.isDisplayed()).to.be.true;
+        await searchClear.click();
+        expect(await searchInput.getText()).to.be.empty;
+      });
+
+      it('By existing account name', async function () {
+        await searchInput.sendKeys(/*r*/ 'ic' /*h*/);
+        expect(
+          await this.driver
+            .findElement(
+              By.css('[data-testid="accountCard"] [data-testid="accountName"]')
+            )
+            .getText()
+        ).to.be.equal('rich');
+      });
+
+      it('By existing account address', async function () {
+        await searchInput.sendKeys('3P5Xx9MFs8VchRjfLeocGFxXkZGknm38oq1');
+        expect(
+          await this.driver
+            .findElement(
+              By.css('[data-testid="accountCard"] [data-testid="accountName"]')
+            )
+            .getText()
+        ).to.be.equal('rich');
+      });
+
+      it('By existing account public key', async function () {
+        await searchInput.sendKeys(
+          'AXbaBkJNocyrVpwqTzD4TpUY8fQ6eeRto9k1m2bNCzXV'
+        );
+        expect(
+          await this.driver
+            .findElement(
+              By.css('[data-testid="accountCard"] [data-testid="accountName"]')
+            )
+            .getText()
+        ).to.be.equal('rich');
+      });
+
+      it('By existing email account');
     });
   });
 
@@ -317,9 +435,7 @@ describe('Account management', function () {
         expect(
           await this.driver.wait(
             until.elementLocated(
-              By.xpath(
-                "//div[(contains(@class, '-assets-assets') or contains(@class, '-import-import'))]"
-              )
+              By.css('[data-testid="importForm"], [data-testid="assetsForm"]')
             ),
             this.wait
           )
@@ -383,39 +499,39 @@ describe('Account management', function () {
 
   describe('Switching networks', function () {
     before(async function () {
+      await this.driver.switchTo().window(tabAccounts);
+
+      await CreateNewAccount.importAccount.call(
+        this,
+        'second',
+        'second account for testing selected account preservation'
+      );
       await CreateNewAccount.importAccount.call(
         this,
         'first',
         'first account for testing selected account preservation'
       );
 
-      await Assets.addAccount.call(this);
+      await Network.switchToAndCheck.call(this, 'Testnet');
+
       await CreateNewAccount.importAccount.call(
         this,
-        'second',
-        'second account for testing selected account preservation'
+        'fourth',
+        'fourth account for testing selected account preservation'
       );
-
-      await Network.switchTo.call(this, 'Testnet');
-
       await CreateNewAccount.importAccount.call(
         this,
         'third',
         'third account for testing selected account preservation'
       );
 
-      await Assets.addAccount.call(this);
-      await CreateNewAccount.importAccount.call(
-        this,
-        'fourth',
-        'fourth account for testing selected account preservation'
-      );
+      await Network.switchToAndCheck.call(this, 'Mainnet');
 
-      await Network.switchTo.call(this, 'Mainnet');
+      await this.driver.switchTo().window(tabKeeper);
     });
 
     after(async function () {
-      await Network.switchTo.call(this, 'Mainnet');
+      await Network.switchToAndCheck.call(this, 'Mainnet');
     });
 
     it('should preserve previously selected account for the network', async function () {
@@ -435,7 +551,7 @@ describe('Account management', function () {
 
       expect(await Assets.getActiveAccountName.call(this)).to.equal('second');
 
-      await Network.switchTo.call(this, 'Testnet');
+      await Network.switchToAndCheck.call(this, 'Testnet');
 
       await this.driver
         .wait(
@@ -453,9 +569,9 @@ describe('Account management', function () {
 
       expect(await Assets.getActiveAccountName.call(this)).to.equal('fourth');
 
-      await Network.switchTo.call(this, 'Mainnet');
+      await Network.switchToAndCheck.call(this, 'Mainnet');
       expect(await Assets.getActiveAccountName.call(this)).to.equal('second');
-      await Network.switchTo.call(this, 'Testnet');
+      await Network.switchToAndCheck.call(this, 'Testnet');
       expect(await Assets.getActiveAccountName.call(this)).to.equal('fourth');
     });
   });

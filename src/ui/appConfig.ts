@@ -9,17 +9,3 @@ export const CONFIG = {
 };
 
 export const I18N_NAME_SPACE = 'extension';
-
-export const ASSETS = {
-  BTC: '894W72QK5LV9sQFBGygs6GBfFYV5fXeCH1TctGWhiyVn',
-  CRC: 'G9TVbwiiUZd5WxFxoY7Tb6ZPjGGLfynJK4a3aoC59cMo',
-  DGFTHR: 'CCcUGv8eoyoF96c8HHbnbGsPdumr7jPpoRS6orPeg6Wb',
-  DCC: 'DCC',
-};
-
-export const ASSETS_NAMES = {
-  [ASSETS.CRC]: 'CR Coin',
-  [ASSETS.DGFTHR]: 'Dogefather',
-  [ASSETS.DCC]: 'DCC',
-  [ASSETS.BTC]: 'Bitcoin',
-};

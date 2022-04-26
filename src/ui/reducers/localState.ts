@@ -3,6 +3,7 @@ import {
   ACTION,
   setSwapScreenInitialState,
   resetSwapScreenInitialState,
+  setTabMode,
 } from '../actions';
 import { pairing } from './pairing';
 
@@ -50,21 +51,6 @@ function newAccount(
   return state;
 }
 
-function addNewAccount(
-  state = { pending: false, error: false },
-  { type, payload }
-) {
-  switch (type) {
-    case ACTION.SAVE_NEW_ACCOUNT_SEND:
-    case ACTION.SAVE_NEW_ACCOUNT_RECEIVE:
-      return payload;
-    case ACTION.NEW_ACCOUNT_CLEAR_ERRORS:
-      return { ...state, error: false };
-  }
-
-  return state;
-}
-
 function menu(state = { logo: false }, { type, payload }) {
   if (type === ACTION.CHANGE_MENU) {
     return { ...state, ...payload };
@@ -93,10 +79,6 @@ function notifications(
   { type, payload }: { type: string; payload: boolean }
 ): NotificationsState {
   switch (type) {
-    case ACTION.NOTIFICATION_ACCOUNT_CREATION_SUCCESS:
-      return { ...state, accountCreationSuccess: payload };
-    case ACTION.NOTIFICATION_ACCOUNT_IMPORT_SUCCESS:
-      return { ...state, accountImportSuccess: payload };
     case ACTION.NOTIFICATION_SELECT:
       return { ...state, selected: payload };
     case ACTION.NOTIFICATION_DELETE:
@@ -108,7 +90,17 @@ function notifications(
   }
 }
 
-function transactionStatus(state = {}, { type, payload }) {
+interface TransactionStatusState {
+  approvePending?: boolean;
+  approveOk?: boolean;
+  approveError?: boolean;
+  rejectOk?: boolean;
+}
+
+function transactionStatus(
+  state: TransactionStatusState = {},
+  { type, payload }: { type: string; payload: boolean }
+): TransactionStatusState {
   switch (type) {
     case ACTION.APPROVE_PENDING:
       return { ...state, approvePending: payload };
@@ -147,12 +139,45 @@ function swapScreenInitialState(
   }
 }
 
+export type TabMode = 'popup' | 'tab';
+function tabMode(
+  state: TabMode = 'popup',
+  action: ReturnType<typeof setTabMode>
+): TabMode {
+  if (action.type === ACTION.SET_TAB_MODE) {
+    return action.payload;
+  }
+  return state;
+}
+
+export interface SwapScreenInitialState {
+  fromAssetId: string | null;
+}
+
+const swapScreenInitialStateDefault = { fromAssetId: null };
+
+function swapScreenInitialState(
+  state: SwapScreenInitialState = swapScreenInitialStateDefault,
+  action:
+    | ReturnType<typeof setSwapScreenInitialState>
+    | ReturnType<typeof resetSwapScreenInitialState>
+): SwapScreenInitialState {
+  switch (action.type) {
+    case ACTION.SET_SWAP_SCREEN_INITIAL_STATE:
+      return action.payload;
+    case ACTION.RESET_SWAP_SCREEN_INITIAL_STATE:
+      return swapScreenInitialStateDefault;
+    default:
+      return state;
+  }
+}
+
 export const localState = combineReducers({
+  tabMode,
   loading,
   newUser,
   login,
   newAccount,
-  addNewAccount,
   menu,
   assets,
   notifications,

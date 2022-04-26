@@ -10,6 +10,11 @@ describe('Password management', () => {
     NEW: 'verystrongpassword',
   };
   let currentPassword: string;
+  let tabKeeper, tabAccounts;
+
+  after(async function () {
+    await App.closeBgTabs.call(this, tabKeeper);
+  });
 
   describe('Create password', function () {
     this.timeout(60 * 1000);
@@ -20,13 +25,37 @@ describe('Password management', () => {
 
     before(async function () {
       await App.open.call(this);
-      // Get Started page
+
+      tabKeeper = await this.driver.getWindowHandle();
+      await this.driver.wait(
+        async () => (await this.driver.getAllWindowHandles()).length === 2,
+        this.wait
+      );
+      for (const handle of await this.driver.getAllWindowHandles()) {
+        if (handle !== tabKeeper) {
+          tabAccounts = handle;
+          await this.driver.switchTo().window(tabAccounts);
+          break;
+        }
+      }
+
       await this.driver
         .wait(
-          until.elementLocated(By.css('.app button[type=submit]')),
+          until.elementIsVisible(
+            await this.driver.wait(
+              until.elementLocated(By.css('[data-testid="getStartedBtn"]')),
+              this.wait
+            )
+          ),
           this.wait
         )
         .click();
+
+      await this.driver.wait(
+        until.elementLocated(By.css('[data-testid="newAccountForm"]')),
+        this.wait
+      );
+
       // Protect Your Account page
       firstPasswordInput = this.driver.wait(
         until.elementLocated(By.css('.app input#first[type=password]')),
@@ -64,7 +93,7 @@ describe('Password management', () => {
       await firstPasswordInput.sendKeys(PASSWORD.DEFAULT);
       await secondPasswordInput.sendKeys(PASSWORD.SHORT);
       expect(await secondPasswordErrorDiv.getText()).matches(
-        /passwords does not match/i
+        /passwords do not match/i
       );
     });
 
@@ -102,7 +131,7 @@ describe('Password management', () => {
       );
       expect(
         await this.driver
-          .findElement(By.css('.app button#createNewAccount'))
+          .findElement(By.css('[data-testid="createNewAccountBtn"]'))
           .getText()
       ).matches(/create a new account/i);
     });
@@ -117,7 +146,9 @@ describe('Password management', () => {
       newSecondPasswordInput: WebElement;
 
     before(async function () {
+      await this.driver.switchTo().window(tabKeeper);
       await App.open.call(this);
+
       await this.driver
         .wait(
           until.elementLocated(
@@ -191,7 +222,7 @@ describe('Password management', () => {
           "//input[@id='second']//following-sibling::div[contains(@class, '-error-error')]"
         )
       );
-      expect(await errDiv.getText()).matches(/New passwords does not match/i);
+      expect(await errDiv.getText()).matches(/New passwords do not match/i);
       await clear(newSecondPasswordInput);
 
       await newSecondPasswordInput.sendKeys(PASSWORD.DEFAULT);
@@ -290,12 +321,14 @@ describe('Password management', () => {
     }
 
     before(async function () {
-      await App.open.call(this);
+      await this.driver.switchTo().window(tabAccounts);
       await CreateNewAccount.importAccount.call(
         this,
         'rich',
         'decentralchain private node seed with dcc tokens'
       );
+      await this.driver.switchTo().window(tabKeeper);
+      await App.open.call(this);
     });
 
     it('Logout', async function () {
@@ -345,21 +378,21 @@ describe('Password management', () => {
           .click();
         expect(
           await this.driver.wait(
-            until.elementLocated(
-              By.xpath("//div[contains(@class, '-forgotAccount-content')]")
-            ),
+            until.elementLocated(By.css('[data-testid="deleteAllAccounts"]')),
             this.wait
           )
         ).not.to.be.throw;
         expect(
           await this.driver
-            .findElement(By.css('button#resetConfirm'))
+            .findElement(By.css('[data-testid="resetConfirm"]'))
             .isEnabled()
         ).to.be.false;
       });
 
       it('Clicking "Cancel" button returns to login page and login is available', async function () {
-        await this.driver.findElement(By.css('button#resetCancel')).click();
+        await this.driver
+          .findElement(By.css('[data-testid="resetCancel"]'))
+          .click();
         expect(
           await this.driver.wait(
             until.elementLocated(By.css('input#loginPassword')),
@@ -399,21 +432,22 @@ describe('Password management', () => {
             .click();
 
           defaultPhrase = await this.driver
-            .wait(until.elementLocated(By.css('div#defaultPhrase')), this.wait)
+            .wait(
+              until.elementLocated(By.css('[data-testid="defaultPhrase"]')),
+              this.wait
+            )
             .getText();
 
           confirmPhraseInput = this.driver.findElement(
-            By.css('input#confirmPhrase')
+            By.css('[data-testid="confirmPhrase"]')
           );
 
           confirmPhraseErrorDiv = this.driver.findElement(
-            By.xpath(
-              "//input[@id='confirmPhrase']//following-sibling::div[contains(@class, '-error-error')]"
-            )
+            By.css('[data-testid="confirmPhraseError"]')
           );
 
           resetConfirmBtn = this.driver.findElement(
-            By.css('button#resetConfirm')
+            By.css('[data-testid="resetConfirm"]')
           );
         });
 

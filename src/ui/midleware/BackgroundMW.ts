@@ -7,7 +7,6 @@ import {
   pairingSetData,
   setActiveNotification,
   setTab,
-  setUiState,
   updateActiveState,
 } from '../actions';
 import background from '../services/Background';
@@ -138,11 +137,6 @@ export const deleteAccountMw = store => next => action => {
     background.deleteVault().then(() => {
       store.dispatch(updateActiveState(null));
       store.dispatch(setTab(PAGES.ROOT));
-      store.dispatch(
-        setUiState({
-          account: null,
-        })
-      );
     });
     return null;
   }
@@ -179,6 +173,11 @@ export const changeNetwork = store => next => action => {
       .setNetwork(action.payload)
       .then(() => store.dispatch(setTab(PAGES.ROOT)));
     return null;
+  }
+  if (action.type === ACTION.UPDATE_CURRENT_NETWORK) {
+    if (store.getState().localState.tabMode === 'tab') {
+      store.dispatch(setTab(PAGES.ROOT));
+    }
   }
 
   return next(action);
@@ -262,7 +261,16 @@ export const lock = store => next => action => {
 
 export const signAndPublishTransaction = () => next => action => {
   if (action.type === ACTION.SIGN_AND_PUBLISH_TRANSACTION) {
-    background.signAndPublishTransaction(action.payload);
+    background.signAndPublishTransaction(action.payload).catch(err => {
+      if (
+        err instanceof Error &&
+        /user denied request|failed request/i.test(err.message)
+      ) {
+        return;
+      }
+
+      throw err;
+    });
   }
 
   return next(action);

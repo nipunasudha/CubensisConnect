@@ -2,8 +2,8 @@
   display: flex;
     align-items: center;
     gap: 8px;
-    border: solid 1px #009280;
-    padding: 14px;
+  border: solid 1px var(--color-basic100);
+  padding: 16px 14px;
     border-radius: 4px;
     background: #061e29;
 }
@@ -49,9 +49,10 @@
 }
 
 .top {
-  margin-bottom: 4px;
   display: flex;
   gap: 8px;
+  margin-bottom: 4px;
+  position: relative;
 }
 
 .bottom {
@@ -60,7 +61,8 @@
 }
 
 .label {
-  color: #fff;
+  flex: 1 1 0;
+  color: var(--color-basic500);
   font-size: 11px;
   overflow: hidden;
   white-space: nowrap;
@@ -78,15 +80,7 @@
 
 .value {
   flex: 1 1 0;
-  overflow: hidden;
-  text-align: right;
-}
-
-.balance {
-  font-size: 11px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  color: #fff;
+  position: relative;
 }
 
 .input {
@@ -102,6 +96,15 @@
   outline: 0;
 }
 
+.usdAmount {
+  bottom: -12px;
+  color: var(--color-basic500);
+  font-size: 11px;
+  font-weight: 500;
+  left: 0;
+  position: absolute;
+}
+
 .result {
   font-size: 14px;
   font-weight: bold;
@@ -109,6 +112,16 @@
   color: #fff;
   white-space: nowrap;
   text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.usdResult {
+  bottom: -12px;
+  color: var(--color-basic500);
+  font-size: 11px;
+  font-weight: 700;
+  left: 0;
+  position: absolute;
 }
 
 .maxButton {

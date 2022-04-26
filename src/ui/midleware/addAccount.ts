@@ -1,59 +1,34 @@
-import {
-  ACTION,
-  addUserReceive,
-  addUserSend,
-  notificationAccountCreationSuccess,
-  notificationAccountImportSuccess,
-  setTab,
-} from '../actions';
-import background, { WalletTypes } from '../services/Background';
+import { ACTION, addBackTab, selectAccount, setTab } from '../actions';
+import background from '../services/Background';
+import { PAGES } from 'ui/pageConfig';
 
 export const addAccount = store => next => action => {
   const { type, payload, meta } = action;
+  const { currentNetwork, networks, tab: currentTab } = store.getState();
 
   if (type === ACTION.SAVE_NEW_ACCOUNT) {
-    const { currentNetwork, networks } = store.getState();
     const networkCode = (
       networks.filter(({ name }) => name === currentNetwork)[0] || networks[0]
     ).code;
 
     background
       .addWallet({ ...payload, networkCode, network: currentNetwork })
-      .then(
-        () => {
-          store.dispatch(addUserReceive());
-          store.dispatch(setTab('assets'));
+      .then(lastAccount => {
+        store.dispatch(selectAccount(lastAccount));
 
-          if (meta.type === WalletTypes.New) {
-            store.dispatch(notificationAccountCreationSuccess(true));
-            setTimeout(() => {
-              store.dispatch(notificationAccountCreationSuccess(false));
-            }, 1000);
-          } else if (meta.type === WalletTypes.Seed) {
-            store.dispatch(notificationAccountImportSuccess(true));
-            setTimeout(() => {
-              store.dispatch(notificationAccountImportSuccess(false));
-            }, 1000);
-          }
+        store.dispatch(addBackTab(currentTab));
+        store.dispatch(setTab(PAGES.IMPORT_SUCCESS));
 
-          background.sendEvent('addWallet', { type: meta.type });
-        },
-        e => {
-          store.dispatch(addUserReceive(e));
-        }
-      );
-
-    store.dispatch(addUserSend());
+        background.sendEvent('addWallet', { type: meta.type });
+      });
   }
 
   if (type === ACTION.BATCH_ADD_ACCOUNTS) {
     Promise.all(payload.map(account => background.addWallet(account))).then(
       () => {
-        store.dispatch(setTab('assets'));
-        store.dispatch(notificationAccountImportSuccess(true));
-        setTimeout(() => {
-          store.dispatch(notificationAccountImportSuccess(false));
-        }, 1000);
+        store.dispatch(addBackTab(currentTab));
+        store.dispatch(setTab(PAGES.IMPORT_SUCCESS));
+
         background.sendEvent('addWallet', { type: meta.type });
       }
     );

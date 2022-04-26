@@ -1,7 +1,7 @@
 import * as Sentry from '@sentry/react';
 import BigNumber from '@waves/bignumber';
-import { Money, Asset } from '@waves/data-entities';
-import { TTransactionType } from '@decentralchain/waves-transactions/dist/transactions';
+import { Asset, Money } from '@waves/data-entities';
+import { TRANSACTION_TYPE } from '@waves/ts-types';
 import { swappableAssetIds } from 'assets/constants';
 import { convertToSponsoredAssetFee, getAssetIdByName } from 'assets/utils';
 import * as React from 'react';
@@ -11,11 +11,11 @@ import { resetSwapScreenInitialState } from 'ui/actions/localState';
 import { Avatar } from 'ui/components/ui/avatar/Avatar';
 import { PAGES } from 'ui/pageConfig';
 import background, { AssetDetail } from 'ui/services/Background';
-import { useAppSelector, useAppDispatch } from 'ui/store';
+import { useAppDispatch, useAppSelector } from 'ui/store';
 import { SwapForm } from './form';
 import { SwapResult } from './result';
 import * as styles from './swap.module.css';
-import { TRANSACTION_TYPE } from '@waves/ts-types';
+import { SignWrapper } from 'ui/components/pages/importEmail/signWrapper';
 
 interface Props {
   setTab: (newTab: string) => void;
@@ -129,19 +129,17 @@ export function Swap({ setTab }: Props) {
         ) : (
           <div className={styles.content}>
             <div className={styles.accountInfoHeader}>
-              <Avatar address={selectedAccount.address} size={28} />
+              <Avatar
+                address={selectedAccount.address}
+                type={selectedAccount.type}
+                size={28}
+              />
               <div className={styles.accountName}>{selectedAccount.name}</div>
             </div>
 
             {performedSwapData == null ? (
-              <SwapForm
-                initialFromAssetId={initialFromAssetId}
-                initialToAssetId={initialToAssetId}
-                isSwapInProgress={isSwapInProgress}
-                swapErrorMessage={swapErrorMessage}
-                swappableAssets={swappableAssets}
-                wavesFeeCoins={wavesFeeCoins}
-                onSwap={async ({
+              <SignWrapper
+                onConfirm={async ({
                   feeAssetId,
                   fromAssetId,
                   fromCoins,
@@ -178,6 +176,7 @@ export function Swap({ setTab }: Props) {
                     });
                   } catch (err) {
                     const errMessage = err?.message;
+                    let capture = true;
 
                     if (typeof errMessage === 'string') {
                       // errors from nested invokes
@@ -189,16 +188,26 @@ export function Swap({ setTab }: Props) {
                         let msg = match[1];
 
                         if (
-                          /something\s*went\s*wrong\s*while\s*working\s*with\s*amountToSend/i.test(
+                          /something\s+went\s+wrong\s+while\s+working\s+with\s+amountToSend/i.test(
                             msg
                           )
                         ) {
                           msg = t('swap.amountToSendError');
+                          capture = false;
+                        } else if (
+                          /only\s+swap\s+of\s+[\d.]+\s+or\s+more\s+tokens\s+is\s+allowed/i.test(
+                            msg
+                          )
+                        ) {
+                          capture = false;
                         }
 
                         setSwapErrorMessage(msg);
                         setIsSwapInProgress(false);
-                        Sentry.captureException(new Error(msg));
+
+                        if (capture) {
+                          Sentry.captureException(new Error(msg));
+                        }
                         return;
                       }
 
@@ -212,17 +221,41 @@ export function Swap({ setTab }: Props) {
 
                         setSwapErrorMessage(msg);
                         setIsSwapInProgress(false);
-                        Sentry.captureException(new Error(msg));
+
+                        if (capture) {
+                          Sentry.captureException(new Error(msg));
+                        }
+                        return;
+                      }
+
+                      if (/Request is rejected on ledger/i.test(errMessage)) {
+                        setSwapErrorMessage(errMessage);
+                        setIsSwapInProgress(false);
                         return;
                       }
                     }
 
                     setSwapErrorMessage(errMessage || t('swap.failMessage'));
                     setIsSwapInProgress(false);
-                    Sentry.captureException(new Error(errMessage));
+
+                    if (capture) {
+                      Sentry.captureException(new Error(errMessage));
+                    }
                   }
                 }}
-              />
+              >
+                {({ onPrepare, pending }) => (
+                  <SwapForm
+                    initialFromAssetId={initialFromAssetId}
+                    initialToAssetId={initialToAssetId}
+                    isSwapInProgress={pending || isSwapInProgress}
+                    swapErrorMessage={swapErrorMessage}
+                    swappableAssets={swappableAssets}
+                    wavesFeeCoins={wavesFeeCoins}
+                    onSwap={onPrepare}
+                  />
+                )}
+              </SignWrapper>
             ) : (
               <SwapResult
                 fromMoney={performedSwapData.fromMoney}
