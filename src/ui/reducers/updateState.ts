@@ -1,10 +1,8 @@
-import { Account } from 'accounts/types';
+import { Account, NetworkName } from 'accounts/types';
 import { ACTION } from '../actions';
 import { AssetDetail } from '../services/Background';
-import {
-  ITransaction,
-  WithId,
-} from '@decentralchain/waves-transactions/dist/transactions';
+import { WithId } from '@decentralchain/waves-transactions/dist/transactions';
+import { Transaction } from '@waves/ts-types';
 
 export * from './localState';
 export * from './remoteConfig';
@@ -54,31 +52,19 @@ export interface UiState {
 }
 
 export const uiState = createSimpleReducer<UiState>({}, ACTION.UPDATE_UI_STATE);
-export const accounts = createSimpleReducer<Array<Account>>(
+export const accounts = createSimpleReducer<Account[]>(
   [],
   ACTION.UPDATE_ACCOUNTS
 );
-export const allNetworksAccounts = createSimpleReducer<
-  Array<{
-    address: string;
-    name: string;
-    network: string;
-    networkCode: string;
-    publicKey: string;
-    type: string;
-  }>
->([], ACTION.UPDATE_ALL_NETWORKS_ACCOUNTS);
+export const allNetworksAccounts = createSimpleReducer<Account[]>(
+  [],
+  ACTION.UPDATE_ALL_NETWORKS_ACCOUNTS
+);
 export const state = createSimpleReducer(null, ACTION.UPDATE_APP_STATE);
 
-interface SelectedAccountState {
-  address?: string;
-  name?: string;
-  networkCode?: string;
-}
-
 export function selectedAccount(
-  state: SelectedAccountState = {},
-  action: { type: string; payload: SelectedAccountState }
+  state: Partial<Account> = {},
+  action: { type: string; payload: Partial<Account> }
 ) {
   switch (action.type) {
     case ACTION.SELECT_ACCOUNT:
@@ -119,7 +105,7 @@ export interface AccountBalance {
   assets?: BalanceAssets;
   aliases: string[];
   nfts: AssetDetail[];
-  txHistory: Array<ITransaction & WithId>;
+  txHistory: Array<Transaction & WithId>;
 }
 
 export const balances = createSimpleReducer<{
@@ -128,7 +114,9 @@ export const balances = createSimpleReducer<{
 
 export const currentLocale = createSimpleReducer('en', ACTION.UPDATE_FROM_LNG);
 export const customNodes = createSimpleReducer({}, ACTION.UPDATE_NODES);
-export const customCodes = createSimpleReducer({}, ACTION.UPDATE_CODES);
+export const customCodes = createSimpleReducer<
+  Partial<Record<NetworkName, string>>
+>({}, ACTION.UPDATE_CODES);
 export const customMatcher = createSimpleReducer({}, ACTION.UPDATE_MATCHER);
 export const langs = createSimpleReducer({}, ACTION.UPDATE_LANGS);
 export const origins = createSimpleReducer({}, ACTION.UPDATE_ORIGINS);

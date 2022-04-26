@@ -57,11 +57,11 @@ async function setupInpageApi() {
     },
   };
 
-  global.CubensisConnect = global.Waves = new Proxy(wavesApp, proxyApi);
+  global.CubensisConnect = global.WavesKeeper = global.Waves = new Proxy(wavesApp, proxyApi);
 
   const connectionStream = new LocalMessageDuplexStream({
-    name: 'cubensis_connect_page',
-    target: 'cubensis_connect_content',
+    name: 'waves_keeper_page',
+    target: 'waves_keeper_content',
   });
 
   const eventEmitter = new EventEmitter();

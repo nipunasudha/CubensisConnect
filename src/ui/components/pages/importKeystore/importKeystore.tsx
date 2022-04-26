@@ -1,12 +1,9 @@
 import * as React from 'react';
 import { useTranslation } from 'react-i18next';
 import { seedUtils } from '@decentralchain/waves-transactions';
+import { NetworkName, KeystoreProfiles } from 'accounts/types';
 import { ImportKeystoreChooseFile } from './chooseFile';
-import {
-  ImportKeystoreChooseAccounts,
-  ImportKeystoreNetwork,
-  ImportKeystoreProfiles,
-} from './chooseAccounts';
+import { ImportKeystoreChooseAccounts } from './chooseAccounts';
 import { batchAddAccounts } from 'ui/actions/user';
 import { WalletTypes } from '../../../services/Background';
 import { useAppDispatch, useAppSelector } from 'ui/store';
@@ -25,37 +22,38 @@ function readFileAsText(file: File) {
 
 const networkCodeToNetworkMap: Record<
   'S' | 'T' | 'W',
-  Exclude<ImportKeystoreNetwork, 'custom'>
+  Exclude<NetworkName, 'custom'>
 > = {
   S: 'stagenet',
   T: 'testnet',
   W: 'mainnet',
 };
 
-function findNetworkByNetworkCode(networkCode: string): ImportKeystoreNetwork {
+function findNetworkByNetworkCode(networkCode: string): NetworkName {
   return networkCodeToNetworkMap[networkCode] || 'custom';
 }
 
-interface ExchangeKeystoreAccount {
+type ExchangeKeystoreAccount = {
   address: string;
   name: string;
   networkByte: number;
-  seed: string;
-}
+} & (
+  | {
+      userType: 'seed';
+      seed: string;
+    }
+  | {
+      userType: 'ledger';
+      id: number;
+    }
+  | {
+      userType: 'wavesKeeper';
+    }
+);
 
 interface EncryptedKeystore {
   type: WalletTypes;
-  decrypt: (password: string) => Record<
-    ImportKeystoreNetwork,
-    {
-      accounts: Array<{
-        address: string;
-        name: string;
-        networkCode: string;
-        seed: string;
-      }>;
-    }
-  >;
+  decrypt: (password: string) => KeystoreProfiles;
 }
 
 function parseKeystore(json: string): EncryptedKeystore | null {
@@ -94,24 +92,34 @@ function parseKeystore(json: string): EncryptedKeystore | null {
                 seedUtils.decryptSeed(saveUsers, password, encryptionRounds)
               );
 
-              const profiles: ImportKeystoreProfiles = {
+              const profiles: KeystoreProfiles = {
                 custom: { accounts: [] },
                 mainnet: { accounts: [] },
                 stagenet: { accounts: [] },
                 testnet: { accounts: [] },
               };
 
-              accounts.forEach(acc => {
-                const networkCode = String.fromCharCode(acc.networkByte);
-                const network = findNetworkByNetworkCode(networkCode);
+              accounts
+                .filter(
+                  (
+                    acc
+                  ): acc is Extract<
+                    ExchangeKeystoreAccount,
+                    { userType: 'seed' }
+                  > => acc.userType === 'seed'
+                )
+                .forEach(acc => {
+                  const networkCode = String.fromCharCode(acc.networkByte);
+                  const network = findNetworkByNetworkCode(networkCode);
 
-                profiles[network].accounts.push({
-                  address: acc.address,
-                  name: acc.name,
-                  networkCode,
-                  seed: acc.seed,
+                  profiles[network].accounts.push({
+                    address: acc.address,
+                    name: acc.name,
+                    networkCode,
+                    seed: acc.seed,
+                    type: 'seed',
+                  });
                 });
-              });
 
               return profiles;
             } catch (err) {
@@ -139,9 +147,7 @@ export function ImportKeystore({ setTab }: Props) {
   );
   const { t } = useTranslation();
   const [error, setError] = React.useState<string | null>(null);
-  const [profiles, setProfiles] = React.useState<ImportKeystoreProfiles | null>(
-    null
-  );
+  const [profiles, setProfiles] = React.useState<KeystoreProfiles | null>(null);
   const [walletType, setWalletType] = React.useState<WalletTypes | null>(null);
 
   if (profiles == null) {
@@ -224,11 +230,9 @@ export function ImportKeystore({ setTab }: Props) {
         dispatch(
           batchAddAccounts(
             selectedAccounts.map(acc => ({
-              seed: acc.seed,
               type: 'seed',
-              name: acc.name,
+              ...acc,
               network: findNetworkByNetworkCode(acc.networkCode),
-              hasBackup: true,
             })),
             walletType
           )

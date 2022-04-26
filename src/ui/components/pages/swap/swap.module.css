@@ -54,10 +54,3 @@
   color: #fff;
   text-overflow: ellipsis;
 }
-
-.currentNetwork {
-  overflow: hidden;
-  color: #fff;
-  font-size: 12px;
-  text-overflow: ellipsis;
-}

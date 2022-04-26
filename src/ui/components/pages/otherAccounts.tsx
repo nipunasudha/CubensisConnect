@@ -8,6 +8,9 @@ import { PAGES } from 'ui/pageConfig';
 import { selectAccount } from 'ui/actions/localState';
 import { AccountCard } from '../accounts/accountCard';
 import * as styles from './otherAccounts.module.css';
+import { SearchInput } from 'ui/components/ui/searchInput/searchInput';
+import background from 'ui/services/Background';
+import { setTab as resetTab } from 'ui/actions';
 
 interface Props {
   setTab: (newTab: string) => void;
@@ -16,18 +19,27 @@ interface Props {
 export function OtherAccountsPage({ setTab }: Props) {
   const dispatch = useAppDispatch();
   const accounts = useAppSelector(state => state.accounts);
-
   const activeAccount = useAppSelector(state =>
     state.accounts.find(
       ({ address }) => address === state.selectedAccount.address
     )
   );
-
   const assets = useAppSelector(state => state.assets);
   const balances = useAppSelector(state => state.balances);
 
+  const [term, setTerm] = React.useState<string>('');
+
   const otherAccounts = accounts
-    .filter(account => account.address !== activeAccount.address)
+    .filter(
+      account =>
+        account.address !== activeAccount?.address &&
+        (!term ||
+          account.name.toLowerCase().indexOf(term.toLowerCase()) !== -1 ||
+          account.address === term ||
+          account.publicKey === term ||
+          (account.type === 'wx' &&
+            account.username.toLowerCase().indexOf(term.toLowerCase()) !== -1))
+    )
     .sort(compareAccountsByLastUsed);
 
   const balancesMoney: Record<string, Money> = {};
@@ -53,9 +65,25 @@ export function OtherAccountsPage({ setTab }: Props) {
       </header>
 
       <div className={styles.accounts}>
+        <div className="margin1 margin-min-top">
+          <SearchInput
+            autoFocus
+            value={term ?? ''}
+            onInput={e => setTerm(e.target.value)}
+            onClear={() => setTerm('')}
+            data-testid="accountsSearchInput"
+          />
+        </div>
+
         {otherAccounts.length === 0 ? (
-          <p className={styles.noAccountsNote}>
-            <Trans i18nKey="otherAccounts.noAccountsNote" />
+          <p className={styles.noAccountsNote} data-testid="accountsNote">
+            <Trans
+              i18nKey={
+                !term
+                  ? 'otherAccounts.noAccountsNote'
+                  : 'otherAccounts.noAccountsFound'
+              }
+            />
           </p>
         ) : (
           otherAccounts.map(account => (
@@ -80,7 +108,13 @@ export function OtherAccountsPage({ setTab }: Props) {
             className={styles.addAccountButton}
             data-testid="addAccountButton"
             type="button"
-            onClick={() => setTab(PAGES.IMPORT_FROM_ASSETS)}
+            onClick={() => {
+              background.showTab(
+                `${window.location.origin}/accounts.html`,
+                'accounts'
+              );
+              dispatch(resetTab(PAGES.ROOT));
+            }}
           >
             <Trans i18nKey="otherAccounts.addAccount" />
           </button>

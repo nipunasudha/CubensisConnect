@@ -58,6 +58,7 @@ export function SwapResult({ fromMoney, transactionId, onClose }: Props) {
     txStatusUrl.searchParams.set('id', transactionId);
 
     let timeout: number;
+    let txInfoAttempts = 0;
 
     async function updateStatus(prevTxStatus: TxStatus) {
       const [txStatus] = (await fetch(txStatusUrl.toString()).then(res =>
@@ -75,29 +76,46 @@ export function SwapResult({ fromMoney, transactionId, onClose }: Props) {
             server
           );
 
-          const txInfo = (await fetch(txInfoUrl.toString()).then(res =>
-            res.json()
-          )) as {
-            stateChanges: {
-              transfers: Array<{
-                address: string;
-                asset: string | null;
-                amount: number;
-              }>;
+          try {
+            const txInfo = (await fetch(txInfoUrl.toString()).then(res =>
+              res.ok
+                ? res.json()
+                : res.text().then(text => Promise.reject(new Error(text)))
+            )) as {
+              stateChanges: {
+                transfers: Array<{
+                  address: string;
+                  asset: string | null;
+                  amount: number;
+                }>;
+              };
             };
-          };
 
-          const transfer = txInfo.stateChanges.transfers.find(
-            t => t.address === selectedAccount.address
-          );
+            const transfer = txInfo.stateChanges.transfers.find(
+              t => t.address === selectedAccount.address
+            );
 
-          setReceivedMoney(
-            new Money(
-              transfer.amount,
+            setReceivedMoney(
+              new Money(
+                transfer.amount,
               new Asset(assets[transfer.asset || 'DCC'])
-            )
-          );
-          setSwapStatus(SwapStatus.Succeeded);
+              )
+            );
+            setSwapStatus(SwapStatus.Succeeded);
+          } catch (err) {
+            txInfoAttempts++;
+
+            if (txInfoAttempts < 5) {
+              timeout = window.setTimeout(() => updateStatus(txStatus), 5000);
+            } else {
+              setSwapStatus(SwapStatus.Failed);
+
+              Sentry.withScope(scope => {
+                scope.setExtra('transactionId', transactionId);
+                Sentry.captureException(err);
+              });
+            }
+          }
         } else {
           setSwapStatus(SwapStatus.Failed);
 
@@ -196,7 +214,7 @@ export function SwapResult({ fromMoney, transactionId, onClose }: Props) {
         )}
       </div>
 
-      <Button onClick={onClose}>
+      <Button type="button" onClick={onClose}>
         <Trans i18nKey="swap.closeBtnText" />
       </Button>
     </div>

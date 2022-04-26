@@ -1,24 +1,23 @@
-@import '../../../styles/colors.styl';
-
 .avatar
   display: inline-block;
 
   img
     border-radius: 50%;
 
-.avatarList
-  display: flex;
-  width: 100%;
-  justify-content space-between;
-  align-items: center;
+.typeIconContainer {
+  position: relative;
+  top: 2px;
+  left: 2px;
+}
 
-  .avatar
-    border: 1px solid transparent;
-    padding: 4px;
-    width: 48px !important;
-    height: 48px !important;
-
-    &.selected
-      background-color: rgba(31, 90, 246, 0.1);
-      border-radius: 2px;
-      border: 1px solid $submit400;
+.typeIcon {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  line-height: 22px;
+  text-align: center;
+  background-color: #2A303C;
+}

@@ -17,6 +17,20 @@ const SUSPICIOUS_LIST_URL =
   'https://raw.githubusercontent.com/Decentral-America/dcc-token-filters/main/scam-v1.csv';
 const MAX_AGE = 60 * 60 * 1000;
 
+const MARKETDATA_URL = 'https://marketdata.wavesplatform.com/';
+const MARKETDATA_USD_ASSET_ID = 'DG2xFkPdDwKUoBkzGAhQtLpSGzfXLiCYPEzeKH2Ad24p';
+const MARKETDATA_POLL_INTERVAL = 10 * 60 * 1000;
+
+// todo add the stable coins
+const stablecoinAssetIds = new Set([
+  '2thtesXvnVMcCnih9iZbJL3d2NQZMfzENJo8YFj6r5jU',
+  '34N9YcEETLWn93qYQ64EsP1x89tSruJU44RrEMSXXEPJ',
+  '6XtHjpXbs9RRJP2Sr9GUyVqzACcby9TkThHXnjVC5CDJ',
+  '8DLiYZjo3UUaRBTHU7Ayoqg4ihwb6YH1AfXrrhdjQ7K1',
+  '8zUYbdB8Q6mDhpcXYv52ji8ycfj4SDX4gJXS7YY3dA4R',
+  'DG2xFkPdDwKUoBkzGAhQtLpSGzfXLiCYPEzeKH2Ad24p',
+]);
+
 const assetTickers = {
   B1dG9exXzJdFASDF2MwCE7TYJE5My4UgVRx43nqDbF6s: 'ABTCLPC',
   '4NyYnDGopZvEAQ3TcBDJrJFWSiA2xzuAw83Ms8jT7WuK': 'ABTCLPM',
@@ -141,6 +155,7 @@ export class AssetInfoController {
         },
       },
     };
+    this.usdPrices = undefined;
     this.suspiciousAssets = undefined;
     this.suspiciousLastUpdated = 0;
 
@@ -150,6 +165,31 @@ export class AssetInfoController {
       Object.assign({}, defaults, options.initState)
     );
     this.updateSuspiciousAssets();
+
+    this.updateUsdPrices();
+    setInterval(this.updateUsdPrices.bind(this), MARKETDATA_POLL_INTERVAL);
+  }
+
+  addTickersForExistingAssets() {
+    const { assets } = this.store.getState();
+
+    const assetIdsToUpdate = Object.keys(assetTickers).filter(assetId => {
+      const asset = assets.mainnet[assetId];
+      const ticker = assetTickers[assetId];
+
+      return asset && (asset.displayName !== ticker || asset.ticker !== ticker);
+    });
+
+    if (assetIdsToUpdate.length !== 0) {
+      assetIdsToUpdate.forEach(assetId => {
+        const asset = assets.mainnet[assetId];
+        const ticker = assetTickers[assetId];
+
+        asset.displayName = asset.ticker = ticker;
+      });
+
+      this.store.updateState({ assets });
+    }
   }
 
   addTickersForExistingAssets() {
@@ -201,7 +241,10 @@ export class AssetInfoController {
 
     const { assets } = this.store.getState();
     if (assetId === '' || assetId == null || assetId.toUpperCase() === 'DCC')
-      return DCC;
+      return {
+        ...WAVES,
+        usdPrice: this.usdPrices && this.usdPrices['DCC'],
+      };
 
     const network = this.getNetwork();
     const API_BASE = this.getNode();
@@ -237,6 +280,7 @@ export class AssetInfoController {
             issuer: assetInfo.issuer,
             isSuspicious: this.isSuspiciousAsset(assetInfo.assetId),
             lastUpdated: new Date().getTime(),
+            usdPrice: this.usdPrices && this.usdPrices[assetInfo.assetId],
           };
           assets[network] = assets[network] || {};
           assets[network][assetId] = { ...assets[network][assetId], ...mapped };
@@ -321,10 +365,14 @@ export class AssetInfoController {
               issuer: assetInfo.issuer,
               isSuspicious: this.isSuspiciousAsset(assetInfo.assetId),
               lastUpdated,
+              usdPrice: this.usdPrices && this.usdPrices[assetInfo.assetId],
             };
           }
         });
-        assets[network]['DCC'] = this.getWavesAsset();
+        assets[network]['DCC'] = {
+          ...WAVES,
+          usdPrice: this.usdPrices && this.usdPrices['DCC'],
+        };
         this.store.updateState({ assets });
         break;
       default:
@@ -342,13 +390,10 @@ export class AssetInfoController {
         new Date() - new Date(this.suspiciousLastUpdated) > MAX_AGE)
     ) {
       const resp = await fetch(new URL(SUSPICIOUS_LIST_URL));
-      switch (resp.status) {
-        case 200:
-          this.suspiciousAssets = (await resp.text()).split('\n').sort();
-          this.suspiciousLastUpdated = new Date().getTime();
-          break;
-        default:
-          throw new Error(await resp.text());
+
+      if (resp.ok) {
+        this.suspiciousAssets = (await resp.text()).split('\n').sort();
+        this.suspiciousLastUpdated = new Date().getTime();
       }
     }
 
@@ -361,5 +406,43 @@ export class AssetInfoController {
     }
 
     this.store.updateState({ assets });
+  }
+
+  async updateUsdPrices() {
+    let { assets } = this.store.getState();
+    const network = this.getNetwork();
+
+    const resp = await fetch(new URL('/api/tickers', MARKETDATA_URL));
+
+    if (resp.ok) {
+      const tickers = await resp.json();
+      this.usdPrices = tickers.reduce((acc, ticker) => {
+        if (
+          !stablecoinAssetIds.has(ticker.amountAssetID) &&
+          ticker.priceAssetID === MARKETDATA_USD_ASSET_ID
+        ) {
+          acc[ticker.amountAssetID] = ticker['24h_close'];
+
+          const asset =
+            assets[network] && assets[network][ticker.amountAssetID];
+          if (asset) {
+            asset.usdPrice = ticker['24h_close'];
+          }
+        }
+
+        return acc;
+      }, {});
+
+      stablecoinAssetIds.forEach(ticker => {
+        this.usdPrices[ticker] = '1';
+
+        const asset = assets[network] && assets[network][ticker];
+        if (asset) {
+          asset.usdPrice = '1';
+        }
+      });
+
+      this.store.updateState({ assets });
+    }
   }
 }

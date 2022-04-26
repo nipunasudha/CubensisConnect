@@ -25,6 +25,10 @@
   text-overflow: ellipsis;
 }
 
+.accountAmount {
+  font-weight: 600;
+}
+
 .otherAccountsButton {
   align-self: center;
   position: relative;
@@ -58,25 +62,23 @@
   flex-grow: 1;
 }
 
-.buttonWallet {
+.button {
   cursor: pointer;
   text-decoration: none;
   background-color: #0e0e1d;
   border: 1px solid #004649;
   border-radius: 2px;
-  display: flex;
+  display: inline-flex;
+  gap: 6px;
   align-items: center;
-  border: 1px solid;
   padding: 6px 8px;
-  border-radius: 2px;
   background: none;
   color: var(--color-submit400);
   font-size: 12px;
-  color: #fff;
 }
 
-.buttonWallet:hover {
-  background-color: #004649;
+.button:hover {
+  background-color: var(--color-basic100);
 }
 
 .iconButton {

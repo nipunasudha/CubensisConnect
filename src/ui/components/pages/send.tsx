@@ -150,6 +150,7 @@ export function Send() {
                             asset: currentAsset.displayName,
                           })}
                           value={amountValue}
+                          showUsdAmount
                           onChange={value => {
                             setAmountValue(value);
                           }}
@@ -199,6 +200,7 @@ export function Send() {
             data-testid="submitButton"
             disabled={isSubmitting}
             type="submit"
+            view="submit"
           >
             <Trans i18nKey="send.submitButtonText" />
           </Button>

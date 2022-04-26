@@ -1,14 +1,14 @@
-import { Money } from '@waves/data-entities';
-import { BigNumber } from '@waves/bignumber';
 import * as React from 'react';
+import BigNumber from '@waves/bignumber';
 import { Trans } from 'react-i18next';
 import cn from 'classnames';
 import { useAppSelector } from 'ui/store';
 import { Avatar } from '../ui/avatar/Avatar';
-import { Balance } from '../ui/balance/Balance';
 import { Copy } from '../ui/copy/Copy';
 import * as styles from './activeAccountCard.module.css';
 import { Tooltip } from '../ui/tooltip';
+import { Loader } from '../ui/loader';
+import { Account } from '../../../accounts/types';
 
 interface Account {
   address: string;
@@ -18,7 +18,7 @@ interface Account {
 
 interface Props {
   account: Account;
-  balance: string | BigNumber | Money;
+  amountInUsd: BigNumber | null;
   onClick: (account: Account) => void;
   onCopy: () => void;
   onOtherAccountsClick: () => void;
@@ -28,7 +28,7 @@ interface Props {
 
 export function ActiveAccountCard({
   account,
-  balance,
+  amountInUsd,
   onClick,
   onCopy,
   onOtherAccountsClick,
@@ -40,14 +40,20 @@ export function ActiveAccountCard({
   return (
     <div className={styles.root} data-testid="activeAccountCard">
       <div className={styles.accountInfo}>
-        <Avatar size={40} address={account.address} />
+        <Avatar size={40} address={account.address} type={account.type} />
 
         <div className={styles.accountInfoText}>
           <div className={styles.accountName} data-testid="accountName">
             {account.name}
           </div>
 
-          <Balance balance={balance} isShortFormat={false} showAsset split />
+          {amountInUsd !== null ? (
+            <p className={styles.accountAmount}>{`$${amountInUsd.toFixed(
+              2
+            )}`}</p>
+          ) : (
+            <Loader />
+          )}
         </div>
 
         <Tooltip content={<Trans i18nKey="assets.inStorage" />}>

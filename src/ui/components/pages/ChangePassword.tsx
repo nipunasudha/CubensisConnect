@@ -119,14 +119,16 @@ class ChangePasswordComponent extends React.PureComponent<Props> {
                   </Trans>
                 ) : null}
                 {this.state.secondError ? (
-                  <Trans i18nKey="changePassword.errorWrongConfirm">
-                    New passwords not match
-                  </Trans>
+                  <Trans i18nKey="changePassword.errorWrongConfirm" />
                 ) : null}
               </Error>
             </div>
           </div>
-          <Button type="submit" disabled={this.state.buttonDisabled}>
+          <Button
+            type="submit"
+            view="submit"
+            disabled={this.state.buttonDisabled}
+          >
             <Trans i18nKey="changePassword.create">Save</Trans>
           </Button>
         </form>

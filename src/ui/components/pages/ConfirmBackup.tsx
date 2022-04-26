@@ -3,9 +3,8 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { Trans } from 'react-i18next';
 import { Button, Error, Pills } from '../ui';
-import { addUser, setUiState } from '../../actions';
-import { WalletTypes } from '../../services/Background';
 import { AppState } from 'ui/store';
+import { PAGES } from 'ui/pageConfig';
 
 const SHUFFLE_COUNT = 500;
 
@@ -92,6 +91,7 @@ class ConfirmBackupComponent extends React.Component {
           <Button
             id="confirmBackup"
             type="submit"
+            view="submit"
             disabled={this.state.disabled}
             className={styles.confirm}
             onClick={this.onSubmit}
@@ -101,7 +101,7 @@ class ConfirmBackupComponent extends React.Component {
         ) : null}
         {showClear ? (
           <div className={`center tag1 ${styles.clearSeed}`}>
-            <Button type="transparent" onClick={this.onClear}>
+            <Button type="button" view="transparent" onClick={this.onClear}>
               <span className="submit400">
                 <Trans i18nKey="confirmBackup.clear">Clear</Trans>{' '}
               </span>
@@ -115,11 +115,8 @@ class ConfirmBackupComponent extends React.Component {
 
   private _onSubmit(event) {
     event.preventDefault();
-    this.props.setUiState({
-      account: null,
-    });
-    this.props.addUser(this.props.account, WalletTypes.New);
     this.setState({ disabled: true });
+    this.props.setTab(PAGES.ACCOUNT_NAME);
   }
 
   private _onSelect({ text, id }) {
@@ -158,11 +155,7 @@ class ConfirmBackupComponent extends React.Component {
 const mapStateToProps = function (state: AppState) {
   return {
     account: state.localState.newAccount,
-    ...state.localState.addNewAccount,
   };
 };
 
-export const ConfirmBackup = connect(mapStateToProps, {
-  addUser,
-  setUiState,
-})(ConfirmBackupComponent);
+export const ConfirmBackup = connect(mapStateToProps)(ConfirmBackupComponent);
