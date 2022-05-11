@@ -428,6 +428,7 @@ class Background {
   }
 
   async signAndPublishTransaction(data: any) {
+    console.log(data)
     try {
       await this.initPromise;
       return await this.background.signAndPublishTransaction(data);

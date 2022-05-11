@@ -19,7 +19,7 @@ export function AssetInfo({ asset, onCopy, onClose }: Props) {
 
   return (
     <div className="modal cover">
-      <div className="modal-form">
+      <div className="modal-form" style={{background: "#1c1c31"}}>
         <div className="margin-main">
           <div className="input-title basic500 tag1">
             <Trans i18nKey="assetInfo.id" />
