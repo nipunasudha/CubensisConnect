@@ -139,7 +139,6 @@ export const DEFAULT_IGNORE_ERRORS_CONFIG = {
   popupApprove: [] as string[],
 };
 
-// todo port
 export const DEFAULT_IDENTITY_CONFIG = {
   testnet: {
     apiUrl: 'https://id-testnet.decentral.exchange/api',

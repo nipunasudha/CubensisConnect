@@ -2,25 +2,26 @@ import ObservableStore from 'obs-store';
 
 const WAVES = {
   quantity: '10000000000000000',
-  ticker: 'WAVES',
-  id: 'WAVES',
-  name: 'Waves',
+  ticker: 'DCC',
+  id: 'DCC',
+  name: 'DCC',
   precision: 8,
   description: '',
   height: 0,
   timestamp: '2016-04-11T21:00:00.000Z',
   sender: '',
   reissuable: false,
-  displayName: 'WAVES',
+  displayName: 'DCC',
 };
 const SUSPICIOUS_LIST_URL =
-  'https://raw.githubusercontent.com/wavesplatform/waves-community/master/Scam%20tokens%20according%20to%20the%20opinion%20of%20Waves%20Community.csv';
+  'https://raw.githubusercontent.com/Decentral-America/dcc-token-filters/main/scam-v1.csv';
 const MAX_AGE = 60 * 60 * 1000;
 
-const MARKETDATA_URL = 'https://marketdata.decentralamerica.com/';
+const MARKETDATA_URL = 'https://marketdata.wavesplatform.com/';
 const MARKETDATA_USD_ASSET_ID = 'DG2xFkPdDwKUoBkzGAhQtLpSGzfXLiCYPEzeKH2Ad24p';
 const MARKETDATA_POLL_INTERVAL = 10 * 60 * 1000;
 
+// todo add stable coins
 const stablecoinAssetIds = new Set([
   '2thtesXvnVMcCnih9iZbJL3d2NQZMfzENJo8YFj6r5jU',
   '34N9YcEETLWn93qYQ64EsP1x89tSruJU44RrEMSXXEPJ',
@@ -224,10 +225,10 @@ export class AssetInfoController {
     await this.updateSuspiciousAssets();
 
     const { assets } = this.store.getState();
-    if (assetId === '' || assetId == null || assetId.toUpperCase() === 'WAVES')
+    if (assetId === '' || assetId == null || assetId.toUpperCase() === 'DCC')
       return {
         ...WAVES,
-        usdPrice: this.getUsdPrice('WAVES'),
+        usdPrice: this.getUsdPrice('DCC'),
       };
 
     const network = this.getNetwork();
@@ -353,9 +354,9 @@ export class AssetInfoController {
             };
           }
         });
-        assets[network]['WAVES'] = {
+        assets[network]['DCC'] = {
           ...WAVES,
-          usdPrice: this.getUsdPrice('WAVES'),
+          usdPrice: this.getUsdPrice('DCC'),
         };
         this.store.updateState({ assets });
         break;
