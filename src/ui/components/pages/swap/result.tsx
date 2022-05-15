@@ -33,9 +33,9 @@ type TxStatus =
     };
 
 const explorerBaseUrlsByNetwork = {
-  mainnet: 'wavesexplorer.com',
-  testnet: 'testnet.wavesexplorer.com',
-  stagenet: 'stagenet.wavesexplorer.com',
+  mainnet: 'decentralscan.com',
+  testnet: 'decentralscan.com/testnet',
+  stagenet: 'decentralscan.com/stagenet',
 };
 
 export function SwapResult({ fromMoney, transactionId, onClose }: Props) {
