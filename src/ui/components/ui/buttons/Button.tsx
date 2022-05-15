@@ -1,5 +1,5 @@
 import * as React from 'react';
-import * as styles from './Button.module.css';
+import * as styles from './Button.styl';
 import cn from 'classnames';
 
 type View =
