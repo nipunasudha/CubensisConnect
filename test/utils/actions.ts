@@ -3,7 +3,7 @@
  *
  * NOTE: Each of them needs to bind `this` from test.
  */
-import { seedUtils } from '@decentralchain/waves-transactions';
+import { seedUtils } from '@waves/waves-transactions';
 import * as mocha from 'mocha';
 import { By, until, WebElement } from 'selenium-webdriver';
 import { DEFAULT_ANIMATION_DELAY, DEFAULT_PASSWORD } from './constants';
@@ -391,8 +391,13 @@ export const Network = {
   switchTo: async function (this: mocha.Context, network: string) {
     await this.driver
       .wait(
-        until.elementLocated(
-          By.xpath("//i[contains(@class, '-network-networkIcon')]")
+        until.elementIsVisible(
+          this.driver.wait(
+            until.elementLocated(
+              By.xpath("//i[contains(@class, '-network-networkIcon')]")
+            ),
+            this.wait
+          )
         ),
         this.wait
       )

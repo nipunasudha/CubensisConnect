@@ -10,7 +10,7 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 
-import { CubensisConnect_DEBUG } from './constants';
+import { KEEPERWALLET_DEBUG } from './constants';
 import { ledgerService } from './ledger/service';
 import { LedgerSignRequest } from './ledger/types';
 import { cbToPromise, setupDnode, transformMethods } from './lib/dnode-util';
@@ -30,7 +30,7 @@ initUiSentry({
   source: 'popup',
 });
 
-log.setDefaultLevel(CubensisConnect_DEBUG ? 'debug' : 'warn');
+log.setDefaultLevel(KEEPERWALLET_DEBUG ? 'debug' : 'warn');
 
 startUi();
 
@@ -76,7 +76,7 @@ async function startUi() {
   });
 
   // global access to service on debug
-  if (CubensisConnect_DEBUG) {
+  if (KEEPERWALLET_DEBUG) {
     (global as any).background = background;
   }
 
@@ -85,7 +85,10 @@ async function startUi() {
     await background.closeNotificationWindow();
   }
 
-  if (isNotificationWindow) {
+  if (
+    isNotificationWindow &&
+    !window.matchMedia('(display-mode: fullscreen)').matches
+  ) {
     background.resizeNotificationWindow(
       357 + window.outerWidth - window.innerWidth,
       600 + window.outerHeight - window.innerHeight

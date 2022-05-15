@@ -45,7 +45,7 @@ describe('Account management', function () {
     await CreateNewAccount.importAccount.call(
       this,
       'poor',
-      'DCC private node seed without DCC tokens'
+      'waves private node seed without waves tokens'
     );
 
     await CreateNewAccount.importAccount.call(
@@ -84,7 +84,7 @@ describe('Account management', function () {
 
     it('Updating account balances on import');
 
-    it('The balance reflects the leased DCC');
+    it('The balance reflects the leased WAVES');
 
     it('Copying the address of the active account on the accounts screen');
 

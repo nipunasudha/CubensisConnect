@@ -1,17 +1,19 @@
-# Cubensis Connect
+# Keeper Wallet
 
-[en](https://github.com/wavesplatform/cubensis-connect/blob/master/README.md) | ru
+[en](https://github.com/wavesplatform/waves-keeper/blob/master/README.md) | ru
 
 Приложение для хранения данных пользователя
 и проведения транзакций в блокчейн сети Waves.
 [Информация о сети Waves](https://docs.waves.tech/ru/)
 
-## Cubensis Connect API
+## Keeper Wallet API
 
 На страницах браузера, работающим по протоколам http/https (не работает на локальных страничках по протоколу `file://`),
-с установленным расширением Cubensis Connect
-становятся доступным глобальный объект CubensisConnect
-в котором вы найдете следующие методы:
+с установленным расширением Keeper Wallet становятся доступным глобальный объект KeeperWallet.
+
+> Глобальный объект WavesKeeper является **устаревшим** и не рекомендуется к использованию в будущем.
+
+В объекте KeeperWallet вы найдете следующие методы:
 
 - `auth`
 - `publicState`
@@ -32,24 +34,24 @@
 
 > Все методы кроме `on` работают асинхронно и возвращают [Promise](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Promise)
 
-В вашем коде вы можете использовать [TypeScript types](https://github.com/wavesplatform/CubensisConnect-types)
+В вашем коде вы можете использовать [TypeScript types](https://github.com/wavesplatform/waveskeeper-types)
 
-При загрузке страницы в объекте CubensisConnect нет методов апи до окончания инициализации плагина.
-Для облегчения работы с CubensisConnect при инициализации в `window.CubensisConnect` есть `initialPromise`,
+При загрузке страницы в объекте KeeperWallet нет методов апи до окончания инициализации плагина.
+Для облегчения работы с KeeperWallet при инициализации в `window.KeeperWallet` есть `initialPromise`,
 который отрабатывает в момент окончания инициализации.
 Пример:
 
 ```js
-CubensisConnect.initialPromise.then(keeperApi => {
-  /*...инициализация работы приложения с CubensisConnect*/
+KeeperWallet.initialPromise.then(keeperApi => {
+  /*...инициализация работы приложения с KeeperWallet*/
   keeperApi.publicState().then(state => startApp(state));
 });
 ```
 
-В Cubensis Connect, для большей безопасности и удобства использования,
+В KeeperWallet, для большей безопасности и удобства использования,
 каждый новый сайт использующий API должен быть разрешен пользователем.
 При первой попытке использования API (кроме `on`) пользователю будет показан запрос на
-разрешение работы Cubensis Connect с этим сайтом. Если пользователь согласен дать доступ,
+разрешение работы KeeperWallet с этим сайтом. Если пользователь согласен дать доступ,
 сайт становится доверенным, и получает возможность использовать API на своих страницах.
 В противном случае сайт блокируется и на все запросы будет возвращена ошибка
 `{message: "Api rejected by user", code: 12}`, пользователь не увидит новых уведомлений.
@@ -64,7 +66,7 @@ CubensisConnect.initialPromise.then(keeperApi => {
 Пример:
 
 ```js
-CubensisConnect.publicState()
+KeeperWallet.publicState()
   .then(state => {
     console.log(state); //вывод в консоль результата
     /*...обработка данных */
@@ -80,7 +82,7 @@ CubensisConnect.publicState()
 ```js
 const getPublicState = async () => {
   try {
-    const state = await CubensisConnect.publicState();
+    const state = await KeeperWallet.publicState();
     console.log(state); //вывод в консоль результата
     /*...обработка данных */
   } catch (error) {
@@ -110,8 +112,8 @@ const result = await getPublicState();
     },
     "network": {
         "code": "W",
-        "server": "https://mainnet-node.decentralchain.io/",
-        "matcher": "https://mainnet-matcher.decentralchain.io/"
+        "server": "https://nodes.wavesnodes.com/",
+        "matcher": "https://matcher.waves.exchange/"
     },
     "messages": [],
     "txVersion": {
@@ -134,20 +136,20 @@ const result = await getPublicState();
 
 Возможные ошибки
 
-- `{ message: "Init Cubensis Connect and add account" }` - Keeper не проинициализирован
-- `{ message: "Add Cubensis Connect account" }` - вход в Keeper произведен, но нет аккаунтов
+- `{ message: "Init Keeper Wallet and add account" }` - Keeper не проинициализирован
+- `{ message: "Add Keeper Wallet account" }` - вход в Keeper произведен, но нет аккаунтов
 - `{ message: "User denied message" }` - пользователь запретил сайту работать с Keeper API
 
 #### encryptMessage
 
 Вы можете зашифровать текст для конкретного пользователя сети Waves, зная его публичный ключ.
 
-CubensisConnect.encryptMessage(`текст для шифрования`, `публичный ключ в кодировке base58`, `префикс строкой уникальный для каждого приложения`)
+KeeperWallet.encryptMessage(`текст для шифрования`, `публичный ключ в кодировке base58`, `префикс строкой уникальный для каждого приложения`)
 
 Пример:
 
 ```js
-CubensisConnect.encryptMessage(
+KeeperWallet.encryptMessage(
   'My message',
   '416z9d8DQDy5MPTqDhvReRBaPb19gEyVRWvHcewpP6Nc',
   'для меня'
@@ -158,10 +160,10 @@ CubensisConnect.encryptMessage(
 
 Возможные ошибки
 
-- `{ message: "Init Cubensis Connect and add account" }` – кипер не проинициализирован
+- `{ message: "Init Keeper Wallet and add account" }` – кипер не проинициализирован
 - `{ message: "App is locked" }` – кипер заблокирован
 
-* `{ message: "Add Cubensis Connect account" }` - вход в кипер произведен, но нет аккаунтов
+* `{ message: "Add Keeper Wallet account" }` - вход в кипер произведен, но нет аккаунтов
 * `{ message: "User denied message" }` - пользователь запретил сайту работать с Keeper API
 
 #### decryptMessage
@@ -169,7 +171,7 @@ CubensisConnect.encryptMessage(
 Вы можете расшифровать сообщение, зашифрованное для вас пользователем сети Waves, зная сообщение и публичный ключ отправителя.
 
 ```js
-CubensisConnect.decryptMessage(
+KeeperWallet.decryptMessage(
   `зашифрованный текст`,
   `публичный ключ в кодировке base58`,
   `префикс строкой уникальный для каждого приложения`
@@ -179,7 +181,7 @@ CubensisConnect.decryptMessage(
 Example:
 
 ```js
-CubensisConnect.decryptMessage(
+KeeperWallet.decryptMessage(
   '**encrypted msg**',
   '416z9d8DQDy5MPTqDhvReRBaPb19gEyVRWvHcewpP6Nc'
 ).then(message => {
@@ -189,15 +191,15 @@ CubensisConnect.decryptMessage(
 
 Возможные ошибки
 
-- `{ message: "Init Cubensis Connect and add account" }` – кипер не проинициализирован
+- `{ message: "Init Keeper Wallet and add account" }` – кипер не проинициализирован
 - `{ message: "App is locked" }` – кипер заблокирован
 
-* `{ message: "Add Cubensis Connect account" }` - вход в кипер произведен, но нет аккаунтов
+* `{ message: "Add Keeper Wallet account" }` - вход в кипер произведен, но нет аккаунтов
 * `{ message: "User denied message" }` - пользователь запретил сайту работать с Keeper API
 
 #### on
 
-Позволяет подписаться на события из Cubensis Connect.
+Позволяет подписаться на события из Keeper Wallet.
 
 Поддерживает события:
 
@@ -206,8 +208,8 @@ CubensisConnect.decryptMessage(
 Пример:
 
 ```js
-CubensisConnect.on('update', state => {
-  //state бъект как из CubensisConnect.publicState
+KeeperWallet.on('update', state => {
+  //state бъект как из KeeperWallet.publicState
 });
 ```
 
@@ -227,7 +229,7 @@ CubensisConnect.on('update', state => {
 Пример:
 
 ```js
-CubensisConnect.notification({
+KeeperWallet.notification({
   title: 'Hello!',
   message: 'Congratulation!!!',
 });
@@ -249,7 +251,7 @@ CubensisConnect.notification({
 
 ```js
 const authData = { data: 'Auth on my site' };
-CubensisConnect.auth(authData)
+KeeperWallet.auth(authData)
   .then(auth => {
     console.log(auth); //вывод в консоль результата
     /*...обработка данных */
@@ -265,7 +267,7 @@ CubensisConnect.auth(authData)
 ```js
 const getAuthData = async authData => {
   try {
-    const state = await CubensisConnect.auth(authData);
+    const state = await KeeperWallet.auth(authData);
     console.log(state); //вывод в консоль результата
     /*...обработка данных */
   } catch (error) {
@@ -293,11 +295,11 @@ const authData = {
   data: 'Generated string from server',
   name: 'My test App',
   icon: '/img/icons/waves_logo.svg',
-  referrer: 'https://decentral.exchange/',
+  referrer: 'https://waves.exchange/',
   successPath: 'login',
 };
 
-CubensisConnect.auth(authData)
+KeeperWallet.auth(authData)
   .then(data => {
     //data - данные от кипера
     //проверка подписи и сохранение адреса...
@@ -335,17 +337,17 @@ const txData = {
   type: 4,
   data: {
     amount: {
-      assetId: 'DCC',
+      assetId: 'WAVES',
       tokens: '1.567',
     },
     fee: {
-      assetId: 'DCC',
+      assetId: 'WAVES',
       tokens: '0.001',
     },
     recipient: 'test',
   },
 };
-CubensisConnect.signTransaction(txData)
+KeeperWallet.signTransaction(txData)
   .then(data => {
     //data - строка готовая для отсылки на ноду(сервер) сети Waves
   })
@@ -358,7 +360,7 @@ CubensisConnect.signTransaction(txData)
 >
 > Описание поддерживаемых типов транзакций вы найдете ниже
 
-В примере мы подписываем транзакцию на перевод токенов Waves на алиас `test` в сети Waves.
+В примере мы подписываем транзакцию на перевод токенов Waves на псевдоним `test` в сети Waves.
 
 ОТВЕТ
 
@@ -395,18 +397,18 @@ const txData = {
   type: 4,
   data: {
     amount: {
-      assetId: 'DCC',
+      assetId: 'WAVES',
       tokens: '1.567',
     },
     fee: {
-      assetId: 'DCC',
+      assetId: 'WAVES',
       tokens: '0.001',
     },
     recipient: 'test',
   },
 };
 
-CubensisConnect.signAndPublishTransaction(txData)
+KeeperWallet.signAndPublishTransaction(txData)
   .then(data => {
     //data - строка готовая для отсылки на ноду(сервер) сети Waves
   })
@@ -434,7 +436,7 @@ CubensisConnect.signAndPublishTransaction(txData)
 - `4` - переводит токен на другой аккаунт
 - `5` - выпускает дополнительное количество токена
 - `6` - уменьшает количество токена
-- `8` – передает DCC в лизинг
+- `8` – передает WAVES в лизинг
 - `9` – прекращает лизинг
 - `10` - создает псевдоним адреса
 - `11` - массовый перевод
@@ -453,11 +455,11 @@ const tx = [
     type: 4,
     data: {
       amount: {
-        assetId: 'DCC',
+        assetId: 'WAVES',
         tokens: '1.567',
       },
       fee: {
-        assetId: 'DCC',
+        assetId: 'WAVES',
         tokens: '0.001',
       },
       recipient: 'test',
@@ -467,11 +469,11 @@ const tx = [
     type: 4,
     data: {
       amount: {
-        assetId: 'DCC',
+        assetId: 'WAVES',
         tokens: '0.51',
       },
       fee: {
-        assetId: 'DCC',
+        assetId: 'WAVES',
         tokens: '0.001',
       },
       recipient: 'merry',
@@ -479,13 +481,13 @@ const tx = [
   },
 ];
 
-CubensisConnect.signTransactionPackage(tx, name);
+KeeperWallet.signTransactionPackage(tx, name);
 ```
 
 Подписать 2 транзакции:
 
-- перевода на алиас test 1.567 Waves
-- перевода на алиас merry 0.1 Waves
+- перевода на псевдоним test 1.567 Waves
+- перевода на псевдоним merry 0.1 Waves
 
 ОТВЕТ
 
@@ -498,7 +500,7 @@ CubensisConnect.signTransactionPackage(tx, name);
 
 У каждого пользователя в сети waves есть стейт (балансы, ассеты, данные, скрипты),
 любая прошедшая транзакция меняет эти данные.
-В CubensisConnect API - отличается от [NODE REST API](https://docs.waves.tech/ru/waves-node/node-api/).
+В KeeperWallet API - отличается от [NODE REST API](https://docs.waves.tech/ru/waves-node/node-api/).
 
 `signTransaction`, `signAndPublishTransaction` принимают транзакцию в следующем виде
 
@@ -513,7 +515,7 @@ CubensisConnect.signTransactionPackage(tx, name);
 
 Условные обозначения
 
-> \* - необязательное поле, данные подставятся автоматически из CubensisConnect.
+> \* - необязательное поле, данные подставятся автоматически из KeeperWallet.
 > [x,y] - ограничение длины от x, до y.
 > [,x] - ограничение длины до x.
 > [y,] - ограничение длины от y.
@@ -524,10 +526,10 @@ CubensisConnect.signTransactionPackage(tx, name);
 
 MoneyLike может иметь вид:
 
-- `{ tokens: 1, assetId: "DCC" }`
-- `{ coins: 100000000, assetId: "DCC" }`;
+- `{ tokens: 1, assetId: "WAVES" }`
+- `{ coins: 100000000, assetId: "WAVES" }`;
 
-В обеих записях указана одинаковая цена 1 DCC. Можно свободно перевести `coins` в `tokens` и обратно,
+В обеих записях указана одинаковая цена 1 WAVES. Можно свободно перевести `coins` в `tokens` и обратно,
 зная в каком ассете указана цена и получив его точность `tokens = coins / (10 ** precision)`
 Если в поле указаны дополнительные типы кроме MoneyLike, например string/MoneyLike, сумма указывается числом в `coins`.
 
@@ -548,7 +550,7 @@ MoneyLike может иметь вид:
 Пример:
 
 ```js
-CubensisConnect.signAndPublishTransaction({
+KeeperWallet.signAndPublishTransaction({
   type: 3,
   data: {
     name: 'Best Token',
@@ -558,7 +560,7 @@ CubensisConnect.signAndPublishTransaction({
     reissuable: true,
     fee: {
       tokens: '1',
-      assetId: 'DCC',
+      assetId: 'WAVES',
     },
   },
 })
@@ -576,7 +578,7 @@ CubensisConnect.signAndPublishTransaction({
 ###### [Тип 4 TRANSFER - передача ассетов](https://docs.waves.tech/ru/blockchain/transaction-type/transfer-transaction)
 
 - `amount` MoneyLike - количество,
-- `recipient` string - адрес получателя или алиас
+- `recipient` string - адрес получателя или псевдоним
 - `attachment`[,140 bytes] string или Byte Array- доп информация
 - `*fee` MoneyLike - комиссия
 - `*senderPublicKey` string - публичный ключ отправителя в base58
@@ -585,11 +587,11 @@ CubensisConnect.signAndPublishTransaction({
 Пример:
 
 ```js
-CubensisConnect.signAndPublishTransaction({
+KeeperWallet.signAndPublishTransaction({
   type: 4,
   data: {
-    amount: { tokens: '3.3333333', assetId: 'DCC' },
-    fee: { tokens: '0.001', assetId: 'DCC' },
+    amount: { tokens: '3.3333333', assetId: 'WAVES' },
+    fee: { tokens: '0.001', assetId: 'WAVES' },
     recipient: 'merry',
   },
 })
@@ -613,7 +615,7 @@ CubensisConnect.signAndPublishTransaction({
 Пример:
 
 ```js
-CubensisConnect.signAndPublishTransaction({
+KeeperWallet.signAndPublishTransaction({
   type: 5,
   data: {
     quantity: 1000,
@@ -621,7 +623,7 @@ CubensisConnect.signAndPublishTransaction({
     reissuable: true,
     fee: {
       tokens: '1',
-      assetId: 'DCC',
+      assetId: 'WAVES',
     },
   },
 })
@@ -647,14 +649,14 @@ CubensisConnect.signAndPublishTransaction({
 Пример:
 
 ```js
-CubensisConnect.signAndPublishTransaction({
+KeeperWallet.signAndPublishTransaction({
   type: 6,
   data: {
     amount: 1000,
     assetId: '8LQW8f7P5d5PZM7GtZEBgaqRPGSzS3DfPuiXrURJ4AJS',
     fee: {
       tokens: '0.001',
-      assetId: 'DCC',
+      assetId: 'WAVES',
     },
   },
 })
@@ -670,7 +672,7 @@ CubensisConnect.signAndPublishTransaction({
 
 ###### [Тип 8 LEASE - Передача в лизинг](https://docs.waves.tech/ru/blockchain/transaction-type/lease-transaction)
 
-- `recipient` string - адрес получателя или алиас,
+- `recipient` string - адрес получателя или псевдоним,
 - `amount` [0 - (JLM)] number/string/MoneyLike - количество,
 - `*fee` MoneyLike -комиссия
 - `*senderPublicKey` string - публичный ключ отправителя в base58
@@ -679,14 +681,14 @@ CubensisConnect.signAndPublishTransaction({
 Пример:
 
 ```js
-CubensisConnect.signAndPublishTransaction({
+KeeperWallet.signAndPublishTransaction({
   type: 8,
   data: {
     amount: 1000,
     recipient: 'merry',
     fee: {
       tokens: '0.001',
-      assetId: 'DCC',
+      assetId: 'WAVES',
     },
   },
 })
@@ -710,13 +712,13 @@ CubensisConnect.signAndPublishTransaction({
 Пример:
 
 ```js
-CubensisConnect.signAndPublishTransaction({
+KeeperWallet.signAndPublishTransaction({
   type: 9,
   data: {
     leaseId: '6frvwF8uicAfyEfTfyC2sXqBJH7V5C8he5K4YH3BkNiS',
     fee: {
       tokens: '0.001',
-      assetId: 'DCC',
+      assetId: 'WAVES',
     },
   },
 })
@@ -730,9 +732,9 @@ CubensisConnect.signAndPublishTransaction({
 
 В случае успеха отменяется лизинг.
 
-###### [Тип 10 CREATE ALIAS - создание алиаса для адреса](https://docs.waves.tech/ru/blockchain/transaction-type/create-alias-transaction)
+###### [Тип 10 CREATE ALIAS - создание псевдонима для адреса](https://docs.waves.tech/ru/blockchain/transaction-type/create-alias-transaction)
 
-- `alias`[4, 30] string - имя
+- `alias`[4, 30] string - псевдоним. [Требования к псевдониму](https://docs.waves.tech/ru/blockchain/account/alias#%D1%82%D1%80%D0%B5%D0%B1%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F-%D0%BA-%D0%BF%D1%81%D0%B5%D0%B2%D0%B4%D0%BE%D0%BD%D0%B8%D0%BC%D1%83)
 - `*fee` MoneyLike -комиссия
 - `*senderPublicKey` string - публичный ключ отправителя в base58
 - `*timestamp` number/string - время в мс
@@ -740,31 +742,31 @@ CubensisConnect.signAndPublishTransaction({
 Пример:
 
 ```js
-CubensisConnect.signAndPublishTransaction({
+KeeperWallet.signAndPublishTransaction({
   type: 10,
   data: {
-    alias: 'testAlias',
+    alias: 'test_alias',
     fee: {
       tokens: '0.001',
-      assetId: 'DCC',
+      assetId: 'WAVES',
     },
   },
 })
   .then(tx => {
-    console.log('Ура! Я теперь с алиасом!!!');
+    console.log('Ура! Теперь у меня есть псевдоним!!!');
   })
   .catch(error => {
     console.error('Что-то пошло не так', error);
   });
 ```
 
-В случае успеха для адреса создается алиас (дополнительное имя).
+В случае успеха для адреса создается псевдоним (дополнительное имя).
 
 ###### [Тип 11 MASS TRANSFER - массовая рассылка ассета](https://docs.waves.tech/ru/blockchain/transaction-type/mass-transfer-transaction)
 
 - `totalAmount` moneyLike - итого отправлено (можно не считать сумму и вставить `{ assetId: "id отправляемого ассета", coins: 0}`),
 - `transfers` массив объектов
-  - { `recipient`: string - адрес/алиас, `amount`: number/string/moneyLike }
+  - { `recipient`: string - адрес/псевдоним, `amount`: number/string/moneyLike }
 - `attachment` [,140 bytes в base58] string - доп информация
 - `*fee` MoneyLike -комиссия
 - `*senderPublicKey` string - публичный ключ отправителя в base58
@@ -773,17 +775,17 @@ CubensisConnect.signAndPublishTransaction({
 Пример:
 
 ```js
-CubensisConnect.signAndPublishTransaction({
+KeeperWallet.signAndPublishTransaction({
   type: 11,
   data: {
-    totalAmount: { assetId: 'DCC', coins: 0 },
+    totalAmount: { assetId: 'WAVES', coins: 0 },
     transfers: [
       { recipient: 'alias1', amount: '200000' },
       { recipient: 'alias2', amount: '200000' },
     ],
     fee: {
       tokens: '0.002',
-      assetId: 'DCC',
+      assetId: 'WAVES',
     },
   },
 })
@@ -810,7 +812,7 @@ CubensisConnect.signAndPublishTransaction({
 Пример:
 
 ```js
-CubensisConnect.signAndPublishTransaction({
+KeeperWallet.signAndPublishTransaction({
   type: 12,
   data: {
     data: [
@@ -821,7 +823,7 @@ CubensisConnect.signAndPublishTransaction({
     ],
     fee: {
       tokens: '0.01',
-      assetId: 'DCC',
+      assetId: 'WAVES',
     },
   },
 })
@@ -848,13 +850,13 @@ CubensisConnect.signAndPublishTransaction({
 Пример:
 
 ```js
-CubensisConnect.signAndPublishTransaction({
+KeeperWallet.signAndPublishTransaction({
   type: 13,
   data: {
     script: '',
     fee: {
       tokens: '0.04',
-      assetId: 'DCC',
+      assetId: 'WAVES',
     },
   },
 })
@@ -871,13 +873,14 @@ CubensisConnect.signAndPublishTransaction({
 Пример2:
 
 ```js
-CubensisConnect.signAndPublishTransaction({
+KeeperWallet.signAndPublishTransaction({
   type: 13,
   data: {
-    script: 'base64:AQa3b8tH',
+    script:
+      'base64:BQkACccAAAADCAUAAAACdHgAAAAJYm9keUJ5dGVzCQABkQAAAAIIBQAAAAJ0eAAAAAZwcm9vZnMAAAAAAAAAAAAIBQAAAAJ0eAAAAA9zZW5kZXJQdWJsaWNLZXmfT++m',
     fee: {
       tokens: '0.01',
-      assetId: 'DCC',
+      assetId: 'WAVES',
     },
   },
 })
@@ -901,7 +904,7 @@ CubensisConnect.signAndPublishTransaction({
 Пример:
 
 ```js
-CubensisConnect.signAndPublishTransaction({
+KeeperWallet.signAndPublishTransaction({
   type: 14,
   data: {
     minSponsoredAssetFee: {
@@ -910,7 +913,7 @@ CubensisConnect.signAndPublishTransaction({
     },
     fee: {
       tokens: '1',
-      assetId: 'DCC',
+      assetId: 'WAVES',
     },
   },
 })
@@ -938,14 +941,14 @@ CubensisConnect.signAndPublishTransaction({
 Пример:
 
 ```js
-CubensisConnect.signAndPublishTransaction({
+KeeperWallet.signAndPublishTransaction({
   type: 15,
   data: {
     assetId: '',
-    script: 'base64:AQa3b8tH',
+    script: 'base64:BQbtKNoM',
     fee: {
       tokens: '0.01',
-      assetId: 'DCC',
+      assetId: 'WAVES',
     },
   },
 })
@@ -975,12 +978,12 @@ CubensisConnect.signAndPublishTransaction({
 Пример:
 
 ```js
-CubensisConnect.signAndPublishTransaction({
+KeeperWallet.signAndPublishTransaction({
   type: 16,
   data: {
     fee: {
       tokens: '0.05',
-      assetId: 'DCC',
+      assetId: 'WAVES',
     },
     dApp: '3N27HUMt4ddx2X7foQwZRmpFzg5PSzLrUgU',
     call: {
@@ -992,7 +995,7 @@ CubensisConnect.signAndPublishTransaction({
         },
       ],
     },
-    payment: [{ assetId: 'DCC', tokens: 2 }],
+    payment: [{ assetId: 'WAVES', tokens: 2 }],
   },
 })
   .then(tx => {
@@ -1011,7 +1014,7 @@ CubensisConnect.signAndPublishTransaction({
 
 #### signOrder
 
-Метод Cubensis Connect для подписи ордера в матчер.
+Метод Keeper Wallet для подписи ордера в матчер.
 Принимает на вход объект похожий на транзакцию вида
 
 ```js
@@ -1037,7 +1040,7 @@ CubensisConnect.signAndPublishTransaction({
 Пример:
 
 ```js
-CubensisConnect.signOrder({
+KeeperWallet.signOrder({
   type: 1002,
   data: {
     matcherPublicKey: '7kPFrHDiGw1rCm7LPszuECwWYL3dMf6iMifLRDJQZMzy',
@@ -1045,7 +1048,7 @@ CubensisConnect.signOrder({
     expiration: Date.now() + 100000,
     amount: {
       tokens: '100',
-      assetId: 'DCC',
+      assetId: 'WAVES',
     },
     price: {
       tokens: '0.01',
@@ -1053,7 +1056,7 @@ CubensisConnect.signOrder({
     },
     matcherFee: {
       tokens: '0.03',
-      assetId: 'DCC',
+      assetId: 'WAVES',
     },
   },
 })
@@ -1077,7 +1080,7 @@ CubensisConnect.signOrder({
 
 #### signAndPublishOrder
 
-Метод Cubensis Connect создания ордера на матчер работает идентично `signOrder`, но еще пытается отослать данные на матчер
+Метод Keeper Wallet создания ордера на матчер работает идентично `signOrder`, но еще пытается отослать данные на матчер
 
 ОТВЕТ:
 Строка ответ матчера об успешной постановке ордера.
@@ -1089,7 +1092,7 @@ CubensisConnect.signOrder({
 
 #### signCancelOrder
 
-Метод Cubensis Connect подпись отмены ордера на матчер.
+Метод Keeper Wallet подпись отмены ордера на матчер.
 Принимает на вход объект похожий на транзакцию вида
 
 ```js
@@ -1107,7 +1110,7 @@ CubensisConnect.signOrder({
 Пример:
 
 ```js
-CubensisConnect.signCancelOrder({
+KeeperWallet.signCancelOrder({
   type: 1003,
   data: {
     id: '31EeVpTAronk95TjCHdyaveDukde4nDr9BfFpvhZ3Sap',
@@ -1126,16 +1129,16 @@ CubensisConnect.signCancelOrder({
 
 #### signAndPublishCancelOrder
 
-Метод Cubensis Connect для отмены ордера на матчер, работает идентично `signCancelOrder`,
+Метод Keeper Wallet для отмены ордера на матчер, работает идентично `signCancelOrder`,
 но еще пытается отослать данные на матчер, для которого необходимо передать еще 2 поля `priceAsset` и `amountAsset` из ордера.
 
 Пример:
 
 ```js
-CubensisConnect.signAndPublishCancelOrder({
+KeeperWallet.signAndPublishCancelOrder({
   type: 1003,
   priceAsset: '8LQW8f7P5d5PZM7GtZEBgaqRPGSzS3DfPuiXrURJ4AJS',
-  amountAsset: 'DCC',
+  amountAsset: 'WAVES',
   data: {
     id: '31EeVpTAronk95TjCHdyaveDukde4nDr9BfFpvhZ3Sap',
   },
@@ -1159,7 +1162,7 @@ CubensisConnect.signAndPublishCancelOrder({
 
 #### signRequest
 
-Метод Cubensis Connect для подписи типизированных данных, для подтверждения запросов на разных сервисах.
+Метод Keeper Wallet для подписи типизированных данных, для подтверждения запросов на разных сервисах.
 Принимает на вход объект похожий на транзакцию вида
 
 ```js
@@ -1181,7 +1184,7 @@ CubensisConnect.signAndPublishCancelOrder({
 Пример:
 
 ```js
-CubensisConnect.signRequest({
+KeeperWallet.signRequest({
   type: 1001,
   data: {
     timestamp: 234234242423423,
@@ -1200,7 +1203,7 @@ CubensisConnect.signRequest({
 
 #### signCustomData
 
-Метод Cubensis Connect для подписи данных, для подтверждения их на разных сервисах.
+Метод Keeper Wallet для подписи данных, для подтверждения их на разных сервисах.
 Принимает на вход объект:
 
 ##### version 1
@@ -1211,7 +1214,7 @@ CubensisConnect.signRequest({
 Пример:
 
 ```js
-CubensisConnect.signCustomData({
+KeeperWallet.signCustomData({
   version: 1,
   binary: 'base64:AADDEE==',
 });
@@ -1245,7 +1248,7 @@ CubensisConnect.signCustomData({
 Пример:
 
 ```js
-CubensisConnect.signCustomData({
+KeeperWallet.signCustomData({
   version: 2,
   data: [{ type: 'string', key: 'name', value: 'Mr. First' }],
 });
@@ -1295,7 +1298,7 @@ CubensisConnect.signCustomData({
 Пример:
 
 ```js
-CubensisConnect.verifyCustomData({
+KeeperWallet.verifyCustomData({
   version: 2,
   data: [{ type: 'string', key: 'name', value: 'Mr. First' }],
   signature: 'wrong signature',
@@ -1312,7 +1315,7 @@ CubensisConnect.verifyCustomData({
 Пример:
 
 ```js
-CubensisConnect.resourceIsApproved().then(result => {
+KeeperWallet.resourceIsApproved().then(result => {
   console.log(result);
 });
 ```
@@ -1326,7 +1329,7 @@ CubensisConnect.resourceIsApproved().then(result => {
 Пример:
 
 ```js
-CubensisConnect.resourceIsBlocked().then(result => {
+KeeperWallet.resourceIsBlocked().then(result => {
   console.log(result);
 });
 ```

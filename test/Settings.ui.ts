@@ -62,7 +62,7 @@ describe('Settings', function () {
     await CreateNewAccount.importAccount.call(
       this,
       'rich',
-      'decentralchain private node seed with dcc tokens'
+      'waves private node seed with waves tokens'
     );
     await CreateNewAccount.importAccount.call(
       this,
@@ -355,7 +355,7 @@ describe('Settings', function () {
         // this requests permission first
         const permissionRequest = () => {
           // @ts-ignore
-          CubensisConnect.initialPromise.then(api => {
+          KeeperWallet.initialPromise.then(api => {
             api.publicState().then(
               resolved => {
                 // @ts-ignore

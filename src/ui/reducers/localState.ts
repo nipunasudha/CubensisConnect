@@ -1,6 +1,11 @@
-import {combineReducers} from 'redux';
-import {ACTION, resetSwapScreenInitialState, setSwapScreenInitialState, setTabMode,} from '../actions';
-import {pairing} from './pairing';
+import { combineReducers } from 'redux';
+import {
+  ACTION,
+  resetSwapScreenInitialState,
+  setSwapScreenInitialState,
+  setTabMode,
+} from '../actions';
+import { pairing } from './pairing';
 
 function newUser(state = {}, action) {
   switch (action.type) {
@@ -143,10 +148,6 @@ function tabMode(
     return action.payload;
   }
   return state;
-}
-
-export interface SwapScreenInitialState {
-  fromAssetId: string | null;
 }
 
 export const localState = combineReducers({

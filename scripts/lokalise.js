@@ -13,7 +13,7 @@ try {
 
 const options = {
   method: 'POST',
-  url: 'https://api.lokalise.co/api2/projects/4893596861fd002134ed48.07242588/files/download',
+  url: 'https://api.lokalise.co/api2/projects/371458875c7d357054bbd8.44472567/files/download',
   headers: {
     'x-api-token': lokaliseApiKey,
     'content-type': 'application/json',

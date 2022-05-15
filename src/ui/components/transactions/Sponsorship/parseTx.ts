@@ -9,9 +9,9 @@ export const SPONSOR_MODE = {
 
 export function getAssetsId(tx): Array<string> {
   const feeAssetId =
-    tx.fee && tx.fee.assetId ? tx.fee.assetId : tx.feeAssetId || 'DCC';
+    tx.fee && tx.fee.assetId ? tx.fee.assetId : tx.feeAssetId || 'WAVES';
   const sponsoredAssetId =
-    (tx.minSponsoredAssetFee && tx.minSponsoredAssetFee.assetId) || 'DCC';
+    (tx.minSponsoredAssetFee && tx.minSponsoredAssetFee.assetId) || 'WAVES';
   return [feeAssetId, sponsoredAssetId];
 }
 
@@ -25,7 +25,7 @@ export function getAssetFee(tx) {
 }
 
 export function getAmount() {
-  return { coins: 0, assetId: 'DCC' };
+  return { coins: 0, assetId: 'WAVES' };
 }
 
 export function getAmountSign() {

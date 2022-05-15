@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useTranslation } from 'react-i18next';
-import { seedUtils } from '@decentralchain/waves-transactions';
+import { seedUtils } from '@waves/waves-transactions';
 import { NetworkName, KeystoreProfiles } from 'accounts/types';
 import { ImportKeystoreChooseFile } from './chooseFile';
 import { ImportKeystoreChooseAccounts } from './chooseAccounts';

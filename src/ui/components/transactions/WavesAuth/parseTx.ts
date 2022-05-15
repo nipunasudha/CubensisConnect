@@ -2,15 +2,15 @@ export const messageType = 'wavesAuth';
 export const txType = 'request';
 
 export function getAssetsId(tx = null): Array<string> {
-  return ['DCC'];
+  return ['WAVES'];
 }
 
 export function getFee(tx = null) {
-  return { coins: 0, assetId: 'DCC' };
+  return { coins: 0, assetId: 'WAVES' };
 }
 
 export function getAmount(tx = null) {
-  return { coins: 0, assetId: 'DCC' };
+  return { coins: 0, assetId: 'WAVES' };
 }
 
 export function getAmountSign() {

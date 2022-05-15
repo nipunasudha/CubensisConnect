@@ -7,7 +7,7 @@ import { Asset, Money } from '@waves/data-entities';
 import { BigNumber } from '@waves/bignumber';
 import { address } from '@waves/ts-lib-crypto';
 import { TRANSACTION_TYPE } from '@waves/ts-types';
-import { customData, wavesAuth } from '@decentralchain/waves-transactions';
+import { customData, wavesAuth } from '@waves/waves-transactions';
 import { networkByteFromAddress } from '../lib/cryptoUtil';
 import { ERRORS } from '../lib/KeeperError';
 import { PERMISSIONS } from './PermissionsController';
@@ -279,7 +279,7 @@ export class MessageController extends EventEmitter {
   }
 
   /**
-   * Removes unused messages in final states from previous versions of Cubensis Connect
+   * Removes unused messages in final states from previous versions of Keeper Wallet
    */
   clearUnusedMessages() {
     const unusedStatuses = [
@@ -650,7 +650,8 @@ export class MessageController extends EventEmitter {
             makeBytes.transaction(
               convertFromSa.transaction(
                 readyData,
-                this.networkController.getNetworkCode().charCodeAt(0)
+                this.networkController.getNetworkCode().charCodeAt(0),
+                message.account.type
               )
             )
           );
@@ -682,13 +683,18 @@ export class MessageController extends EventEmitter {
 
         result.data.data = { ...result.data.data, ...matcherFeeData };
         result.messageHash = getHash.order(makeBytes.order(convertedData));
-        result.json = stringify({
-          ...convertedData,
-          sender: address(
-            { publicKey: convertedData.senderPublicKey },
-            this.networkController.getNetworkCode().charCodeAt(0)
-          ),
-        });
+
+        result.json = stringify(
+          {
+            ...convertedData,
+            sender: address(
+              { publicKey: convertedData.senderPublicKey },
+              this.networkController.getNetworkCode().charCodeAt(0)
+            ),
+          },
+          null,
+          2
+        );
         break;
       }
       case 'transaction': {
@@ -717,20 +723,25 @@ export class MessageController extends EventEmitter {
 
         const convertedData = convertFromSa.transaction(
           filledMessage.data,
-          chainId
+          chainId,
+          message.account.type
         );
 
         result.messageHash = getHash.transaction(
           makeBytes.transaction(convertedData)
         );
 
-        result.json = stringify({
-          ...convertedData,
-          sender: address(
-            { publicKey: convertedData.senderPublicKey },
-            chainId
-          ),
-        });
+        result.json = stringify(
+          {
+            ...convertedData,
+            sender: address(
+              { publicKey: convertedData.senderPublicKey },
+              chainId
+            ),
+          },
+          null,
+          2
+        );
         break;
       }
       case 'cancelOrder':
@@ -772,12 +783,13 @@ export class MessageController extends EventEmitter {
 
   async _getFee(message, signData) {
     const signableData = await this._transformData({ ...signData });
+    const chainId = this.networkController.getNetworkCode().charCodeAt(0);
 
     const fee = {
       coins: (
-        await this.getFee(signableData, message.account.address)
+        await this.getFee(signableData, chainId, message.account)
       ).toString(),
-      assetId: 'DCC',
+      assetId: 'WAVES',
     };
     return {
       fee,

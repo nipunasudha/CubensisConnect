@@ -1,27 +1,26 @@
 import ObservableStore from 'obs-store';
 
-const DCC = {
+const WAVES = {
   quantity: '10000000000000000',
-  ticker: 'DCC',
-  id: 'DCC',
-  name: 'DCC',
+  ticker: 'WAVES',
+  id: 'WAVES',
+  name: 'Waves',
   precision: 8,
   description: '',
   height: 0,
   timestamp: '2016-04-11T21:00:00.000Z',
   sender: '',
   reissuable: false,
-  displayName: 'DCC',
+  displayName: 'WAVES',
 };
 const SUSPICIOUS_LIST_URL =
-  'https://raw.githubusercontent.com/Decentral-America/dcc-token-filters/main/scam-v1.csv';
+  'https://raw.githubusercontent.com/wavesplatform/waves-community/master/Scam%20tokens%20according%20to%20the%20opinion%20of%20Waves%20Community.csv';
 const MAX_AGE = 60 * 60 * 1000;
 
 const MARKETDATA_URL = 'https://marketdata.wavesplatform.com/';
 const MARKETDATA_USD_ASSET_ID = 'DG2xFkPdDwKUoBkzGAhQtLpSGzfXLiCYPEzeKH2Ad24p';
 const MARKETDATA_POLL_INTERVAL = 10 * 60 * 1000;
 
-// todo add the stable coins
 const stablecoinAssetIds = new Set([
   '2thtesXvnVMcCnih9iZbJL3d2NQZMfzENJo8YFj6r5jU',
   '34N9YcEETLWn93qYQ64EsP1x89tSruJU44RrEMSXXEPJ',
@@ -80,6 +79,7 @@ const assetTickers = {
   yDf4UTg4DS75sCNP7oC1HraTN4KHtqmd6WueTid4PF1: 'MARVIN',
   B543bkZcZNo5GrUnd5fxB6EwkiJhAVyKCkPn5nWzZC2s: 'MATH',
   '8HYDtqEuHj3RDcwR8yxEvPq1qQSB9FazC8wMHtRb2TFe': 'MTNT',
+  eCNH1aqUnocub8PbNsxLNvZWGeVE98L2Crw3cGY6Gq2: 'MUNA',
   '4kwKSf4Bx2Wq8YxKnVZBhcEHyXzEtJ2pw7ixfJgirwf2': 'MUNDO',
   '5NmV5VAhkqormdwvaQjE54yPEkNwSRtcXxhLkJbVQqkN': 'NGNN',
   '6nSpVyNH7yM69eg446wrQR94ipbbcmZMU1ENPwanC97g': 'NSBT',
@@ -142,16 +142,16 @@ export class AssetInfoController {
     const defaults = {
       assets: {
         mainnet: {
-          DCC,
+          WAVES,
         },
         stagenet: {
-          DCC,
+          WAVES,
         },
         testnet: {
-          DCC,
+          WAVES,
         },
         custom: {
-          DCC,
+          WAVES,
         },
       },
     };
@@ -192,30 +192,8 @@ export class AssetInfoController {
     }
   }
 
-  addTickersForExistingAssets() {
-    const { assets } = this.store.getState();
-
-    const assetIdsToUpdate = Object.keys(assetTickers).filter(assetId => {
-      const asset = assets.mainnet[assetId];
-      const ticker = assetTickers[assetId];
-
-      return asset && (asset.displayName !== ticker || asset.ticker !== ticker);
-    });
-
-    if (assetIdsToUpdate.length !== 0) {
-      assetIdsToUpdate.forEach(assetId => {
-        const asset = assets.mainnet[assetId];
-        const ticker = assetTickers[assetId];
-
-        asset.displayName = asset.ticker = ticker;
-      });
-
-      this.store.updateState({ assets });
-    }
-  }
-
   getWavesAsset() {
-    return DCC;
+    return WAVES;
   }
 
   getAssets() {
@@ -236,14 +214,20 @@ export class AssetInfoController {
       : asset.isSuspicious;
   }
 
+  getUsdPrice(assetId) {
+    return this.getNetwork() === 'mainnet' && this.usdPrices
+      ? this.usdPrices[assetId]
+      : undefined;
+  }
+
   async assetInfo(assetId) {
     await this.updateSuspiciousAssets();
 
     const { assets } = this.store.getState();
-    if (assetId === '' || assetId == null || assetId.toUpperCase() === 'DCC')
+    if (assetId === '' || assetId == null || assetId.toUpperCase() === 'WAVES')
       return {
         ...WAVES,
-        usdPrice: this.usdPrices && this.usdPrices['DCC'],
+        usdPrice: this.getUsdPrice('WAVES'),
       };
 
     const network = this.getNetwork();
@@ -280,7 +264,7 @@ export class AssetInfoController {
             issuer: assetInfo.issuer,
             isSuspicious: this.isSuspiciousAsset(assetInfo.assetId),
             lastUpdated: new Date().getTime(),
-            usdPrice: this.usdPrices && this.usdPrices[assetInfo.assetId],
+            usdPrice: this.getUsdPrice(assetInfo.assetId),
           };
           assets[network] = assets[network] || {};
           assets[network][assetId] = { ...assets[network][assetId], ...mapped };
@@ -365,13 +349,13 @@ export class AssetInfoController {
               issuer: assetInfo.issuer,
               isSuspicious: this.isSuspiciousAsset(assetInfo.assetId),
               lastUpdated,
-              usdPrice: this.usdPrices && this.usdPrices[assetInfo.assetId],
+              usdPrice: this.getUsdPrice(assetInfo.assetId),
             };
           }
         });
-        assets[network]['DCC'] = {
+        assets[network]['WAVES'] = {
           ...WAVES,
-          usdPrice: this.usdPrices && this.usdPrices['DCC'],
+          usdPrice: this.getUsdPrice('WAVES'),
         };
         this.store.updateState({ assets });
         break;
@@ -412,35 +396,37 @@ export class AssetInfoController {
     let { assets } = this.store.getState();
     const network = this.getNetwork();
 
-    const resp = await fetch(new URL('/api/tickers', MARKETDATA_URL));
+    if (!this.usdPrices || network === 'mainnet') {
+      const resp = await fetch(new URL('/api/tickers', MARKETDATA_URL));
 
-    if (resp.ok) {
-      const tickers = await resp.json();
-      this.usdPrices = tickers.reduce((acc, ticker) => {
-        if (
-          !stablecoinAssetIds.has(ticker.amountAssetID) &&
-          ticker.priceAssetID === MARKETDATA_USD_ASSET_ID
-        ) {
-          acc[ticker.amountAssetID] = ticker['24h_close'];
+      if (resp.ok) {
+        const tickers = await resp.json();
+        this.usdPrices = tickers.reduce((acc, ticker) => {
+          if (
+            !stablecoinAssetIds.has(ticker.amountAssetID) &&
+            ticker.priceAssetID === MARKETDATA_USD_ASSET_ID
+          ) {
+            acc[ticker.amountAssetID] = ticker['24h_close'];
 
-          const asset =
-            assets[network] && assets[network][ticker.amountAssetID];
-          if (asset) {
-            asset.usdPrice = ticker['24h_close'];
+            const asset =
+              assets['mainnet'] && assets['mainnet'][ticker.amountAssetID];
+            if (asset) {
+              asset.usdPrice = ticker['24h_close'];
+            }
           }
-        }
 
-        return acc;
-      }, {});
+          return acc;
+        }, {});
 
-      stablecoinAssetIds.forEach(ticker => {
-        this.usdPrices[ticker] = '1';
+        stablecoinAssetIds.forEach(ticker => {
+          this.usdPrices[ticker] = '1';
 
-        const asset = assets[network] && assets[network][ticker];
-        if (asset) {
-          asset.usdPrice = '1';
-        }
-      });
+          const asset = assets['mainnet'] && assets['mainnet'][ticker];
+          if (asset) {
+            asset.usdPrice = '1';
+          }
+        });
+      }
 
       this.store.updateState({ assets });
     }

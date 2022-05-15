@@ -1,7 +1,7 @@
 import { Account, NetworkName } from 'accounts/types';
 import { ACTION } from '../actions';
 import { AssetDetail } from '../services/Background';
-import { WithId } from '@decentralchain/waves-transactions/dist/transactions';
+import { WithId } from '@waves/waves-transactions/dist/transactions';
 import { Transaction } from '@waves/ts-types';
 
 export * from './localState';
@@ -118,7 +118,7 @@ export const customCodes = createSimpleReducer<
   Partial<Record<NetworkName, string>>
 >({}, ACTION.UPDATE_CODES);
 export const customMatcher = createSimpleReducer({}, ACTION.UPDATE_MATCHER);
-export const langs = createSimpleReducer({}, ACTION.UPDATE_LANGS);
+export const langs = createSimpleReducer([], ACTION.UPDATE_LANGS);
 export const origins = createSimpleReducer({}, ACTION.UPDATE_ORIGINS);
 export const idleOptions = createSimpleReducer(
   {},

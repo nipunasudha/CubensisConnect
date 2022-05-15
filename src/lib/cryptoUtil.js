@@ -1,4 +1,4 @@
-import { libs } from '@decentralchain/waves-transactions';
+import { libs } from '@waves/waves-transactions';
 
 export function networkByteFromAddress(address) {
   const rawNetworkByte = libs.crypto.base58Decode(address).slice(1, 2);

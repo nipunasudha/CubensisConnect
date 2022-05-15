@@ -17,7 +17,7 @@ describe('Messages', function () {
   const sendMessage = () => {
     const done = arguments[arguments.length - 1];
     // @ts-ignore
-    CubensisConnect.initialPromise.then(api => {
+    KeeperWallet.initialPromise.then(api => {
       api
         .notification({ title: 'Hello!', message: 'World!' })
         .then(done)
@@ -69,7 +69,7 @@ describe('Messages', function () {
     await CreateNewAccount.importAccount.call(
       this,
       'rich',
-      'decentralchain private node seed with dcc tokens'
+      'waves private node seed with waves tokens'
     );
 
     await this.driver.switchTo().window(tabKeeper);

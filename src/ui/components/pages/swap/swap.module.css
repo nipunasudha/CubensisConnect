@@ -14,11 +14,10 @@
 .header {
   position: sticky;
   z-index: 1;
-  color: #fff;
   top: 0;
-  border-bottom: 1px solid #004649;
+  border-bottom: 1px solid #edf0f4;
   padding: 14px;
-  background: linear-gradient(to right, #0096884d 0%, #138c85 100%);
+  background: #fff;
 }
 
 .title {
@@ -38,7 +37,7 @@
   flex: 1 0 auto;
   position: relative;
   padding: 14px;
-  background: #0e0e1d;
+  background: #f8f9fb;
 }
 
 .accountInfoHeader {
@@ -51,6 +50,6 @@
 .accountName {
   font-size: 14px;
   overflow: hidden;
-  color: #fff;
   text-overflow: ellipsis;
+  word-break: break-word;
 }

@@ -4,10 +4,10 @@ import {
   customData,
   serializeCustomData,
   TCustomData,
-} from '@decentralchain/waves-transactions/dist/requests/custom-data';
-import { serializeWavesAuthData } from '@decentralchain/waves-transactions/dist/requests/wavesAuth';
-import { IWavesAuthParams } from '@decentralchain/waves-transactions/dist/transactions';
-import { validate } from '@decentralchain/waves-transactions/dist/validators';
+} from '@waves/waves-transactions/dist/requests/custom-data';
+import { serializeWavesAuthData } from '@waves/waves-transactions/dist/requests/wavesAuth';
+import { IWavesAuthParams } from '@waves/waves-transactions/dist/transactions';
+import { validate } from '@waves/waves-transactions/dist/validators';
 import * as create from 'parse-json-bignumber';
 import { AccountOfType, NetworkName } from 'accounts/types';
 import { IdentityApi } from 'controllers/IdentityController';
@@ -102,7 +102,8 @@ export class WxWallet extends Wallet<WxWalletData> {
   async signTx(tx: SaTransaction): Promise<string> {
     const result = convertFromSa.transaction(
       tx,
-      this.data.networkCode.charCodeAt(0)
+      this.data.networkCode.charCodeAt(0),
+      'wx'
     );
 
     result.proofs.push(await this.signBytes(makeBytes.transaction(result)));

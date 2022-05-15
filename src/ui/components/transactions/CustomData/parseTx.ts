@@ -6,11 +6,11 @@ export function getAssetsId(tx?): Array<string> {
 }
 
 export function getFee(tx?) {
-  return { coins: 0, assetId: 'DCC' };
+  return { coins: 0, assetId: 'WAVES' };
 }
 
 export function getAmount(tx = null) {
-  return { coins: 0, assetId: 'DCC' };
+  return { coins: 0, assetId: 'WAVES' };
 }
 
 export function getAmountSign() {

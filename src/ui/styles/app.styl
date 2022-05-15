@@ -3,12 +3,14 @@
 
 :root {
   --color-white: #fff;
+  --color-basic50: #F8F9FB;
   --color-basic100: #edf0f4;
   --color-basic200: #dae1e9;
-  --color-basic500: #fff;
-  --color-submit200: #009688;
+  --color-basic500: #9ba6b2;
+  --color-disabled500: #999;
+  --color-submit200: #bacaf4;
   --color-submit300: #5a81ea;
-  --color-submit400: #097B1D;
+  --color-submit400: #1f5af6;
   --color-error400: #e5494d;
 }
 
@@ -75,19 +77,12 @@
     position: relative;
     width: 4px;
     height: 8px;
-    background-color: #03232bd1;
+    background-color: $white;
 
   &::-webkit-scrollbar-thumb
     background: $black;
     border-radius: 2px;
-:global a
-  color: #009688;
-  text-decoration: none;
-  cursor: pointer;
-  transition: color 0.2s ease;
 
-  &:hover
-    color: $info400;
 :global body
   width: 100%;
   height: 100%;
@@ -95,7 +90,6 @@
   line-height: normal;
   font-family: Roboto;
   font-weight: 300;
-  color: $white;
   font-size: 12px;
   overflow: hidden;
   margin: 0 auto;
@@ -117,7 +111,7 @@ ul
   left: 0;
   right: 0;
   margin: auto;
-  background-color: $black;
+  background-color: $white;
 
 :global #app-content
 :global .app
@@ -154,7 +148,6 @@ ul
 :global .title1
   font-size: 24px;
   font-weight: normal;
-  color: $white;
 
 :global .headline1
   font-size: 18px;
@@ -176,7 +169,6 @@ ul
 
 :global .body1
   font-size: 14px;
-  color: $white;
 
 :global .body2
   font-size: 16px;
@@ -186,13 +178,12 @@ ul
   font-size: 12px;
 
 :global .tag1
-  font-size: 13px;
+  font-size: 11px;
 
 :global .link
   text-decoration: underline;
   font-weight: 400;
   cursor: pointer;
-  color: #009688;
 
   &.blue
     color: $submit400;
@@ -264,8 +255,9 @@ $layout-44 = 44px;
   margin-top: $layout-10 * 4;
 
 :global .height
+  display: flex;
+  flex-direction: column;
   height: 100%;
-  display: block;
 
 // font-weights
 :global .font300
@@ -304,7 +296,7 @@ $layout-44 = 44px;
   display: inline-block;
   margin-bottom: 4px;
   &-black
-    color: $white;
+    color: $black;
     margin-bottom: 4px;
 
 :global .border-bottom
@@ -315,12 +307,12 @@ $layout-44 = 44px;
 
 :global .grey-line
   background: $basic50;
+  border: 1px dashed $basic200;
   display: flex;
-  height: 50px;
+  height: 42px;
   align-items: center;
   justify-content: center;
-  font-size: 15px;
-  color: $white;
+  font-size: 12px;
 
 :global .origin-ellipsis
   max-width: 250px;
@@ -335,10 +327,10 @@ $layout-44 = 44px;
     flex-grow: 1;
 
 :global .plate
-  background: #09363275;
+  background: $basic50;
+  border: 1px dashed $basic200;
   padding: $layout-14;
   border-radius: 2px;
-  color: #fff;
 
   &-with-controls
     max-height: 114px;
@@ -365,7 +357,7 @@ $layout-44 = 44px;
       button
         padding: 0;
         margin: 0 20px 0 10px;
-        color: $white;
+        color: $submit300;
         font-size: 12px;
         height: auto;
         background: none transparent;

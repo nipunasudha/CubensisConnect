@@ -7,11 +7,11 @@ import {
 } from '@waves/ledger/lib/Waves';
 import { base58Encode, blake2b } from '@waves/ts-lib-crypto';
 import { TRANSACTION_TYPE } from '@waves/ts-types';
-import { customData, serializeCustomData } from '@decentralchain/waves-transactions';
-import { TCustomData } from '@decentralchain/waves-transactions/dist/requests/custom-data';
-import { serializeWavesAuthData } from '@decentralchain/waves-transactions/dist/requests/wavesAuth';
-import { IWavesAuthParams } from '@decentralchain/waves-transactions/dist/transactions';
-import { validate } from '@decentralchain/waves-transactions/dist/validators';
+import { customData, serializeCustomData } from '@waves/waves-transactions';
+import { TCustomData } from '@waves/waves-transactions/dist/requests/custom-data';
+import { serializeWavesAuthData } from '@waves/waves-transactions/dist/requests/wavesAuth';
+import { IWavesAuthParams } from '@waves/waves-transactions/dist/transactions';
+import { validate } from '@waves/waves-transactions/dist/validators';
 import * as create from 'parse-json-bignumber';
 import { AccountOfType, NetworkName } from 'accounts/types';
 import { AssetDetail } from 'ui/services/Background';
@@ -105,7 +105,8 @@ export class LedgerWallet extends Wallet<LedgerWalletData> {
 
     const result = convertFromSa.transaction(
       tx,
-      this.data.networkCode.charCodeAt(0)
+      this.data.networkCode.charCodeAt(0),
+      'ledger'
     );
 
     const feePrecision =

@@ -75,7 +75,7 @@ module.exports = ({
       if (isProduction) {
         await zipFolder(
           platformFolder,
-          path.join(DIST_FOLDER, `cubensis-connect-${version}-${platformName}.zip`)
+          path.join(DIST_FOLDER, `waves-keeper-${version}-${platformName}.zip`)
         );
 
         console.log(`Zipping ${platformName} is done`);
@@ -147,6 +147,13 @@ module.exports = ({
   );
 
   plugins.push(new WebpackCustomActions({ onBuildEnd: [getPlatforms] }));
+
+  plugins.push(
+    new webpack.NormalModuleReplacementPlugin(
+      /@sentry\/browser\/esm\/helpers.js/,
+      path.resolve(SOURCE_FOLDER, '_sentryHelpersReplacement.js')
+    )
+  );
 
   return {
     stats: 'errors-warnings',

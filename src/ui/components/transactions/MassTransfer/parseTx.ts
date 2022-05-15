@@ -15,11 +15,11 @@ export function getTransferAmount(amount, assetId) {
 
 export function getAssetsId(tx): Array<string> {
   const feeAssetId =
-    tx.fee && tx.fee.assetId ? tx.fee.assetId : tx.feeAssetId || 'DCC';
+    tx.fee && tx.fee.assetId ? tx.fee.assetId : tx.feeAssetId || 'WAVES';
   const amountAssetId =
     tx.totalAmount && tx.totalAmount.assetId
       ? tx.totalAmount.assetId
-      : tx.assetId || 'DCC';
+      : tx.assetId || 'WAVES';
 
   if (feeAssetId === amountAssetId) {
     return [amountAssetId];
@@ -34,7 +34,7 @@ export function getAmount(tx) {
   const assetId =
     tx.totalAmount && tx.totalAmount.assetId
       ? tx.totalAmount.assetId
-      : tx.assetId || 'DCC';
+      : tx.assetId || 'WAVES';
   let tokens = new BigNumber(0);
   let coins = new BigNumber(0);
 

@@ -13,38 +13,22 @@
   height: 24px;
   border-radius: 50%;
   background: #fff;
-  color: #004649;
+  color: #edf0f4;
   vertical-align: middle;
   cursor: pointer;
 }
 
 .swapDirectionBtn:not(:disabled):hover {
-  background: #004649;
+  background: #edf0f4;
 }
 
 .swapDirectionBtn:disabled {
-  background: #0e0e1d;
+  background: #f8f9fb;
   cursor: not-allowed;
 }
 
 .swapDirectionBtnIcon {
-  color: #fff;
-}
-
-.toAmountInput {
-  position: relative;
-}
-
-.toAmountInputGainBadge {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  padding: 1px 8px;
-  border-radius: 4px 0;
-  background: #0155ff;
-  color: var(--color-white);
-  font-weight: 600;
-  font-size: 11px;
+  color: #9ba6b2;
 }
 
 .toAmountInput {
@@ -69,11 +53,10 @@
   gap: 1em;
   font-size: 12px;
   font-weight: 300;
-  color: #fff;
 }
 
 .priceRowLabel {
-  color: #fff;
+  color: #9ba6b2;
 }
 
 .priceRowValue {

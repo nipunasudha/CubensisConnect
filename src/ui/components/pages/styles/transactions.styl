@@ -1,17 +1,18 @@
 @import '../../../styles/colors.styl';
 
 .transaction
+  background: $basic50;
   display: flex;
   flex-direction: column;
-  position: relative;
   height: 100%;
-  background: $basic50;
+  overflow: auto;
+  position: relative;
 
   &-card
     border-radius: 4px;
-    box-shadow: 0 2px 4px 0 #007269;
+    box-shadow: 0 2px 4px 0 #9ba6b2;
     padding: 10px;
-    background: #0a8d6e2b;
+    background: $white;
     position: relative;
 
 .cardClose
@@ -59,7 +60,6 @@
   word-break: break-all;
   text-align: left;
   font-size: 12px;
-  color: $white;
 
   &:last-child
     padding-bottom: 20px;
@@ -152,12 +152,13 @@
   z-index: 23; // this is to show account tooltip above package transaction card
 
 .txButtonsWrapper
-  width: 100%;
-  padding: 14px 14px 0 14px;
   background: $white;
   border-top: 1px solid $basic100;
-  text-align: center;
   flex-wrap: wrap;
+  margin-top: auto;
+  padding: 14px 14px 0 14px;
+  text-align: center;
+  width: 100%;
 
   button
     margin-bottom: 14px;
@@ -180,11 +181,11 @@
       content: '';
       width: calc(100% - 20px);
       height: 10px;
-      box-shadow: 0 2px 4px 0 #007269;
+      box-shadow: 0 2px 4px 0 #9ba6b2;
       z-index: 2;
       display: block;
       border-radius: 0 0 4px 4px;
-      background: #0a8d6e2b;
+      background: $white;
       left: 10px;
       bottom: -6px;
 
@@ -199,8 +200,8 @@
   z-index: 3;
   position: relative;
   border-radius: 4px;
-  box-shadow: 0 2px 4px 0 #007269;
-  background: #0a8d6e2b;
+  box-shadow: 0 2px 4px 0 #9ba6b2;
+  background: $white;
 
 .txBigIcon
   width: 80px;

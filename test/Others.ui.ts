@@ -47,7 +47,7 @@ describe('Others', function () {
 
   it('Send more transactions for signature when different screens are open');
 
-  describe('Send DCC', function () {
+  describe('Send WAVES', function () {
     before(async function () {
       await Network.switchToAndCheck.call(this, 'Testnet');
 
@@ -74,7 +74,7 @@ describe('Others', function () {
       await CreateNewAccount.importAccount.call(
         this,
         'rich',
-        'DCC private node seed with DCC tokens'
+        'waves private node seed with waves tokens'
       );
       await this.driver.switchTo().window(tabKeeper);
     });
@@ -89,7 +89,7 @@ describe('Others', function () {
         .move({
           origin: await this.driver.wait(
             until.elementLocated(
-              By.css('[data-testid="DCC"] [data-testid="moreBtn"]')
+              By.css('[data-testid="WAVES"] [data-testid="moreBtn"]')
             ),
             this.wait
           ),
@@ -99,7 +99,7 @@ describe('Others', function () {
       await this.driver
         .wait(
           until.elementLocated(
-            By.css('[data-testid="DCC"] [data-testid="sendBtn"]')
+            By.css('[data-testid="WAVES"] [data-testid="sendBtn"]')
           ),
           this.wait
         )
@@ -122,7 +122,7 @@ describe('Others', function () {
         .click();
     });
 
-    it('Send DCC to an address', async function () {
+    it('Send WAVES to an address', async function () {
       const recipientInput = await this.driver.wait(
         until.elementLocated(By.css('[data-testid="recipientInput"]')),
         this.wait
@@ -167,7 +167,7 @@ describe('Others', function () {
         this.wait
       );
 
-      expect(await transferAmount.getText()).to.equal('-0.12300000 DCC');
+      expect(await transferAmount.getText()).to.equal('-0.12300000 WAVES');
 
       expect(
         await this.driver
@@ -210,7 +210,7 @@ describe('Others', function () {
         this.wait
       );
 
-      expect(await transferAmount.getText()).to.equal('-0.87654321 DCC');
+      expect(await transferAmount.getText()).to.equal('-0.87654321 WAVES');
 
       expect(
         await this.driver

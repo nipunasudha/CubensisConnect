@@ -357,7 +357,7 @@ class Background {
   async assetInfo(assetId: string): Promise<AssetDetail> {
     try {
       await this.initPromise;
-      return await this.background.assetInfo(assetId || 'DCC');
+      return await this.background.assetInfo(assetId || 'WAVES');
     } catch (err) {
       throw new Error(prepareErrorMessage(err));
     }
@@ -427,8 +427,7 @@ class Background {
     }
   }
 
-  async signAndPublishTransaction(data: any) {
-    console.log(data)
+  async signAndPublishTransaction(data: WavesKeeper.TSignTransactionData) {
     try {
       await this.initPromise;
       return await this.background.signAndPublishTransaction(data);

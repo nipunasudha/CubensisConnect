@@ -325,7 +325,7 @@ describe('Password management', () => {
       await CreateNewAccount.importAccount.call(
         this,
         'rich',
-        'decentralchain private node seed with dcc tokens'
+        'waves private node seed with waves tokens'
       );
       await this.driver.switchTo().window(tabKeeper);
       await App.open.call(this);

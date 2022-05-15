@@ -14,8 +14,8 @@
 
 .accounts
   flex: 1 1 0;
-  border-top: 1px solid #004649;
-  background: #0e0e1d;
+  border-top: 1px solid #edf0f4;
+  background: #f8f9fb;
   overflow: auto;
 
 .accountsGroup
@@ -23,20 +23,20 @@
 
 .accountsGroupHeader
   position: sticky;
+  z-index: 1;
   top: 0;
   display: flex;
   align-items: center;
-  border-bottom: 1px solid #004649;
+  border-bottom: 1px solid #edf0f4;
   padding: 10px 74px;
-  color: #fff;
-  background: linear-gradient(to right, #0096884d 0%, #138c85 100%);
+  background: #fff;
 
 .accountsGroupIcon
   margin: 0 27px 0 13px;
 
 .accountsGroupLabel
   margin-right: auto;
-  color: #fff;
+  color: #9ba6b2;
   font-size: 12px;
   font-weight: 300;
 
@@ -64,13 +64,15 @@
   display: flex;
   flex-direction: column;
   gap: 2px;
-  color: $white;
 
 .accountName
   font-size: 12px;
   line-height: 14px;
   word-break: break-word;
 
+.accountInfoNote
+  color: var(--color-disabled500);
+
 .buttons
-  border-top: 1px solid #004649;
+  border-top: 1px solid #edf0f4;
   padding: 20px 60px;

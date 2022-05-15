@@ -57,7 +57,7 @@ describe('Network management', function () {
         await CreateNewAccount.importAccount.call(
           this,
           'rich',
-          'decentralchain private node seed with dcc tokens'
+          'waves private node seed with waves tokens'
         );
         await this.driver.switchTo().window(tabKeeper);
 
@@ -90,7 +90,7 @@ describe('Network management', function () {
     });
 
     describe('Custom', function () {
-      const validNodeUrl = 'https://mainnet-node.decentralchain.io';
+      const validNodeUrl = 'https://nodes.wavesnodes.com';
       const invalidNodeUrl = 'https://nodes.invalid.com';
       const customNetwork = 'Custom';
 

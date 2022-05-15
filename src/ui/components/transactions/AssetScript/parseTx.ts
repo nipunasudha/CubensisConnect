@@ -5,14 +5,14 @@ export const txType = 'transaction';
 
 export function getAssetsId(tx): Array<string> {
   const feeAssetId =
-    tx.fee && tx.fee.assetId ? tx.fee.assetId : tx.feeAssetId || 'DCC';
+    tx.fee && tx.fee.assetId ? tx.fee.assetId : tx.feeAssetId || 'WAVES';
   return [feeAssetId];
 }
 
 export { getFee } from '../BaseTransaction/parseTx';
 
 export function getAmount() {
-  return { coins: 0, assetId: 'DCC' };
+  return { coins: 0, assetId: 'WAVES' };
 }
 
 export function getAmountSign() {

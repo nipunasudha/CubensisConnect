@@ -13,12 +13,11 @@
 
 .header {
   position: sticky;
-  color: #fff;
   z-index: 1;
   top: 0;
-  border-bottom: 1px solid #004649;
+  border-bottom: 1px solid #edf0f4;
   padding: 14px;
-  background: linear-gradient(to right, #0096884d 0%, #138c85 100%);
+  background: #fff;
 }
 
 .title {
@@ -30,14 +29,14 @@
   flex: 1 0 auto;
   position: relative;
   padding: 14px;
-  background: #0e0e1d;
+  background: #f8f9fb;
 }
 
 .submitButtonWrapper {
   position: sticky;
   z-index: 1;
   bottom: 0;
+  border-top: 1px solid #edf0f4;
   padding: 14px;
-  background: #0e0e1e;
-  color: #fff;
+  background: #fff;
 }

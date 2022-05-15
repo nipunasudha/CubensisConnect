@@ -1,4 +1,4 @@
-import { libs } from '@decentralchain/waves-transactions';
+import { libs } from '@waves/waves-transactions';
 import { concat, identity, ifElse, isNil, pipe } from 'ramda';
 
 function networkByteFromAddress(address: string): string {

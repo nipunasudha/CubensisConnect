@@ -4,7 +4,7 @@ import { useAppSelector } from 'ui/store';
 import background from '../../../services/Background';
 import { ExportKeystoreChooseAccounts } from './chooseAccounts';
 import { ExportAccountsPasswordModal } from './passwordModal';
-import { seedUtils } from '@decentralchain/waves-transactions';
+import { seedUtils } from '@waves/waves-transactions';
 
 interface Props {
   onBack: () => void;
@@ -22,9 +22,7 @@ export function ExportAccounts({ onBack }: Props) {
   return (
     <>
       <ExportKeystoreChooseAccounts
-        accounts={allNetworksAccounts.filter(acc =>
-          ['seed', 'encodedSeed', 'privateKey'].includes(acc.type)
-        )}
+        accounts={allNetworksAccounts}
         onSubmit={selectedAccounts => {
           setAccountsToExport(selectedAccounts);
         }}

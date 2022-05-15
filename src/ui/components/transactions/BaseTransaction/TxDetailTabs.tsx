@@ -1,8 +1,6 @@
-import { BigNumber } from '@waves/bignumber';
 import cn from 'classnames';
-import * as create from 'parse-json-bignumber';
 import * as React from 'react';
-import { Trans } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 import {
   Highlight,
   PlateCollapsable,
@@ -15,24 +13,19 @@ import {
 import { useAppSelector } from 'ui/store';
 import * as styles from './txdetailtabs.styl';
 
-const { parse, stringify } = create({ BigNumber });
-
 interface Props {
   children?: React.ReactNode;
 }
 
 export function TxDetailTabs({ children }: Props) {
+  const { t } = useTranslation();
   const message = useAppSelector(state => state.activePopup?.msg);
 
   return (
     <Tabs>
       <TabList className="body3">
-        <Tab>
-          <Trans i18nKey="transactions.details" />
-        </Tab>
-        <Tab>
-          <Trans i18nKey="transactions.json" />
-        </Tab>
+        <Tab>{t('transactions.details')}</Tab>
+        <Tab>{t('transactions.json')}</Tab>
       </TabList>
       <TabPanels>
         <TabPanel>{children}</TabPanel>
@@ -40,7 +33,7 @@ export function TxDetailTabs({ children }: Props) {
           <PlateCollapsable showExpand showCopy>
             <Highlight
               className={cn('json', 'body3', styles.code)}
-              data={stringify(parse(message.json), null, 2)}
+              data={message.json}
             />
           </PlateCollapsable>
         </TabPanel>

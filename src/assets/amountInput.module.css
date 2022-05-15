@@ -1,11 +1,11 @@
 .root {
   display: flex;
-    align-items: center;
-    gap: 8px;
+  align-items: center;
+  gap: 8px;
   border: solid 1px var(--color-basic100);
   padding: 16px 14px;
-    border-radius: 4px;
-    background: #061e29;
+  border-radius: 4px;
+  background: #fff;
 }
 
 .logo {
@@ -75,7 +75,6 @@
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-  color: #fff;
 }
 
 .value {
@@ -89,7 +88,6 @@
   background: none;
   font-size: 14px;
   text-align: inherit;
-  color: #fff;
 }
 
 .input:focus {
@@ -109,8 +107,6 @@
   font-size: 14px;
   font-weight: bold;
   overflow: hidden;
-  color: #fff;
-  white-space: nowrap;
   text-overflow: ellipsis;
   white-space: nowrap;
 }

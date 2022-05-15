@@ -1,8 +1,8 @@
 @import './../../../styles/colors.styl';
 
 .root
-  margin: 0 auto;
-  width: 240px;
+  overflow: auto;
+  padding: 0 60px 36px;
 
 .importIcon
   display: block;
@@ -44,7 +44,6 @@
   align-items: center;
   gap: 8px;
   font-size: 14px;
-  color: white;
 }
 
 .importButton:disabled {
@@ -63,7 +62,7 @@
 }
 
 .importButtonBadge {
-  background-color: #082d3f;
+  background-color: var(--color-basic500);
   border-radius: 1em;
   padding: 0 8px;
   height: 18px;

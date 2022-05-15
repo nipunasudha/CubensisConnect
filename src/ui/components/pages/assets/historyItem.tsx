@@ -4,7 +4,7 @@ import { Balance, Ellipsis, Loader } from '../../ui';
 import * as React from 'react';
 import { TxIcon } from '../../transactions/BaseTransaction';
 import { useAppSelector } from '../../../store';
-import { Trans, useTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 import { Asset, Money } from '@waves/data-entities';
 import { BigNumber } from '@waves/bignumber';
 import { TRANSACTION_TYPE } from '@waves/ts-types';
@@ -36,18 +36,18 @@ export function HistoryItem({ tx, className }: Props) {
     tx.applicationStatus && tx.applicationStatus !== 'succeeded';
 
   const fromCoins = (amount, assetId) =>
-    assets[assetId ?? 'DCC'] &&
-    Money.fromCoins(amount, new Asset(assets[assetId ?? 'DCC']));
+    assets[assetId ?? 'WAVES'] &&
+    Money.fromCoins(amount, new Asset(assets[assetId ?? 'WAVES']));
 
   const fromTokens = (amount, assetId) =>
-    assets[assetId ?? 'DCC'] &&
-    Money.fromTokens(amount, new Asset(assets[assetId ?? 'DCC']));
+    assets[assetId ?? 'WAVES'] &&
+    Money.fromTokens(amount, new Asset(assets[assetId ?? 'WAVES']));
 
   switch (tx.type) {
     case TRANSACTION_TYPE.GENESIS:
       tooltip = label = t('historyCard.genesis');
       info = (
-        <Balance split showAsset balance={fromCoins(tx.amount, 'DCC')} />
+        <Balance split showAsset balance={fromCoins(tx.amount, 'WAVES')} />
       );
       messageType = 'receive';
       break;
@@ -106,7 +106,7 @@ export function HistoryItem({ tx, className }: Props) {
           addSign={addSign}
           balance={fromCoins(
             tx.amount,
-            tx.type === TRANSACTION_TYPE.TRANSFER ? tx.assetId : 'DCC'
+            tx.type === TRANSACTION_TYPE.TRANSFER ? tx.assetId : 'WAVES'
           )}
         />
       );
@@ -136,12 +136,12 @@ export function HistoryItem({ tx, className }: Props) {
       messageType = 'burn';
       break;
     case TRANSACTION_TYPE.EXCHANGE:
-      const priceAssetId = tx.order1?.assetPair?.priceAsset || 'DCC';
+      const priceAssetId = tx.order1?.assetPair?.priceAsset || 'WAVES';
       const priceAsset = assets[priceAssetId];
 
       const assetAmount = fromCoins(
         tx.amount,
-        tx.order1.assetPair.amountAsset || 'DCC'
+        tx.order1.assetPair.amountAsset || 'WAVES'
       );
 
       let priceAmount, totalPriceAmount;
@@ -186,7 +186,7 @@ export function HistoryItem({ tx, className }: Props) {
           split
           showAsset
           addSign={addSign}
-          balance={fromCoins(tx.amount, 'DCC')}
+          balance={fromCoins(tx.amount, 'WAVES')}
         />
       );
       messageType = 'lease';
@@ -206,7 +206,7 @@ export function HistoryItem({ tx, className }: Props) {
           split
           showAsset
           addSign={addSign}
-          balance={fromCoins(tx.lease.amount, 'DCC')}
+          balance={fromCoins(tx.lease.amount, 'WAVES')}
         />
       );
       messageType = 'cancel-leasing';
@@ -372,7 +372,7 @@ export function HistoryItem({ tx, className }: Props) {
         {!!info && <div className={styles.historyInfo}>{info}</div>}
       </div>
 
-      <Tooltip content={<Trans i18nKey="historyCard.infoTooltip" />}>
+      <Tooltip content={t('historyCard.infoTooltip')}>
         {props => (
           <button
             className={styles.infoButton}

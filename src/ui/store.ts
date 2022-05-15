@@ -3,9 +3,9 @@ import { applyMiddleware, combineReducers, createStore } from 'redux';
 import * as reducers from './reducers/updateState';
 import * as middleware from './midleware';
 import * as extension from 'extensionizer';
-import { CubensisConnect_DEBUG } from './appConfig';
+import { KEEPERWALLET_DEBUG } from './appConfig';
 
-if (CubensisConnect_DEBUG) {
+if (KEEPERWALLET_DEBUG) {
   middleware['logMW'] = store => next => action => {
     console.log('-->', action.type, action.payload, action.meta);
     return next(action);

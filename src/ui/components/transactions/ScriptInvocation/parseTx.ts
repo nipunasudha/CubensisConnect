@@ -16,15 +16,15 @@ export function getTransferAmount(amount, assetId) {
 
 export function getAssetsId(tx): Array<string> {
   const feeAssetId =
-    tx.fee && tx.fee.assetId ? tx.fee.assetId : tx.feeAssetId || 'DCC';
+    tx.fee && tx.fee.assetId ? tx.fee.assetId : tx.feeAssetId || 'WAVES';
   const amountAssetId = (tx.payment || []).map(item => {
     switch (typeof item) {
       case 'string':
-        return 'DCC';
+        return 'WAVES';
       case 'number':
-        return 'DCC';
+        return 'WAVES';
       case 'object':
-        return item && item.assetId ? item.assetId : 'DCC';
+        return item && item.assetId ? item.assetId : 'WAVES';
     }
   });
 
@@ -51,7 +51,7 @@ export function getAmounts(tx) {
         coins = coins.add(parse);
       }
     }
-    const assetId = item.assetId || 'DCC';
+    const assetId = item.assetId || 'WAVES';
 
     amounts.push({ coins, tokens, assetId });
   });

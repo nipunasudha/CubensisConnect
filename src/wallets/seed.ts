@@ -5,9 +5,9 @@ import {
   publicKey,
   signBytes,
 } from '@waves/ts-lib-crypto';
-import { customData, wavesAuth } from '@decentralchain/waves-transactions';
-import { TCustomData } from '@decentralchain/waves-transactions/dist/requests/custom-data';
-import { IWavesAuthParams } from '@decentralchain/waves-transactions/dist/transactions';
+import { customData, wavesAuth } from '@waves/waves-transactions';
+import { TCustomData } from '@waves/waves-transactions/dist/requests/custom-data';
+import { IWavesAuthParams } from '@waves/waves-transactions/dist/transactions';
 import * as create from 'parse-json-bignumber';
 import { AccountOfType, NetworkName } from 'accounts/types';
 import {
@@ -62,7 +62,8 @@ export class SeedWallet extends Wallet<SeedWalletData> {
   async signTx(tx: SaTransaction) {
     const result = convertFromSa.transaction(
       tx,
-      this.data.networkCode.charCodeAt(0)
+      this.data.networkCode.charCodeAt(0),
+      'seed'
     );
 
     result.proofs.push(this.signBytes(makeBytes.transaction(result)));

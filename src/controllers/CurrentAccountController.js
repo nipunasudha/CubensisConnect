@@ -150,7 +150,7 @@ export class CurrentAccountController {
                         return assets;
                       },
                       {
-                        DCC: {
+                        WAVES: {
                           minSponsoredAssetFee: '100000',
                           sponsorBalance: wavesBalances.available,
                           balance: wavesBalances.available,

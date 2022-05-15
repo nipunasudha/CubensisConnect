@@ -1,8 +1,8 @@
 const explorerUrls = new Map([
-  ['?', 'decentralscan.com'],
-  ['T', 'testnet.decentralscan.com'],
-  ['S', 'stagenet.decentralscan.com'],
-  ['custom', 'decentralscan.com/custom'],
+  ['W', 'wavesexplorer.com'],
+  ['T', 'testnet.wavesexplorer.com'],
+  ['S', 'stagenet.wavesexplorer.com'],
+  ['custom', 'wavesexplorer.com/custom'],
 ]);
 
 export function getAccountLink(networkCode: string, address: string) {

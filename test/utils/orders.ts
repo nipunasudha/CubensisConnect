@@ -6,7 +6,7 @@ export const CREATE_ORDER = {
     expiration: Date.now() + 100000,
     amount: {
       tokens: '100',
-      assetId: 'DCC',
+      assetId: 'WAVES',
     },
     price: {
       tokens: '0.01',
@@ -14,7 +14,7 @@ export const CREATE_ORDER = {
     },
     matcherFee: {
       tokens: '0.03',
-      assetId: 'DCC',
+      assetId: 'WAVES',
     },
   },
 };

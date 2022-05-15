@@ -57,7 +57,10 @@ async function setupInpageApi() {
     },
   };
 
-  global.CubensisConnect = global.WavesKeeper = global.Waves = new Proxy(wavesApp, proxyApi);
+  global.KeeperWallet =
+    global.WavesKeeper =
+    global.Waves =
+      new Proxy(wavesApp, proxyApi);
 
   const connectionStream = new LocalMessageDuplexStream({
     name: 'waves_keeper_page',
@@ -91,7 +94,7 @@ async function setupInpageApi() {
   cbs = {};
   Object.assign(wavesApi, inpageApi);
   wavesAppDef.resolve(wavesApi);
-  global.CubensisConnect = global.Waves = wavesApi;
+  global.KeeperWallet = global.WavesKeeper = global.Waves = wavesApi;
   setupClickInterceptor(inpageApi);
 }
 
@@ -133,8 +136,6 @@ function checkForPaymentApiLink(e) {
         ![
           'client.wavesplatform.com',
           'dex.wavesplatform.com',
-          'decentral.exchange',
-          'nftfisher.com',
           'waves.exchange',
         ].find(item => url.host === item)
       ) {
@@ -220,7 +221,7 @@ function processPaymentAPILink({ type, hash }, inpageApi) {
             tokens: apiData.amount,
           },
           fee: {
-            assetId: 'DCC',
+            assetId: 'WAVES',
             tokens: '0.00100000',
           },
           recipient: apiData.recipient,
