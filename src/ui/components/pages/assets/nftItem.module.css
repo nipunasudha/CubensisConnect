@@ -1,6 +1,6 @@
 .nftCard {
   width: 325px;
-  background: #fff;
+  background: var(--color-white);
   display: flex;
   box-shadow: 0 2px 4px 0 rgba(155, 166, 178, 0.4);
   border-radius: 4px;

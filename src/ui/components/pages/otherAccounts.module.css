@@ -9,9 +9,9 @@
   position: sticky;
   z-index: 2;
   top: 0;
-  border-bottom: 1px solid #edf0f4;
+  border-bottom: 1px solid #232323;
   padding: 14px;
-  background: #fff;
+  background: var(--color-white);
 }
 
 .title {
@@ -24,7 +24,7 @@
   position: relative;
   z-index: 1;
   padding: 0 14px 14px;
-  background: #f8f9fb;
+  background: var(--color-white);
 }
 
 .noAccountsNote {

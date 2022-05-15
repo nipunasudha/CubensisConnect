@@ -12,8 +12,8 @@
   width: 24px;
   height: 24px;
   border-radius: 50%;
-  background: #fff;
-  color: #edf0f4;
+  background: var(--color-white);
+  color: var(--color-black);
   vertical-align: middle;
   cursor: pointer;
 }
@@ -72,7 +72,7 @@
 }
 
 .swapPriceDirectionBtn:hover {
-  color: #000;
+  color: var(--color-black);
 }
 
 .swapPriceDirectionBtnIcon {
@@ -158,7 +158,7 @@
 }
 
 .slippageToleranceInput:checked + .slippageToleranceLabel {
-  color: #000;
+  color: var(--color-black);
 }
 
 .slippageToleranceInput:checked

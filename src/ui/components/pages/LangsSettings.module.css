@@ -39,7 +39,7 @@
 }
 
 .langsConfirm {
-  background-color: #ffffff;
+  background-color: var(--color-white);
   bottom: 0;
   left: 0;
   padding: 20px 0;

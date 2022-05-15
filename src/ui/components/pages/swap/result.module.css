@@ -27,7 +27,7 @@
   padding: 10px;
   border-radius: 4px;
   box-shadow: 0 2px 4px #9ba6b2;
-  background: #fff;
+  background: var(--color-white);
 }
 
 .cardIcon {

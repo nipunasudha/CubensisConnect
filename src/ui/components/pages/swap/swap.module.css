@@ -17,7 +17,7 @@
   top: 0;
   border-bottom: 1px solid #edf0f4;
   padding: 14px;
-  background: #fff;
+  background: var(--color-white);
 }
 
 .title {

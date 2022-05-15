@@ -1,7 +1,7 @@
 .tooltip {
   border-radius: 2px;
-  color: #fff;
-  background-color: #000;
+  color: var(--color-white);
+  background-color: var(--color-black);
   padding: 8px 14px;
   font-size: 14px;
 }
@@ -20,7 +20,7 @@
 .arrow:after {
   position: absolute;
   content: ' ';
-  background-color: black;
+  background-color: var(--color-black);
   transform: rotate(45deg);
   width: 10px;
   height: 10px;

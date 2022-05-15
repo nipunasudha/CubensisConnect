@@ -67,7 +67,7 @@
 }
 
 .avatarListArrow:not(:disabled):hover .avatarListArrowSvg {
-  fill: #000;
+  fill: var(--color-black);
 }
 
 .avatarListArrowSvg_left {
