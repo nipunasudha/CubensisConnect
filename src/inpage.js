@@ -134,8 +134,8 @@ function checkForPaymentApiLink(e) {
 
       if (
         ![
-          'client.wavesplatform.com',
-          'dex.wavesplatform.com',
+          'client.decentralamerica.com',
+          'dex.decentralamerica.com',
           'waves.exchange',
         ].find(item => url.host === item)
       ) {

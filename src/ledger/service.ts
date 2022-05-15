@@ -122,7 +122,7 @@ class LedgerService {
 
       if (userData.address !== selectedAccount.address) {
         throw new Error(
-          'Account saved in keeper does not match the one in ledger'
+          'Account saved in CubensisConnect does not match the one in ledger'
         );
       }
 

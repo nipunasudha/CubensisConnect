@@ -181,7 +181,7 @@ class NewAccountComponent extends React.PureComponent<INewAccountComponentProps>
             <label htmlFor="termsAccepted">
               {t('newAccount.acceptTerms')}{' '}
               <a
-                href="https://keeper-wallet.app/terms-of-use"
+                href="https://decentralchain.io/cubensis-connect-terms"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -199,7 +199,7 @@ class NewAccountComponent extends React.PureComponent<INewAccountComponentProps>
             <label htmlFor="conditionsAccepted">
               {t('newAccount.acceptTerms')}{' '}
               <a
-                href="https://keeper-wallet.app/privacy-policy"
+                href="https://decentralchain.io/cubensis-connect-policy"
                 target="_blank"
                 rel="noopener noreferrer"
               >

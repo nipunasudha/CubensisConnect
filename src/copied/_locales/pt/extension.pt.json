@@ -131,21 +131,21 @@
     "chooseAccountsTitle": "Exportar para arquivo Keystore",
     "passwordError": "Senha incorreta",
     "passwordLabel": "Senha",
-    "passwordVerifyDesc": "Digite sua senha da Keeper para confirmar se é realmente você",
+    "passwordVerifyDesc": "Digite sua senha da CubensisConnect para confirmar se é realmente você",
     "passwordVerifyImportantNote": "<attention>Atenção:</attention> esta senha também será usada para criptografar o arquivo resultante. Se você esquecê-la, não poderá restaurar suas contas.",
     "verifyBtn": "Verificar"
   },
   "featureUpdateInfo": {
-    "intro": "A Keeper Wallet se preocupa com a segurança do seu dinheiro e gostaria de lembrá-lo de que perder a frase seed significa perder o acesso à conta permanentemente.",
+    "intro": "A CubensisConnect se preocupa com a segurança do seu dinheiro e gostaria de lembrá-lo de que perder a frase seed significa perder o acesso à conta permanentemente.",
     "recommendation": "Portanto, é altamente recomendável criar um arquivo de backup com as seeds de todas as suas contas.",
     "keystoreInfo": "O arquivo keystore é um local seguro onde você pode armazenar seeds criptografadas com sua senha.",
-    "keystoreImport": "Mais tarde, você poderá importar contas desse arquivo de volta para a Keeper Wallet.",
+    "keystoreImport": "Mais tarde, você poderá importar contas desse arquivo de volta para a CubensisConnect.",
     "backupBtn": "Fazer backup em um arquivo keystore",
     "cancelBtn": "Fazer isso depois"
   },
   "forgotPassword": {
     "attention": "Atenção!",
-    "attentionMessage": "Para redefinir a senha, você precisa excluir todas as contas da Keeper Wallet, definir uma senha nova, importar cada uma de suas contas novamente com a Seed.",
+    "attentionMessage": "Para redefinir a senha, você precisa excluir todas as contas da CubensisConnect, definir uma senha nova, importar cada uma de suas contas novamente com a Seed.",
     "warningMessage": "Se você não salvou a Seed ou a Chave Privada, não poderá recuperar o acesso à sua conta.",
     "continueMessage": "Para continuar, digite isso no campo abaixo",
     "phrase": "EXCLUIR TODAS AS CONTAS",
@@ -255,7 +255,7 @@
     "browse": "Buscar...",
     "chooseAccountsTitle": "Escolher contas",
     "chooseAccountsDesc": "Selecione quais contas você deseja importar",
-    "chooseAccountsExistingAccountNote": "Já existe na Keeper como {{existingName}}",
+    "chooseAccountsExistingAccountNote": "Já existe na CubensisConnect como {{existingName}}",
     "chooseAccountsImportBtn": "Importar {{count}} conta",
     "chooseAccountsImportBtn_plural": "Importar {{count}} contas",
     "chooseAccountsSkipBtn": "Pular",
@@ -270,7 +270,7 @@
     "passwordPlaceholder": "Senha usada para criar Keystore"
   },
   "importLedger": {
-    "accountExistsError": "Esta conta já existe na Keeper",
+    "accountExistsError": "Esta conta já existe na CubensisConnect",
     "accountIdLabel": "ID da conta",
     "avatarListLoading": "Carregando contas...",
     "connectInstructions": "Conecte o dispositivo Ledger e abra o aplicativo Waves",
@@ -302,7 +302,7 @@
   },
   "info": {
     "joinUs": "Junte-se à comunidade Waves",
-    "keepUp": "A Keeper Wallet é a maneira mais segura de interagir com recursos da Web de terceiros, com funcionalidade integrada a Waves ou DApps. Usando a Keeper Wallet, você pode assinar transações e permanecer protegido contra sites maliciosos."
+    "keepUp": "A CubensisConnect é a maneira mais segura de interagir com recursos da Web de terceiros, com funcionalidade integrada a Waves ou DApps. Usando a CubensisConnect, você pode assinar transações e permanecer protegido contra sites maliciosos."
   },
   "langsSettings": { "confirm": "Confirmar", "title": "Alterar o idioma" },
   "ledgerErrors": {
@@ -352,7 +352,7 @@
     "create": "Continuar",
     "createPassword": "Crie uma senha",
     "notMatch": "As senhas não coincidem",
-    "passinfo": "A senha que você digitou será armazenada localmente. Se você mudar de dispositivo ou perder sua senha, terá que repetir o processo de adição de contas à Keeper Wallet. A Waves não armazena suas senhas.",
+    "passinfo": "A senha que você digitou será armazenada localmente. Se você mudar de dispositivo ou perder sua senha, terá que repetir o processo de adição de contas à CubensisConnect. A Waves não armazena suas senhas.",
     "privacyPolicy": "Política de Privacidade",
     "protect": "Proteja sua Conta",
     "smallPass": "A senha é muito curta",
@@ -516,7 +516,7 @@
     "ledgerFailMessage": "O pedido foi rejeitado pela Ledger.",
     "fromInputLabel": "De {{asset}}",
     "gainBestPrice": "Melhor Preço",
-    "gainTooltip": "Lucro da conversão na Keeper, em comparação com outros serviços",
+    "gainTooltip": "Lucro da conversão na CubensisConnect, em comparação com outros serviços",
     "insufficientFundsError": "Saldo Insuficiente",
     "minimumReceived": "Mínimo Recebido",
     "minimumReceivedTooltip": "Valor mínimo que você receberá, levando em consideração a tolerância ao slippage",
@@ -624,7 +624,7 @@
   "wallet": { "lease": "Leased" },
   "welcome": {
     "getStarted": "Iniciar",
-    "info": "Keeper Wallet é a maneira mais segura de interagir com recursos da Web de terceiros, com funcionalidade integrada a Waves ou DApps.",
-    "info2": "Usando a Keeper Wallet, você pode assinar transações e permanecer protegido contra sites maliciosos."
+    "info": "CubensisConnect é a maneira mais segura de interagir com recursos da Web de terceiros, com funcionalidade integrada a Waves ou DApps.",
+    "info2": "Usando a CubensisConnect, você pode assinar transações e permanecer protegido contra sites maliciosos."
   }
 }

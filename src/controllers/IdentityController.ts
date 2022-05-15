@@ -57,7 +57,7 @@ window.fetch = (
   ) {
     return fetch(endpoint, {
       ...options,
-      headers: { ...headers, 'X-Application': 'waveskeeper' },
+      headers: { ...headers, 'X-Application': 'CubensisConnect' },
     }).then(async response => {
       if (response.status === 403) {
         const err = await response.json();

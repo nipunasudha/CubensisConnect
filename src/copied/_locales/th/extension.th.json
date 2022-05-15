@@ -131,21 +131,21 @@
     "chooseAccountsTitle": "Export ไปยังไฟล์ Keystore",
     "passwordError": "รหัสผ่านผิดพลาด",
     "passwordLabel": "รหัสผ่าน",
-    "passwordVerifyDesc": "โปรดป้อนรหัสผ่าน Keeper ของคุณเพื่อยืนยันว่าเป็นคุณจริงๆ",
+    "passwordVerifyDesc": "โปรดป้อนรหัสผ่าน CubensisConnect ของคุณเพื่อยืนยันว่าเป็นคุณจริงๆ",
     "passwordVerifyImportantNote": "ข้อควรระวัง: รหัสผ่านนี้จะใช้ในการเข้ารหัสไฟล์ผลลัพธ์ด้วย หากคุณลืม คุณจะไม่สามารถกู้คืนบัญชีของคุณได้",
     "verifyBtn": "ยืนยัน"
   },
   "featureUpdateInfo": {
-    "intro": "Keeper Wallet ใส่ใจในความปลอดภัยของเงินลงทุนของคุณและต้องการเตือนคุณว่าการสูญ seed phrase หมายถึงการสูญเสียการเข้าถึงบัญชีอย่างถาวร",
+    "intro": "CubensisConnect ใส่ใจในความปลอดภัยของเงินลงทุนของคุณและต้องการเตือนคุณว่าการสูญ seed phrase หมายถึงการสูญเสียการเข้าถึงบัญชีอย่างถาวร",
     "recommendation": "ดังนั้น เราขอแนะนำอย่างยิ่งให้สร้างไฟล์สำรองที่มี seed phrase ของบัญชีทั้งหมดของคุณไว้",
     "keystoreInfo": "ไฟล์ Keystore เป็นที่ที่ปลอดภัยซึ่งคุณสามารถจัดเก็บ seed phrase ที่เข้ารหัสด้วยรหัสผ่านของคุณ",
-    "keystoreImport": "คุณสามารถนำเข้าบัญชีจากไฟล์นี้กลับเข้าสู่ Keeper Wallet ได้ในภายหลัง",
+    "keystoreImport": "คุณสามารถนำเข้าบัญชีจากไฟล์นี้กลับเข้าสู่ CubensisConnect ได้ในภายหลัง",
     "backupBtn": "สำรองข้อมูลไปยังไฟล์ keystore",
     "cancelBtn": "ฉันจะทำในภายหลัง"
   },
   "forgotPassword": {
     "attention": "โปรดทราบ!",
-    "attentionMessage": "ในการรีเซ็ตรหัสผ่าน คุณต้องลบบัญชีทั้งหมดออกจาก Keeper Wallet, ตั้งรหัสผ่านใหม่, นำเข้าแต่ละบัญชีของคุณอีกครั้งจาก Seed phrase",
+    "attentionMessage": "ในการรีเซ็ตรหัสผ่าน คุณต้องลบบัญชีทั้งหมดออกจาก CubensisConnect, ตั้งรหัสผ่านใหม่, นำเข้าแต่ละบัญชีของคุณอีกครั้งจาก Seed phrase",
     "warningMessage": "หากคุณไม่ได้บันทึก Seed phrase หรือ Private key, คุณจะไม่สามารถกู้คืนการเข้าถึงบัญชีของคุณได้",
     "continueMessage": "พิมพ์สิ่งนี้ลงในช่องด้านล่าง เพื่อดำเนินการต่อ",
     "phrase": "ลบบัญชีทั้งหมด",
@@ -255,7 +255,7 @@
     "browse": "เรียกดู ...",
     "chooseAccountsTitle": "เลือกบัญชี",
     "chooseAccountsDesc": "เลือกบัญชีที่คุณต้องการนำเข้า",
-    "chooseAccountsExistingAccountNote": "มีอยู่แล้วใน Keeper เป็น {{existingName}}",
+    "chooseAccountsExistingAccountNote": "มีอยู่แล้วใน CubensisConnect เป็น {{existingName}}",
     "chooseAccountsImportBtn": "นำเข้า {{count}} บัญชี",
     "chooseAccountsImportBtn_plural": "นำเข้า {{count}} บัญชี",
     "chooseAccountsSkipBtn": "ข้าม",
@@ -270,7 +270,7 @@
     "passwordPlaceholder": "รหัสผ่านที่ใช้ในการสร้าง Keystore"
   },
   "importLedger": {
-    "accountExistsError": "บัญชีนี้มีอยู่แล้วใน Keeper",
+    "accountExistsError": "บัญชีนี้มีอยู่แล้วใน CubensisConnect",
     "accountIdLabel": "หมายเลขบัญชี(ID)",
     "avatarListLoading": "กำลังโหลดบัญชี ...",
     "connectInstructions": "เชื่อมต่อ Ledger และ Waves app",
@@ -302,7 +302,7 @@
   },
   "info": {
     "joinUs": "เข้าร่วมชุมชน Waves ",
-    "keepUp": "Keeper Wallet เป็นวิธีที่ปลอดภัยที่สุดในการโต้ตอบกับแหล่งข้อมูลเว็บของ third-party ด้วย Waves-integrated functionality หรือ DApps การใช้ Wallet Keeper คุณสามารถลงนามในการทำธุรกรรมและยังคงปลอดภัยจากเว็บไซต์ที่เป็นอันตราย"
+    "keepUp": "CubensisConnect เป็นวิธีที่ปลอดภัยที่สุดในการโต้ตอบกับแหล่งข้อมูลเว็บของ third-party ด้วย Waves-integrated functionality หรือ DApps การใช้ Wallet CubensisConnect คุณสามารถลงนามในการทำธุรกรรมและยังคงปลอดภัยจากเว็บไซต์ที่เป็นอันตราย"
   },
   "langsSettings": { "confirm": "ยืนยัน", "title": "เปลี่ยนภาษา" },
   "ledgerErrors": {
@@ -352,7 +352,7 @@
     "create": "ดำเนินการต่อ",
     "createPassword": "สร้างรหัสผ่าน",
     "notMatch": "รหัสผ่านไม่ตรงกัน",
-    "passinfo": "รหัสผ่านที่คุณป้อนจะถูกเก็บไว้ในเครื่อง หากคุณเปลี่ยนอุปกรณ์หรือสูญเสียรหัสผ่านคุณจะต้องทำขั้นตอนการเพิ่มบัญชีไปยัง Keeper Wallet ซ้ำอีกครั้ง เนื่องจาก Waves ไม่เก็บรหัสผ่านของคุณ",
+    "passinfo": "รหัสผ่านที่คุณป้อนจะถูกเก็บไว้ในเครื่อง หากคุณเปลี่ยนอุปกรณ์หรือสูญเสียรหัสผ่านคุณจะต้องทำขั้นตอนการเพิ่มบัญชีไปยัง CubensisConnect ซ้ำอีกครั้ง เนื่องจาก Waves ไม่เก็บรหัสผ่านของคุณ",
     "privacyPolicy": "นโยบายความเป็นส่วนตัว",
     "protect": "ปกป้องบัญชีของคุณ",
     "smallPass": "รหัสผ่านสั้นเกินไป",
@@ -624,7 +624,7 @@
   "wallet": { "lease": "Leased" },
   "welcome": {
     "getStarted": "เริ่ม",
-    "info": "Keeper Wallet เป็นวิธีที่ปลอดภัยที่สุดในการทำงานร่วมกับเว็บของ third-party ด้วย Waves-integrated functionality หรือ DApps",
-    "info2": "การใช้ Keeper Wallet คุณสามารถลงนามในการทำธุรกรรมและยังคงปลอดภัยจากเว็บไซต์ที่เป็นอันตราย"
+    "info": "CubensisConnect เป็นวิธีที่ปลอดภัยที่สุดในการทำงานร่วมกับเว็บของ third-party ด้วย Waves-integrated functionality หรือ DApps",
+    "info2": "การใช้ CubensisConnect คุณสามารถลงนามในการทำธุรกรรมและยังคงปลอดภัยจากเว็บไซต์ที่เป็นอันตราย"
   }
 }

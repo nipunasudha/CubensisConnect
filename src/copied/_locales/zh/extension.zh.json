@@ -131,21 +131,21 @@
     "chooseAccountsTitle": "导出密钥存储文件",
     "passwordError": "密码不正确",
     "passwordLabel": "密码",
-    "passwordVerifyDesc": "请输入Keeper密码进行本人身份认证",
+    "passwordVerifyDesc": "请输入CubensisConnect密码进行本人身份认证",
     "passwordVerifyImportantNote": "<attention>请注意:</attention>该密码也将用于加密导出的文件。如果您忘记该密码，您将无法恢复账户。",
     "verifyBtn": "验证"
   },
   "featureUpdateInfo": {
-    "intro": "Keeper钱包很重视您的资产安全，我们郑重提醒您：忘记助记词种子意味着您将永久丢失访问账户的权利。",
+    "intro": "CubensisConnect钱包很重视您的资产安全，我们郑重提醒您：忘记助记词种子意味着您将永久丢失访问账户的权利。",
     "recommendation": "因为我们强烈推荐您使用助记词种子为您所有的账户创建备份文件。",
     "keystoreInfo": "密钥存储文件是您可以使用密码对您的助记词种子进行加密的地方。",
-    "keystoreImport": "您可以在稍后使用该密钥存储文件在Keeper钱包中导入账户。",
+    "keystoreImport": "您可以在稍后使用该密钥存储文件在CubensisConnect钱包中导入账户。",
     "backupBtn": "备份至密钥存储文件",
     "cancelBtn": "稍后再备份"
   },
   "forgotPassword": {
     "attention": "请注意！",
-    "attentionMessage": "要想重置密码，您需要删除Keeper钱包内的所有账户，然后设置新密码，并重新导入所有账户的助记词种子。",
+    "attentionMessage": "要想重置密码，您需要删除CubensisConnect钱包内的所有账户，然后设置新密码，并重新导入所有账户的助记词种子。",
     "warningMessage": "如果您没有保存助记词种子或私钥，您将无法再次访问您的账户。",
     "continueMessage": "在以下区域中输入该内容以继续进行操作",
     "phrase": "删除所有账户",
@@ -255,7 +255,7 @@
     "browse": "浏览...",
     "chooseAccountsTitle": "选择账户",
     "chooseAccountsDesc": "选择您想导入的账户",
-    "chooseAccountsExistingAccountNote": "Keeper中已存在名为{{existingName}}的账户",
+    "chooseAccountsExistingAccountNote": "CubensisConnect中已存在名为{{existingName}}的账户",
     "chooseAccountsImportBtn": "导入账户{{count}}",
     "chooseAccountsImportBtn_plural": "导入多个账户{{count}}",
     "chooseAccountsSkipBtn": "跳过",
@@ -270,7 +270,7 @@
     "passwordPlaceholder": "用于创建密钥存储文件的密码"
   },
   "importLedger": {
-    "accountExistsError": "该账户在Keeper中已存在",
+    "accountExistsError": "该账户在CubensisConnect中已存在",
     "accountIdLabel": "账户ID",
     "avatarListLoading": "账户加载中...",
     "connectInstructions": "连接Ledger设备并打开Waves应用",
@@ -302,7 +302,7 @@
   },
   "info": {
     "joinUs": "加入Waves社区",
-    "keepUp": "Keeper钱包是您与集成Waves功能的三方网站资源或Dapp交互最安全的方式。使用Keeper钱包，您可以签名交易并在危险的网站中保持安全"
+    "keepUp": "CubensisConnect钱包是您与集成Waves功能的三方网站资源或Dapp交互最安全的方式。使用CubensisConnect钱包，您可以签名交易并在危险的网站中保持安全"
   },
   "langsSettings": { "confirm": "确认", "title": "变更语言" },
   "ledgerErrors": {
@@ -352,7 +352,7 @@
     "create": "继续",
     "createPassword": "创建密码",
     "notMatch": "密码不匹配",
-    "passinfo": "您输入的密码将被保存在本地。如果您更换设备或丢失密码，您必须重复添加Keeper钱包账户的流程。Waves不会保存您的密码。",
+    "passinfo": "您输入的密码将被保存在本地。如果您更换设备或丢失密码，您必须重复添加CubensisConnect钱包账户的流程。Waves不会保存您的密码。",
     "privacyPolicy": "隐私政策",
     "protect": "保护您的账户",
     "smallPass": "密码太短",
@@ -513,7 +513,7 @@
     "ledgerFailMessage": "请求已被Ledger拒绝。",
     "fromInputLabel": "从 {{asset}}",
     "gainBestPrice": "最优价格",
-    "gainTooltip": "通过Keeper兑换与其他服务兑换之间的利润对比",
+    "gainTooltip": "通过CubensisConnect兑换与其他服务兑换之间的利润对比",
     "insufficientFundsError": "资金不足",
     "minimumReceived": "最小接收",
     "minimumReceivedTooltip": "考虑滑点容忍在内，您将收到的最小数量",
@@ -621,7 +621,7 @@
   "wallet": { "lease": "已租赁" },
   "welcome": {
     "getStarted": "开始",
-    "info": "Keeper钱包是您与集成Waves功能的三方网站资源或Dapp交互最安全的方式。",
-    "info2": "使用Keeper钱包，您可以签名交易并在危险的网站中保持安全"
+    "info": "CubensisConnect钱包是您与集成Waves功能的三方网站资源或Dapp交互最安全的方式。",
+    "info2": "使用CubensisConnect钱包，您可以签名交易并在危险的网站中保持安全"
   }
 }

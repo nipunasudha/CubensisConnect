@@ -52,7 +52,7 @@ function setupConnection() {
 
   // forward communication plugin->inpage
   pump(pageStream, pluginStream, pageStream, err =>
-    logStreamDisconnectWarning('Keeperwallet Contentscript Forwarding', err)
+    logStreamDisconnectWarning('CubensisConnect Contentscript Forwarding', err)
   );
 }
 
@@ -63,7 +63,7 @@ function setupConnection() {
  * @param {Error} err Stream connection error
  */
 function logStreamDisconnectWarning(remoteLabel, err) {
-  let warningMsg = `KeeperwalletContentscript - lost connection to ${remoteLabel}`;
+  let warningMsg = `CubensisConnectContentscript - lost connection to ${remoteLabel}`;
   if (err) warningMsg += '\n' + err.stack;
   console.warn(warningMsg);
 }

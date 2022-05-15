@@ -29,7 +29,7 @@
   },
   "applications": {
     "gecko": {
-      "id": "support@wavesplatform.com"
+      "id": "support@decentralamerica.com"
     }
   },
   "default_locale": "en",
@@ -50,7 +50,7 @@
       "256": "images/icon_256.png",
       "512": "images/icon_512.png"
     },
-    "default_title": "Keeper Wallet",
+    "default_title": "CubensisConnect",
     "default_popup": "popup.html"
   },
   "content_scripts": [

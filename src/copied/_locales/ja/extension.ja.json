@@ -131,21 +131,21 @@
     "chooseAccountsTitle": "キーストアファイルにエクスポート",
     "passwordError": "パスワードが間違っています。",
     "passwordLabel": "パスワード",
-    "passwordVerifyDesc": "Keeperのパスワードを入力し、本人確認をしてください。",
+    "passwordVerifyDesc": "CubensisConnectのパスワードを入力し、本人確認をしてください。",
     "passwordVerifyImportantNote": "<attention>注意：</attention>このパスワードはファイルを暗号化する際にも使用されます。パスワードを忘れるとアカウントを復元すできなくなります。",
     "verifyBtn": "検証"
   },
   "featureUpdateInfo": {
-    "intro": "Keeper Wallet は資金の安全性を重視しているため、シードフレーズを失うことはアカウントへのアクセスを永久に失うことにご注意ください。",
+    "intro": "CubensisConnect は資金の安全性を重視しているため、シードフレーズを失うことはアカウントへのアクセスを永久に失うことにご注意ください。",
     "recommendation": "すべてのアカウントのシードフレーズを含むバックアップファイルを作成することを強くお勧めします。",
     "keystoreInfo": "キーストアは、パスワードで暗号化されたシードフレーズを保存できる安全なファイルです。",
-    "keystoreImport": "キーストアファイルからKeeperウォレットにアカウントをインポートすることができます。",
+    "keystoreImport": "キーストアファイルからCubensisConnectウォレットにアカウントをインポートすることができます。",
     "backupBtn": "キーストアファイルへのバックアップ",
     "cancelBtn": "後で行う"
   },
   "forgotPassword": {
     "attention": "注意",
-    "attentionMessage": "パスワードをリセットするには、Keeper Wallet からすべてのアカウントを削除して新パスワードを設定し、シードフレーズから各アカウントを再度インポートする必要があります。",
+    "attentionMessage": "パスワードをリセットするには、CubensisConnect からすべてのアカウントを削除して新パスワードを設定し、シードフレーズから各アカウントを再度インポートする必要があります。",
     "warningMessage": "シードフレーズまたは秘密鍵を保存していない場合、アカウントへのアクセスを回復することはできません。",
     "continueMessage": "続けて、下のフィールドに次のように入力します。",
     "phrase": "DELETE ALL ACCOUNTS",
@@ -255,7 +255,7 @@
     "browse": "参照...",
     "chooseAccountsTitle": "アカウントを選択",
     "chooseAccountsDesc": "インポートするアカウントを選択します。",
-    "chooseAccountsExistingAccountNote": "既にKeeper に {{existingName}} として存在します。",
+    "chooseAccountsExistingAccountNote": "既にCubensisConnect に {{existingName}} として存在します。",
     "chooseAccountsImportBtn": "{{count}} アカウントをインポート",
     "chooseAccountsImportBtn_plural": "{{count}} アカウントをインポート",
     "chooseAccountsSkipBtn": "スキップ",
@@ -270,7 +270,7 @@
     "passwordPlaceholder": "キーストアの作成に使用したパスワード"
   },
   "importLedger": {
-    "accountExistsError": "このアカウントはすでにKeeperに存在しています",
+    "accountExistsError": "このアカウントはすでにCubensisConnectに存在しています",
     "accountIdLabel": "アカウントID",
     "avatarListLoading": "アカウントを読み込み中",
     "connectInstructions": "Ledgerデバイスを接続し、Wavesアプリを開く",
@@ -302,7 +302,7 @@
   },
   "info": {
     "joinUs": "Wavesコミュニティへ参加",
-    "keepUp": "Keeper WalletはWavesに統合された機能またはサードパーティdAppsとやり取りするための最も安全な方法です。Keeper Walletを使用してトランザクションに署名することができ、悪意のあるサイトから身を守ることができます。"
+    "keepUp": "CubensisConnectはWavesに統合された機能またはサードパーティdAppsとやり取りするための最も安全な方法です。CubensisConnectを使用してトランザクションに署名することができ、悪意のあるサイトから身を守ることができます。"
   },
   "langsSettings": { "confirm": "確認", "title": "言語切替" },
   "ledgerErrors": {
@@ -352,7 +352,7 @@
     "create": "続ける",
     "createPassword": "パスワードを作成",
     "notMatch": "パスワードが一致しません。",
-    "passinfo": "入力されたパスワードはローカルに保存されます。デバイスを変更したり、パスワードを紛失したりした場合は再度Keeper Walletにアカウントを追加する必要があります。Wavesはパスワードを保存しません。",
+    "passinfo": "入力されたパスワードはローカルに保存されます。デバイスを変更したり、パスワードを紛失したりした場合は再度CubensisConnectにアカウントを追加する必要があります。Wavesはパスワードを保存しません。",
     "privacyPolicy": "プライバシーポリシー",
     "protect": "アカウントを保護",
     "smallPass": "パスワードが短すぎます。",
@@ -516,7 +516,7 @@
     "ledgerFailMessage": "リクエストはレッジャーに却下されました。",
     "fromInputLabel": "{{asset}}から",
     "gainBestPrice": "最良価格",
-    "gainTooltip": "他のサービスと比較したKeeper経由のスワップ利益",
+    "gainTooltip": "他のサービスと比較したCubensisConnect経由のスワップ利益",
     "insufficientFundsError": "資金不足",
     "minimumReceived": "最低受取数量",
     "minimumReceivedTooltip": "スリッページの許容範囲を考慮した最低受取数量",
@@ -624,7 +624,7 @@
   "wallet": { "lease": "リース中" },
   "welcome": {
     "getStarted": "開始",
-    "info": "Keeper WalletはWavesに統合された機能またはサードパーティdAppsとやり取りするための最も安全な方法です。",
-    "info2": "Keeper Walletを使用してトランザクションに署名することができ、悪意のあるサイトから身を守ることができます。"
+    "info": "CubensisConnectはWavesに統合された機能またはサードパーティdAppsとやり取りするための最も安全な方法です。",
+    "info2": "CubensisConnectを使用してトランザクションに署名することができ、悪意のあるサイトから身を守ることができます。"
   }
 }

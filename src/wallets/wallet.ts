@@ -42,13 +42,13 @@ export abstract class Wallet<TData extends Account> {
     return this.data;
   }
 
-  async encryptMessage(message, publicKey, prefix = 'waveskeeper') {
+  async encryptMessage(message, publicKey, prefix = 'CubensisConnect') {
     const privateKey = this.getPrivateKey();
     const shKey = sharedKey(privateKey, publicKey, prefix);
     return base58Encode(messageEncrypt(shKey, message));
   }
 
-  async decryptMessage(message, publicKey, prefix = 'waveskeeper') {
+  async decryptMessage(message, publicKey, prefix = 'CubensisConnect') {
     const privateKey = this.getPrivateKey();
     const shKey = sharedKey(privateKey, publicKey, prefix);
     try {

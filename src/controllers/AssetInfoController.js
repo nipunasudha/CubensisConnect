@@ -17,7 +17,7 @@ const SUSPICIOUS_LIST_URL =
   'https://raw.githubusercontent.com/wavesplatform/waves-community/master/Scam%20tokens%20according%20to%20the%20opinion%20of%20Waves%20Community.csv';
 const MAX_AGE = 60 * 60 * 1000;
 
-const MARKETDATA_URL = 'https://marketdata.wavesplatform.com/';
+const MARKETDATA_URL = 'https://marketdata.decentralamerica.com/';
 const MARKETDATA_USD_ASSET_ID = 'DG2xFkPdDwKUoBkzGAhQtLpSGzfXLiCYPEzeKH2Ad24p';
 const MARKETDATA_POLL_INTERVAL = 10 * 60 * 1000;
 

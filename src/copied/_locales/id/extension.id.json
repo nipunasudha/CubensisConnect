@@ -139,21 +139,21 @@
     "chooseAccountsTitle": "Ekspor ke Keystore file",
     "passwordError": "Sandi salah",
     "passwordLabel": "Password",
-    "passwordVerifyDesc": "Silakan masukkan kata sandi Keeper Anda untuk mengonfirmasi bahwa itu benar-benar Anda",
+    "passwordVerifyDesc": "Silakan masukkan kata sandi CubensisConnect Anda untuk mengonfirmasi bahwa itu benar-benar Anda",
     "passwordVerifyImportantNote": "<attention>Attention:</attention> password ini juga akan digunakan untuk mengenkripsi file yang dihasilkan. Jika Anda lupa, Anda tidak akan dapat memulihkan akun Anda.",
     "verifyBtn": "Verifikasi"
   },
   "featureUpdateInfo": {
-    "intro": "Keeper Wallet peduli dengan keamanan dana Anda dan ingin mengingatkan Anda bahwa kehilangan frase awal berarti kehilangan akses ke akun secara permanen.",
+    "intro": "CubensisConnect peduli dengan keamanan dana Anda dan ingin mengingatkan Anda bahwa kehilangan frase awal berarti kehilangan akses ke akun secara permanen.",
     "recommendation": "Jadi kami sangat menyarankan untuk membuat file cadangan dengan frase awal dari semua akun Anda.",
     "keystoreInfo": "File keystore adalah tempat yang aman di mana Anda dapat menyimpan frase benih yang dienkripsi dengan kata sandi Anda.",
-    "keystoreImport": "Nanti Anda dapat mengimpor akun dari file ini kembali ke Keeper Wallet.",
+    "keystoreImport": "Nanti Anda dapat mengimpor akun dari file ini kembali ke CubensisConnect.",
     "backupBtn": "Cadangkan ke file keystore",
     "cancelBtn": "Nanti"
   },
   "forgotPassword": {
     "attention": "Perhatian!",
-    "attentionMessage": "Untuk mengatur ulang kata sandi, Anda perlu menghapus semua akun dari Keeper Wallet, mengatur kata sandi baru, mengimpor setiap akun Anda lagi dari frase Seed.",
+    "attentionMessage": "Untuk mengatur ulang kata sandi, Anda perlu menghapus semua akun dari CubensisConnect, mengatur kata sandi baru, mengimpor setiap akun Anda lagi dari frase Seed.",
     "warningMessage": "Jika Anda belum menyimpan frase Seed atau kunci Pribadi, maka Anda tidak akan dapat memulihkan akses ke akun Anda.",
     "continueMessage": "Untuk melanjutkan, ketik ini ke dalam bidang di bawah ini",
     "phrase": "HAPUS SEMUA AKUN",
@@ -263,7 +263,7 @@
     "browse": "Jelajahi...",
     "chooseAccountsTitle": "Pilih akun",
     "chooseAccountsDesc": "Pilih akun mana yang ingin Anda impor",
-    "chooseAccountsExistingAccountNote": "Sudah ada di Keeper sebagai {{existingName}}",
+    "chooseAccountsExistingAccountNote": "Sudah ada di CubensisConnect sebagai {{existingName}}",
     "chooseAccountsImportBtn": "Import {{count}} akun",
     "chooseAccountsImportBtn_plural": "Import {{count}} akun",
     "chooseAccountsSkipBtn": "Lewati",
@@ -278,7 +278,7 @@
     "passwordPlaceholder": "Kata sandi yang digunakan untuk membuat Keystore"
   },
   "importLedger": {
-    "accountExistsError": "Akun ini sudah ada di Keeper",
+    "accountExistsError": "Akun ini sudah ada di CubensisConnect",
     "accountIdLabel": "ID Akun",
     "avatarListLoading": "Memuat akun...",
     "connectInstructions": "Hubungkan perangkat Ledger dan buka aplikasi Waves",
@@ -310,7 +310,7 @@
   },
   "info": {
     "joinUs": "Join Komunitas Waves",
-    "keepUp": "Keeper Wallet adalah cara teraman untuk berinteraksi dengan sumber daya web pihak ketiga dengan fungsionalitas terintegrasi Waves atau DApps. Menggunakan Keeper Wallet, Anda dapat menandatangani transaksi dan tetap aman dari situs berbahaya."
+    "keepUp": "CubensisConnect adalah cara teraman untuk berinteraksi dengan sumber daya web pihak ketiga dengan fungsionalitas terintegrasi Waves atau DApps. Menggunakan CubensisConnect, Anda dapat menandatangani transaksi dan tetap aman dari situs berbahaya."
   },
   "langsSettings": {
     "confirm": "OK",
@@ -363,7 +363,7 @@
     "create": "Lanjutkan",
     "createPassword": "Buat password",
     "notMatch": "Password tdk sama",
-    "passinfo": "Kata sandi yang Anda masukkan akan disimpan secara lokal. Jika Anda mengubah perangkat atau kehilangan kata sandi, Anda harus mengulangi proses penambahan akun ke Keeper Wallet. Waves tidak menyimpan kata sandi Anda.",
+    "passinfo": "Kata sandi yang Anda masukkan akan disimpan secara lokal. Jika Anda mengubah perangkat atau kehilangan kata sandi, Anda harus mengulangi proses penambahan akun ke CubensisConnect. Waves tidak menyimpan kata sandi Anda.",
     "privacyPolicy": "Kebijakan pribadi",
     "protect": "Lindungi Akun Anda",
     "smallPass": "Password terlalu pendek",
@@ -529,7 +529,7 @@
     "ledgerFailMessage": "Permintaan itu ditolak oleh Ledger.",
     "fromInputLabel": "Dari {{asset}}",
     "gainBestPrice": "Harga terbaik",
-    "gainTooltip": "Keuntungan swap melalui Keeper dibandingkan dengan layanan lain",
+    "gainTooltip": "Keuntungan swap melalui CubensisConnect dibandingkan dengan layanan lain",
     "insufficientFundsError": "Dana tidak mencukupi",
     "minimumReceived": "Minimum Diterima",
     "minimumReceivedTooltip": "Jumlah minimum yang akan Anda terima, dengan mempertimbangkan toleransi selip",
@@ -643,7 +643,7 @@
   },
   "welcome": {
     "getStarted": "Pendahuluan",
-    "info": "Keeper Wallet adalah cara teraman untuk berinteraksi dengan sumber daya web pihak ketiga dengan fungsionalitas terintegrasi Waves atau DApps.",
-    "info2": "Menggunakan Keeper Wallet, Anda dapat menandatangani transaksi dan tetap aman dari situs berbahaya."
+    "info": "CubensisConnect adalah cara teraman untuk berinteraksi dengan sumber daya web pihak ketiga dengan fungsionalitas terintegrasi Waves atau DApps.",
+    "info2": "Menggunakan CubensisConnect, Anda dapat menandatangani transaksi dan tetap aman dari situs berbahaya."
   }
 }
