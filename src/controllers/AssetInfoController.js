@@ -3,7 +3,7 @@ import ObservableStore from 'obs-store';
 const WAVES = {
   quantity: '10000000000000000',
   ticker: 'DCC',
-  id: 'DCC',
+  id: 'WAVES',
   name: 'DCC',
   precision: 8,
   description: '',
@@ -225,10 +225,10 @@ export class AssetInfoController {
     await this.updateSuspiciousAssets();
 
     const { assets } = this.store.getState();
-    if (assetId === '' || assetId == null || assetId.toUpperCase() === 'DCC')
+    if (assetId === '' || assetId == null || assetId.toUpperCase() === 'WAVES')
       return {
         ...WAVES,
-        usdPrice: this.getUsdPrice('DCC'),
+        usdPrice: this.getUsdPrice('WAVES'),
       };
 
     const network = this.getNetwork();
@@ -354,9 +354,9 @@ export class AssetInfoController {
             };
           }
         });
-        assets[network]['DCC'] = {
+        assets[network]['WAVES'] = {
           ...WAVES,
-          usdPrice: this.getUsdPrice('DCC'),
+          usdPrice: this.getUsdPrice('WAVES'),
         };
         this.store.updateState({ assets });
         break;

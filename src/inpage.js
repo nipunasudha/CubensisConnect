@@ -221,7 +221,7 @@ function processPaymentAPILink({ type, hash }, inpageApi) {
             tokens: apiData.amount,
           },
           fee: {
-            assetId: 'DCC',
+            assetId: 'WAVES',
             tokens: '0.00100000',
           },
           recipient: apiData.recipient,

@@ -45,7 +45,7 @@ export function OtherAccountsPage({ setTab }: Props) {
 
   const balancesMoney: Record<string, Money> = {};
 
-  const assetInfo = assets['DCC'];
+  const assetInfo = assets['WAVES'];
 
   if (assetInfo) {
     const asset = new Asset(assetInfo);

@@ -99,7 +99,7 @@ export function SwapResult({ fromMoney, transactionId, onClose }: Props) {
             setReceivedMoney(
               new Money(
                 transfer.amount,
-                new Asset(assets[transfer.asset || 'DCC'])
+                new Asset(assets[transfer.asset || 'WAVES'])
               )
             );
             setSwapStatus(SwapStatus.Succeeded);

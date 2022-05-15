@@ -3,7 +3,7 @@ import { BigNumber } from '@waves/bignumber';
 
 export const moneyLikeToMoney = (amount: IMoneyLike, assets): Money => {
   if (amount) {
-    let amountResult = new Money(0, assets[amount.assetId || 'DCC']);
+    let amountResult = new Money(0, assets[amount.assetId || 'WAVES']);
 
     if ('tokens' in amount) {
       amountResult = amountResult.cloneWithTokens(amount.tokens || 0);
@@ -28,7 +28,7 @@ export const getMoney = (
   }
 
   if (amount instanceof BigNumber) {
-    return new Money(amount, assets['DCC']);
+    return new Money(amount, assets['WAVES']);
   }
 
   if (typeof amount === 'object') {
@@ -38,11 +38,11 @@ export const getMoney = (
 
     return new Money(
       (amount as { amount?: number | string }).amount || 0,
-      assets[amount.assetId || 'DCC']
+      assets[amount.assetId || 'WAVES']
     );
   }
 
-  return new Money(new BigNumber(amount), assets['DCC']);
+  return new Money(new BigNumber(amount), assets['WAVES']);
 };
 
 export interface IMoneyLike {

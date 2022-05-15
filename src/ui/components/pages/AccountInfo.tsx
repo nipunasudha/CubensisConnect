@@ -17,10 +17,10 @@ class AccountInfoComponent extends React.Component {
 
   static getDerivedStateFromProps(props) {
     const { selectedAccount, assets, balances } = props;
-    const asset = assets['DCC'];
+    const asset = assets['WAVES'];
 
     if (!asset) {
-      props.getAsset('DCC');
+      props.getAsset('WAVES');
       return { balance: null };
     }
     const assetInstance = new Asset(asset);
