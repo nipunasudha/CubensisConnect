@@ -1,7 +1,6 @@
 import * as Sentry from '@sentry/react';
 import ObservableStore from 'obs-store';
 import { libs } from '@waves/waves-transactions';
-import { statisticsApiKey } from '../../config.json';
 import extension from 'extensionizer';
 import { detect } from '../lib/detectBrowser';
 import { KEEPERWALLET_ENV } from '../constants';
@@ -66,39 +65,39 @@ export class StatisticsController {
   }
 
   sendEvents() {
-    this.sended = this.sended
-      .then(() => new Promise(resolve => setTimeout(resolve, 1000)))
-      .then(() => {
-        if (this.events.length === 0) {
-          return null;
-        }
-
-        const events = this.events;
-        this.events = [];
-
-        return fetch('https://api.amplitude.com/2/httpapi', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            Accept: '*/*',
-          },
-          body: JSON.stringify({
-            api_key: statisticsApiKey,
-            events: events,
-          }),
-        }).catch(err => {
-          if (
-            err instanceof TypeError &&
-            /Failed to fetch|NetworkError when attempting to fetch resource/i.test(
-              err.message
-            )
-          ) {
-            return;
-          }
-
-          Sentry.captureException(err);
-        });
-      });
+    // this.sended = this.sended
+    //   .then(() => new Promise(resolve => setTimeout(resolve, 1000)))
+    //   .then(() => {
+    //     if (this.events.length === 0) {
+    //       return null;
+    //     }
+    //
+    //     const events = this.events;
+    //     this.events = [];
+    //
+    //     return fetch('https://api.amplitude.com/2/httpapi', {
+    //       method: 'POST',
+    //       headers: {
+    //         'Content-Type': 'application/json',
+    //         Accept: '*/*',
+    //       },
+    //       body: JSON.stringify({
+    //         api_key: statisticsApiKey,
+    //         events: events,
+    //       }),
+    //     }).catch(err => {
+    //       if (
+    //         err instanceof TypeError &&
+    //         /Failed to fetch|NetworkError when attempting to fetch resource/i.test(
+    //           err.message
+    //         )
+    //       ) {
+    //         return;
+    //       }
+    //
+    //       Sentry.captureException(err);
+    //     });
+    //   });
   }
 
   /**
