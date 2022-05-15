@@ -21,12 +21,12 @@ function readFileAsText(file: File) {
 }
 
 const networkCodeToNetworkMap: Record<
-  'S' | 'T' | 'W',
+  'S' | '!' | '?',
   Exclude<NetworkName, 'custom'>
 > = {
   S: 'stagenet',
-  T: 'testnet',
-  W: 'mainnet',
+  '!': 'testnet',
+  '?': 'mainnet',
 };
 
 function findNetworkByNetworkCode(networkCode: string): NetworkName {

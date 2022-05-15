@@ -14,8 +14,8 @@ export const baseByNetwork = {
 };
 
 export const idByNetwork = {
-  mainnet: 'W',
-  testnet: 'T',
+  mainnet: '?',
+  testnet: '!',
 };
 
 interface Props {
