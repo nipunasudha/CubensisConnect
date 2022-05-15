@@ -97,10 +97,10 @@ export function Assets({ setTab }: Props) {
         <ActiveAccountCard
           account={activeAccount}
           wavesBalance={
-            assets['WAVES'] &&
+            assets['DCC'] &&
             new Money(
               balances[address]?.available || 0,
-              new Asset(assets['WAVES'])
+              new Asset(assets['DCC'])
             )
           }
           amountInUsd={amountInUsd}

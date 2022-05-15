@@ -35,7 +35,7 @@ const SLIPPAGE_TOLERANCE_OPTIONS = [
 const KEEPER_FEE = new BigNumber(0.1);
 
 function getAssetBalance(asset: Asset, accountBalance: AccountBalance) {
-  return asset.id === 'WAVES'
+  return asset.id === 'DCC'
     ? new Money(accountBalance.available, asset)
     : new Money(accountBalance.assets?.[asset.id]?.balance || '0', asset);
 }
@@ -106,8 +106,8 @@ export function SwapForm({
 
   if (sponsoredAssetBalanceEntries.length === 0) {
     sponsoredAssetBalanceEntries.push([
-      'WAVES',
-      accountBalance.assets['WAVES'],
+      'DCC',
+      accountBalance.assets['DCC'],
     ]);
   }
 

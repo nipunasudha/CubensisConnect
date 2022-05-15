@@ -12,7 +12,7 @@
     "password": "密码",
     "passwordError": "密码不正确",
     "privateKeyNoBackupPhrase": "该账户通过私钥导入，因此无备份助记词",
-    "emailNoBackupPhrase": "该账户通过Waves.Exchange账户导入，无可备份助记词或私钥",
+    "emailNoBackupPhrase": "该账户通过Decentral.exchange账户导入，无可备份助记词或私钥",
     "privKey": "私钥",
     "pubKey": "公钥",
     "viewInExplorer": "在浏览器中查看"
@@ -232,7 +232,7 @@
   },
   "importEmail": {
     "importEmailTitle": "导入邮箱账户",
-    "importEmailDesc": "连接在Waves.Exchange创建的邮箱账户",
+    "importEmailDesc": "连接在Decentral.exchange创建的邮箱账户",
     "passwordLabel": "密码",
     "passwordRequired": "输入密码",
     "loginRequired": "确认邮箱账户",
@@ -248,7 +248,7 @@
     "incorrectCode": "验证码错误，请重新输入",
     "userDoesNotExist": "该用户不存在。",
     "incorrectUsernameOrPassword": "账户名或密码不正确。",
-    "incorrectUsernameOrPasswordLimit": "您输入的账户名或密码超过限制。如果您有任何问题，请联系Waves.Exchange客户支持：https://support.waves.exchange/",
+    "incorrectUsernameOrPasswordLimit": "您输入的账户名或密码超过限制。如果您有任何问题，请联系Decentral.exchange客户支持：https://support.decentral.exchange/",
     "alreadyExists": "账户已存在"
   },
   "importKeystore": {

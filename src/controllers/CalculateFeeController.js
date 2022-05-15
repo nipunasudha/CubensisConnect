@@ -69,7 +69,7 @@ export async function getExtraFee(address, node) {
   return json.extraFee;
 }
 
-const WAVES_ID = 'WAVES';
+const WAVES_ID = 'DCC';
 
 function normalizeAssetId(assetId) {
   return assetId || WAVES_ID;

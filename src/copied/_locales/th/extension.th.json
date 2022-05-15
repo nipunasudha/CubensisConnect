@@ -12,7 +12,7 @@
     "password": "รหัสผ่าน",
     "passwordError": "รหัสผ่านผิดพลาด",
     "privateKeyNoBackupPhrase": "บัญชีนี้ถูกนำเข้าโดยใช้ private key จึงไม่มี backup phrase ให้คัดลอก",
-    "emailNoBackupPhrase": "บัญชีนี้ถูกนำเข้าโดยใช้บัญชี Waves.Exchange จึงไม่มี backup phrase หรือ private key ให้คัดลอก",
+    "emailNoBackupPhrase": "บัญชีนี้ถูกนำเข้าโดยใช้บัญชี Decentral.exchange จึงไม่มี backup phrase หรือ private key ให้คัดลอก",
     "privKey": "Private key",
     "pubKey": "Public key",
     "viewInExplorer": "ดูใน Explorer"
@@ -232,7 +232,7 @@
   },
   "importEmail": {
     "importEmailTitle": "นำเข้าบัญชีอีเมล",
-    "importEmailDesc": "เชื่อมต่อบัญชีอีเมลที่สร้างขึ้นบน Waves.Exchange",
+    "importEmailDesc": "เชื่อมต่อบัญชีอีเมลที่สร้างขึ้นบน Decentral.exchange",
     "passwordLabel": "รหัสผ่าน",
     "passwordRequired": "ใส่รหัสผ่าน",
     "loginRequired": "ยืนยันบัญชีอีเมล",
@@ -248,7 +248,7 @@
     "incorrectCode": "รหัสผิด กรุณาลองอีกครั้ง",
     "userDoesNotExist": "ไม่มีผู้ใช้",
     "incorrectUsernameOrPassword": "ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง",
-    "incorrectUsernameOrPasswordLimit": "คุณใช้ชื่อผู้ใช้หรือรหัสผ่านที่ไม่ถูกต้อง หากคุณมีปัญหาใดๆ โปรดติดต่อฝ่ายดูแล https://support.waves.exchange/",
+    "incorrectUsernameOrPasswordLimit": "คุณใช้ชื่อผู้ใช้หรือรหัสผ่านที่ไม่ถูกต้อง หากคุณมีปัญหาใดๆ โปรดติดต่อฝ่ายดูแล https://support.decentral.exchange/",
     "alreadyExists": "มีบัญชีนี้อยู่แล้ว"
   },
   "importKeystore": {

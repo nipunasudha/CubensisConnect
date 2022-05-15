@@ -357,7 +357,7 @@ class Background {
   async assetInfo(assetId: string): Promise<AssetDetail> {
     try {
       await this.initPromise;
-      return await this.background.assetInfo(assetId || 'WAVES');
+      return await this.background.assetInfo(assetId || 'DCC');
     } catch (err) {
       throw new Error(prepareErrorMessage(err));
     }

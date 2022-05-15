@@ -91,7 +91,7 @@ export function AssetItem({
             isShortFormat={false}
             split={true}
             balance={balance}
-            assetId={isLoading ? 'WAVES' : assetId}
+            assetId={isLoading ? 'DCC' : assetId}
             showUsdAmount
           />
         </div>
@@ -99,7 +99,7 @@ export function AssetItem({
 
       {!isLoading && (
         <MoreActions>
-          {assetId !== 'WAVES' && (
+          {assetId !== 'DCC' && (
             <Tooltip content={t('assetInfo.infoTooltip')}>
               {props => (
                 <button

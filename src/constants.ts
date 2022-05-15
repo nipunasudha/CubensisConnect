@@ -142,19 +142,19 @@ export const DEFAULT_IGNORE_ERRORS_CONFIG = {
 // todo port
 export const DEFAULT_IDENTITY_CONFIG = {
   testnet: {
-    apiUrl: 'https://id-testnet.waves.exchange/api',
+    apiUrl: 'https://id-testnet.decentral.exchange/api',
     cognito: {
       userPoolId: 'eu-central-1_6Bo3FEwt5',
       clientId: '7l8bv0kmvrb4s4n1topofh9d80',
-      endpoint: 'https://testnet.waves.exchange/cognito',
+      endpoint: 'https://testnet.decentral.exchange/cognito',
     },
   },
   mainnet: {
-    apiUrl: 'https://id.waves.exchange/api',
+    apiUrl: 'https://id.decentral.exchange/api',
     cognito: {
       userPoolId: 'eu-central-1_AXIpDLJQx',
       clientId: 'k63vrrmuav01s6p2d344ppnf4',
-      endpoint: 'https://waves.exchange/cognito',
+      endpoint: 'https://decentral.exchange/cognito',
     },
   },
 };

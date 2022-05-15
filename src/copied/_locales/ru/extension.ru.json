@@ -12,7 +12,7 @@
     "password": "Пароль",
     "passwordError": "Неверный пароль",
     "privateKeyNoBackupPhrase": "Невозможно скопировать фразу восстановления, так как этот аккаунт был импортирован с помощью приватного ключа",
-    "emailNoBackupPhrase": "Невозможно скопировать фразу восстановления или приватный ключ, так как импорт аккаунта был произведен с помощью аккаунта Waves.Exchange",
+    "emailNoBackupPhrase": "Невозможно скопировать фразу восстановления или приватный ключ, так как импорт аккаунта был произведен с помощью аккаунта Decentral.exchange",
     "privKey": "Приватный ключ",
     "pubKey": "Открытый ключ",
     "viewInExplorer": "Открыть в Explorer"
@@ -235,7 +235,7 @@
   },
   "importEmail": {
     "importEmailTitle": "Импорт Email-аккаунта",
-    "importEmailDesc": "Подключите Email-аккаунт, созданный на Waves.Exchange",
+    "importEmailDesc": "Подключите Email-аккаунт, созданный на Decentral.exchange",
     "passwordLabel": "Пароль",
     "passwordRequired": "Введите пароль",
     "loginRequired": "Подтвердите Email-аккаунт",
@@ -251,7 +251,7 @@
     "incorrectCode": "Неправильный код. Пожалуйста, попробуйте еще раз",
     "userDoesNotExist": "Пользователь не существует.",
     "incorrectUsernameOrPassword": "Неверное имя пользователя или пароль.",
-    "incorrectUsernameOrPasswordLimit": "Вы превысили лимит попыток ввода имени пользователя или пароля. Если у вас возникли какие-либо трудности, пожалуйста, свяжитесь со службой поддержки https://support.waves.exchange/.",
+    "incorrectUsernameOrPasswordLimit": "Вы превысили лимит попыток ввода имени пользователя или пароля. Если у вас возникли какие-либо трудности, пожалуйста, свяжитесь со службой поддержки https://support.decentral.exchange/.",
     "alreadyExists": "Аккаунт уже существует"
   },
   "importKeystore": {

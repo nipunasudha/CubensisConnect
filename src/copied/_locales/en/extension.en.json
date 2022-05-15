@@ -14,7 +14,7 @@
     "password": "Password",
     "passwordError": "Incorrect password",
     "privateKeyNoBackupPhrase": "This account was imported using private key, so there's no backup phrase to copy",
-    "emailNoBackupPhrase": "This account was imported using the Waves.Exchange account, so there is no backup phrase or private key to copy",
+    "emailNoBackupPhrase": "This account was imported using the Decentral.exchange account, so there is no backup phrase or private key to copy",
     "privKey": "Private key",
     "pubKey": "Public key",
     "viewInExplorer": "View in Explorer"
@@ -181,8 +181,8 @@
     "issueSmartNFT": "Issue Smart NFT",
     "issueSmartToken": "Issue Smart Asset",
     "issueToken": "Issue Asset",
-    "lease": "Start WAVES Staking",
-    "leaseCancel": "Cancel WAVES Staking",
+    "lease": "Start DCC Staking",
+    "leaseCancel": "Cancel DCC Staking",
     "leaseIncoming": "Incoming Leasing",
     "massTransfer": "Mass Transfer",
     "massTransferReceive": "Incoming Mass Transfer",
@@ -244,7 +244,7 @@
   },
   "importEmail": {
     "importEmailTitle": "Import Email Account",
-    "importEmailDesc": "Connect an email account created on Waves.Exchange",
+    "importEmailDesc": "Connect an email account created on Decentral.exchange",
     "passwordLabel": "Password",
     "passwordRequired": "Enter password",
     "loginRequired": "Confirm Email Account",
@@ -260,7 +260,7 @@
     "incorrectCode": "Wrong code. Please, try again",
     "userDoesNotExist": "User does not exist.",
     "incorrectUsernameOrPassword": "Incorrect username or password.",
-    "incorrectUsernameOrPasswordLimit": "You have exceeded incorrect username or password limit. If you have any problems, please contact support https://support.waves.exchange/.",
+    "incorrectUsernameOrPasswordLimit": "You have exceeded incorrect username or password limit. If you have any problems, please contact support https://support.decentral.exchange/.",
     "alreadyExists": "Account already exists"
   },
   "importKeystore": {
@@ -285,9 +285,9 @@
     "accountExistsError": "This account already exists in CubensisConnect",
     "accountIdLabel": "Account ID",
     "avatarListLoading": "Loading accounts...",
-    "connectInstructions": "Connect Ledger device and open Waves app",
+    "connectInstructions": "Connect Ledger device and open Cubensis app",
     "continueButton": "Continue",
-    "couldNotGetUsersError": "Could not get more users from ledger. Please ensure that ledger is connected, unlocked and the Waves app is open, then click <retryButton>Retry</retryButton>",
+    "couldNotGetUsersError": "Could not get more users from ledger. Please ensure that ledger is connected, unlocked and the Cubensis app is open, then click <retryButton>Retry</retryButton>",
     "userIdInputNumbersError": "Only numbers are allowed",
     "userIdInputMaxValueError": "Account ID cannot be greater than {{ maxUserId }}",
     "selectAccountInstructions": "Choose your address",
@@ -315,7 +315,7 @@
     "title": "Import using seed"
   },
   "info": {
-    "joinUs": "Join the Waves Community",
+    "joinUs": "Join the DecentralChain Community",
     "keepUp": "CubensisConnect — is the safest way to interact with third-party web resources with Waves-integrated functionality or DApps. Using CubensisConnect, you can sign transactions and remain safe from malicious sites."
   },
   "langsSettings": {
@@ -327,7 +327,7 @@
     "usedBySomeOtherApp": "Seems like ledger is already used by another application. Close all applications that may use ledger and try again."
   },
   "ledgerConnectModal": {
-    "instructions": "Connect Ledger device and open Waves app",
+    "instructions": "Connect Ledger device and open Cubensis app",
     "title": "Connecting...",
     "tryAgainButton": "Try Again"
   },
@@ -369,7 +369,7 @@
     "create": "Continue",
     "createPassword": "Create a password",
     "notMatch": "Passwords do not match",
-    "passinfo": "The password you entered will be stored locally. If you change device or lose your password, you will have to repeat the process of adding accounts to CubensisConnect. Waves does not store your passwords.",
+    "passinfo": "The password you entered will be stored locally. If you change device or lose your password, you will have to repeat the process of adding accounts to CubensisConnect. CubensisConnect does not store your passwords.",
     "privacyPolicy": "Privacy Policy",
     "protect": "Protect Your Account",
     "smallPass": "Password is too short",
@@ -514,7 +514,7 @@
     "nextTransaction": "Next",
     "pendingList": "Pending list",
     "reject": "Reject",
-    "signAccessInfo": "The application will have access to your Waves address but will not expose your SEED or private key. Never enter your secret phrase (SEED) on any website you are redirected to.",
+    "signAccessInfo": "The application will have access to your DecentralChain address but will not expose your SEED or private key. Never enter your secret phrase (SEED) on any website you are redirected to.",
     "signButton": "Sign",
     "someError": "Something went wrong",
     "switchAccount": "Switch account",
@@ -559,7 +559,7 @@
   "transactions": {
     "allowAccess": "Allow access",
     "allowAccessTitle": "Allow access",
-    "amountPerTransaction": "This amount is equivalent to every 0.001 Waves in transaction fees",
+    "amountPerTransaction": "This amount is equivalent to every 0.001 DCC in transaction fees",
     "arguments": "Arguments",
     "assetId": "Asset ID",
     "assetScriptTransaction": "Set Asset Script",
@@ -593,7 +593,7 @@
     "orderCancel": "Cancel the order",
     "orderId": "Order ID",
     "orderSell": "Sell",
-    "originWarning": "wants to access your Waves Address",
+    "originWarning": "wants to access your DecentralChain Address",
     "packTransactionGroup": "Group",
     "packTransactions": "Transactions",
     "packTransactionsFees": "Fees",

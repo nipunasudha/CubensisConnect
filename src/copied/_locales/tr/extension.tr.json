@@ -12,7 +12,7 @@
     "password": "Şifre",
     "passwordError": "Yalnış şifre",
     "privateKeyNoBackupPhrase": "Bu hesap özel anahtarlar kullanılarak içe aktarıldı, dolayısıyla kopyalanacak yedekleme anahtarı yok",
-    "emailNoBackupPhrase": "Bu hesap Waves.Exchange hesabı kullanılarak içe aktarıldı, dolayısıyla kopyalanacak yedekleme anahtarı veya özel anahtar yok",
+    "emailNoBackupPhrase": "Bu hesap Decentral.exchange hesabı kullanılarak içe aktarıldı, dolayısıyla kopyalanacak yedekleme anahtarı veya özel anahtar yok",
     "privKey": "Özel anahtar",
     "pubKey": "Genel anahtar",
     "viewInExplorer": "Tarayıcı'da görüntüle"
@@ -248,7 +248,7 @@
     "incorrectCode": "Yanlış kod. Lütfen tekrar deneyin",
     "userDoesNotExist": "Kullanıcı bulunmamaktadır.",
     "incorrectUsernameOrPassword": " Yanlış kullanıcı adı ya da şifre.",
-    "incorrectUsernameOrPasswordLimit": "Kullanıcı adını ya da şifreyi yanlış girme limitini aştınız. Herhangi bir sorununuz varsa, lütfen https://support.waves.exchange/ adresinden destek ile iletişime geçin.",
+    "incorrectUsernameOrPasswordLimit": "Kullanıcı adını ya da şifreyi yanlış girme limitini aştınız. Herhangi bir sorununuz varsa, lütfen https://support.decentral.exchange/ adresinden destek ile iletişime geçin.",
     "alreadyExists": "Bu hesap zaten mevcut"
   },
   "importKeystore": {

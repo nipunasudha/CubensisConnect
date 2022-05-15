@@ -9,8 +9,8 @@ import { newAccountSelect } from '../../../actions';
 import { PAGES } from '../../../pageConfig';
 
 export const baseByNetwork = {
-  mainnet: 'https://waves.exchange',
-  testnet: 'https://testnet.waves.exchange',
+  mainnet: 'https://decentral.exchange',
+  testnet: 'https://testnet.decentral.exchange',
 };
 
 export const idByNetwork = {

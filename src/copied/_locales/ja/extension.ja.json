@@ -12,7 +12,7 @@
     "password": "パスワード",
     "passwordError": "パスワードが正しくありません。",
     "privateKeyNoBackupPhrase": "このアカウントは秘密鍵を使用してインポートされたため、バックアップフレーズはありません。",
-    "emailNoBackupPhrase": "このアカウントはWaves.Exchangeアカウントを使用してインポートされたため、バックアップフレーズや秘密鍵をコピーする必要はありません。",
+    "emailNoBackupPhrase": "このアカウントはDecentral.exchangeアカウントを使用してインポートされたため、バックアップフレーズや秘密鍵をコピーする必要はありません。",
     "privKey": "秘密鍵",
     "pubKey": "公開鍵",
     "viewInExplorer": "エクスプローラーで確認"
@@ -232,7 +232,7 @@
   },
   "importEmail": {
     "importEmailTitle": "メールアカウントをインポート",
-    "importEmailDesc": "Waves.Exchangeで作成したメールアカウントを接続します。",
+    "importEmailDesc": "Decentral.exchangeで作成したメールアカウントを接続します。",
     "passwordLabel": "パスワード",
     "passwordRequired": "パスワードを入力",
     "loginRequired": "メールアカウントを確認",
@@ -248,7 +248,7 @@
     "incorrectCode": "認証コードが間違っています。再入力してください。",
     "userDoesNotExist": "ユーザーが存在しません。",
     "incorrectUsernameOrPassword": "ユーザー名またはパスワードが間違っています。",
-    "incorrectUsernameOrPasswordLimit": "ユーザ名またはパスワードを間違えた回数が上限を超えました。サポートまでご連絡ください。https://support.waves.exchange/",
+    "incorrectUsernameOrPasswordLimit": "ユーザ名またはパスワードを間違えた回数が上限を超えました。サポートまでご連絡ください。https://support.decentral.exchange/",
     "alreadyExists": "アカウントは既に存在しています。"
   },
   "importKeystore": {

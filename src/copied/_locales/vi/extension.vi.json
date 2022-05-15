@@ -12,7 +12,7 @@
     "password": "Mật khẩu",
     "passwordError": "Sai mật khẩu ",
     "privateKeyNoBackupPhrase": "Tài khoản này được đăng nhập bằng private key, nên không có cụm từ sao lưu để sao chép ",
-    "emailNoBackupPhrase": "Tài khoản này được đăng nhập bằng tài khoản Waves.exchange, nên không có cụm từ sao lưu để sao chép",
+    "emailNoBackupPhrase": "Tài khoản này được đăng nhập bằng tài khoản Decentral.exchange, nên không có cụm từ sao lưu để sao chép",
     "privKey": "Private key",
     "pubKey": "Public key",
     "viewInExplorer": "Xem trên trình duyệt "
@@ -232,7 +232,7 @@
   },
   "importEmail": {
     "importEmailTitle": "Nhập tài khoản Email",
-    "importEmailDesc": "Kết nối với 1 tài khoản đã tạo trên Waves.Exchange",
+    "importEmailDesc": "Kết nối với 1 tài khoản đã tạo trên Decentral.exchange",
     "passwordLabel": "Mật khẩu",
     "passwordRequired": "Nhập mật khẩu",
     "loginRequired": "Xác nhận tài khoản Email",
@@ -248,7 +248,7 @@
     "incorrectCode": "Sai mã. Vui lòng thử lại ",
     "userDoesNotExist": "Người dùng không tồn tại.",
     "incorrectUsernameOrPassword": "Sai tên đăng nhập hoặc mật khẩu.",
-    "incorrectUsernameOrPasswordLimit": "Bạn đã vượt quá số lần nhập sai tên người dùng hoặc mật khẩu. Nếu bạn gặp bất kỳ sự cố nào, vui lòng liên hệ với bộ phận hỗ trợ https://support.waves.exchange/.",
+    "incorrectUsernameOrPasswordLimit": "Bạn đã vượt quá số lần nhập sai tên người dùng hoặc mật khẩu. Nếu bạn gặp bất kỳ sự cố nào, vui lòng liên hệ với bộ phận hỗ trợ https://support.decentral.exchange/.",
     "alreadyExists": "Tài khoản đã tồn tại"
   },
   "importKeystore": {

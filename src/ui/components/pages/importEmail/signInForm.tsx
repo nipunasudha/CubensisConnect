@@ -89,7 +89,7 @@ export function SignInForm({ className, userData, signIn }: Props) {
           case 'Incorrect username or password.':
             errMessage = t('importEmail.incorrectUsernameOrPassword');
             break;
-          case 'You have exceeded incorrect username or password limit. If you have any problems, please contact support https://support.waves.exchange/.':
+          case 'You have exceeded incorrect username or password limit. If you have any problems, please contact support https://support.decentral.exchange/.':
             errMessage = t('importEmail.incorrectUsernameOrPasswordLimit');
             break;
           default:

@@ -99,7 +99,7 @@ async function setupInpageApi() {
 }
 
 function setupClickInterceptor(inpageApi) {
-  const excludeSites = ['waves.exchange'];
+  const excludeSites = ['decentral.exchange'];
 
   if (excludeSites.includes(location.host)) {
     return false;
@@ -136,7 +136,7 @@ function checkForPaymentApiLink(e) {
         ![
           'client.decentralamerica.com',
           'dex.decentralamerica.com',
-          'waves.exchange',
+          'decentral.exchange',
         ].find(item => url.host === item)
       ) {
         return false;
@@ -221,7 +221,7 @@ function processPaymentAPILink({ type, hash }, inpageApi) {
             tokens: apiData.amount,
           },
           fee: {
-            assetId: 'WAVES',
+            assetId: 'DCC',
             tokens: '0.00100000',
           },
           recipient: apiData.recipient,

@@ -14,7 +14,7 @@
     "password": "Contraseña",
     "passwordError": "Contraseña incorrecta",
     "privateKeyNoBackupPhrase": "Esta cuenta se importó usando una clave privada, por lo que no hay una frase de respaldo para copiar",
-    "emailNoBackupPhrase": "Esta cuenta se importó con la cuenta de Waves.Exchange, por lo que no hay una frase de respaldo ni una clave privada para copiar",
+    "emailNoBackupPhrase": "Esta cuenta se importó con la cuenta de Decentral.exchange, por lo que no hay una frase de respaldo ni una clave privada para copiar",
     "privKey": "Clave privada",
     "pubKey": "Clave publica",
     "viewInExplorer": "Ver en el explorador"
@@ -240,7 +240,7 @@
   },
   "importEmail": {
     "importEmailTitle": "Importar cuenta de correo electrónico",
-    "importEmailDesc": "Conecte una cuenta de correo electrónico creada en Waves.Exchange",
+    "importEmailDesc": "Conecte una cuenta de correo electrónico creada en Decentral.exchange",
     "passwordLabel": "Contraseña",
     "passwordRequired": "Introducir la contraseña",
     "loginRequired": "Confirmar cuenta de correo electrónico",
@@ -256,7 +256,7 @@
     "incorrectCode": "Codigo erroneo. Inténtalo de nuevo",
     "userDoesNotExist": "Usuario no existe.",
     "incorrectUsernameOrPassword": "Nombre de usuario o contraseña incorrecta.",
-    "incorrectUsernameOrPasswordLimit": "Ha excedido el limite de nombre de usuario y contraseña incorrecta. Si tiene algún problema comuníquese con soporte https://support.waves.exchange/.",
+    "incorrectUsernameOrPasswordLimit": "Ha excedido el limite de nombre de usuario y contraseña incorrecta. Si tiene algún problema comuníquese con soporte https://support.decentral.exchange/.",
     "alreadyExists": "la cuenta ya existe"
   },
   "importKeystore": {

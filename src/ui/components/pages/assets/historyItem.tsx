@@ -36,18 +36,18 @@ export function HistoryItem({ tx, className }: Props) {
     tx.applicationStatus && tx.applicationStatus !== 'succeeded';
 
   const fromCoins = (amount, assetId) =>
-    assets[assetId ?? 'WAVES'] &&
-    Money.fromCoins(amount, new Asset(assets[assetId ?? 'WAVES']));
+    assets[assetId ?? 'DCC'] &&
+    Money.fromCoins(amount, new Asset(assets[assetId ?? 'DCC']));
 
   const fromTokens = (amount, assetId) =>
-    assets[assetId ?? 'WAVES'] &&
-    Money.fromTokens(amount, new Asset(assets[assetId ?? 'WAVES']));
+    assets[assetId ?? 'DCC'] &&
+    Money.fromTokens(amount, new Asset(assets[assetId ?? 'DCC']));
 
   switch (tx.type) {
     case TRANSACTION_TYPE.GENESIS:
       tooltip = label = t('historyCard.genesis');
       info = (
-        <Balance split showAsset balance={fromCoins(tx.amount, 'WAVES')} />
+        <Balance split showAsset balance={fromCoins(tx.amount, 'DCC')} />
       );
       messageType = 'receive';
       break;

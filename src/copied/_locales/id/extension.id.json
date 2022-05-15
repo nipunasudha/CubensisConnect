@@ -14,7 +14,7 @@
     "password": "Password",
     "passwordError": "Salah sandi",
     "privateKeyNoBackupPhrase": "Akun ini diimpor menggunakan private key, jadi tidak ada Backup phrase untuk disalin",
-    "emailNoBackupPhrase": "Akun ini diimpor menggunakan waves.exchange, jadi tidak ada Backup phrase untuk disalin",
+    "emailNoBackupPhrase": "Akun ini diimpor menggunakan decentral.exchange, jadi tidak ada Backup phrase untuk disalin",
     "privKey": "Private key",
     "pubKey": "Public key",
     "viewInExplorer": "Lihat di explorer"
@@ -240,7 +240,7 @@
   },
   "importEmail": {
     "importEmailTitle": "Import Email akun",
-    "importEmailDesc": "Hubungkan akun email yang dibuat di Waves.Exchange",
+    "importEmailDesc": "Hubungkan akun email yang dibuat di Decentral.exchange",
     "passwordLabel": "Password",
     "passwordRequired": "Maukkan password",
     "loginRequired": "Konfirmasi email akun",
@@ -256,7 +256,7 @@
     "incorrectCode": "Salah kode. Tolong, coba lagi",
     "userDoesNotExist": "Pengguna tidak ada.",
     "incorrectUsernameOrPassword": "Nama pengguna atau kata sandi salah.",
-    "incorrectUsernameOrPasswordLimit": "beberapa kali anda telah membuat kesalahan dalam nama pengguna atau kata sandi Anda adalah https://support.waves.exchange/",
+    "incorrectUsernameOrPasswordLimit": "beberapa kali anda telah membuat kesalahan dalam nama pengguna atau kata sandi Anda adalah https://support.decentral.exchange/",
     "alreadyExists": "Akun sudah ada"
   },
   "importKeystore": {
